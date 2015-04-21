@@ -1,0 +1,11 @@
+Front End
+-------------
+#Dependencies
+- nodejs
+- gulp
+- babel
+- ES6
+
+#Seting up
+- `npm install`
+- `gulp dev`

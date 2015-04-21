@@ -1,0 +1,70 @@
+{
+  "name": "Thoughtworks-fix-assets-front-end",
+  "version": "0.0.1",
+  "description": "",
+  "scripts": {
+    "build": "NODE_ENV=production gulp build",
+    "test": "mocha -R spec --compilers js:babel/register tasks/libs/jsdom.js --check-leaks components/**/*.spec.js",
+    "fixBabel": "rm -rf node_modules/gulp/node_modules/vinyl-fs/node_modules/glob-watcher/node_modules/gaze/node_modules/globule/node_modules/lodash",
+    "gh-pages": "npm run build && gulp gh-pages"
+  },
+  "engines": {
+    "node": ">=0.12"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer-stylus": "^0.5.0",
+    "babel": "^4.7.16",
+    "babel-runtime": "^4.7.16",
+    "babelify": "^5.0.4",
+    "browser-sync": "^2.5.0",
+    "browserify": "^9.0.3",
+    "chai": "^2.2.0",
+    "classnames": "^1.2.0",
+    "del": "^1.1.1",
+    "doctrine": "^0.6.4",
+    "envify": "^3.4.0",
+    "gh-pages": "^0.2.0",
+    "gulp": "^3.8.11",
+    "gulp-autoprefixer": "^2.1.0",
+    "gulp-stylus": "^2.0.0",
+    "gulp-newer": "^0.5.0",
+    "gulp-rename": "^1.2.0",
+    "gulp-streamify": "0.0.5",
+    "gulp-uglify": "^1.1.0",
+    "gulp-util": "^3.0.4",
+    "jsdom": "^3.1.2",
+    "lodash": "^3.6.0",
+    "merge-stream": "^0.1.7",
+    "mocha": "^2.2.1",
+    "react-docgen": "^1.1.0",
+    "run-sequence": "^1.0.2",
+    "through": "^2.3.6",
+    "through2": "^0.6.3",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.0.0"
+  },
+  "dependencies": {
+    "codemirror": "^5.1.0",
+    "compression": "^1.4.3",
+    "marked": "^0.3.3",
+    "react": "^0.13.1",
+    "react-bem-render": "^0.2.1"
+  },
+  "browserify": {
+    "transform": [
+      [
+        "babelify",
+        {
+          "experimental": true,
+          "optional": [
+            "runtime"
+          ]
+        }
+      ],
+      "envify"
+    ]
+  },
+  "main": "gulpfile.babel.js"
+}
