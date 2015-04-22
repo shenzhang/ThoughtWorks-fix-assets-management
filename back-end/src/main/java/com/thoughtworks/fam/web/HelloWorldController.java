@@ -1,13 +1,12 @@
 package com.thoughtworks.fam.web;
 
 import com.thoughtworks.fam.web.dto.HelloWorldDTO;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value = "/helloworld", produces = {MediaType.APPLICATION_JSON_VALUE})
+@RequestMapping(value = "/helloworld")
 public class HelloWorldController {
 
     @RequestMapping(method = RequestMethod.GET)
