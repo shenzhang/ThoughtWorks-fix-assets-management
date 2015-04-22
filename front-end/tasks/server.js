@@ -18,7 +18,7 @@ const defaultConfig = {
   'options': {
     server: {
       baseDir: './public',
-      directory: true,
+      index: 'index.html',
       middleware: [
         (process.env.NODE_ENV === 'production' || gutil.env.debug) ? compress() : middlewareNope()
       ]

@@ -6,7 +6,7 @@ import clean from './tasks/clean'
 import browserify from './tasks/browserify'
 import copy from './tasks/copy'
 // import docs from './tasks/docs'
-import stylus from './tasks/stylus'
+import less from './tasks/less'
 import server from './tasks/server'
 // import ghPages from './tasks/gh-pages'
 
@@ -16,8 +16,7 @@ build.setOptions({
   taskQueue: [
     'clean',
     'copy',
-    'stylus',
-    // 'docs',
+    'less',
     'browserify'
   ]
 });
@@ -30,9 +29,9 @@ if (gutil.env.watch) {
   watcher.setWatcher();
 }
 
-gulp.task('dev', ()=> {
+gulp.task('dev', () => {
   watcher.setWatcher();
-  gulp.start(['build', 'server']);
+  gulp.start(['server', 'build']);
 });
 
 gulp.task('default', ['build']);

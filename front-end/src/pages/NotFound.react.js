@@ -1,4 +1,4 @@
-var React = require('react');
+import React from 'react'
 
 var NotFound = React.createClass({
   statics: {
@@ -13,7 +13,7 @@ var NotFound = React.createClass({
 
   render() {
     return (
-      <div block={this.$$block}>
+      <div>
         <header elem='header'>Header</header>
         <main elem='main'>Page Not Found</main>
         <footer elem='footer'>Footer</footer>

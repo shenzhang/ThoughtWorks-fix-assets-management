@@ -17,21 +17,23 @@ import uglify from 'gulp-uglify'
 import watcher from './libs/watcher'
 
 const vendors = [
-  'react',
-  'lodash'
+  // 'react',
+  // 'lodash',
+  // 'material-ui',
+  // 'babelify/polyfill'
 ];
 
 const defaultConfig = {
   'files': [
     {
-      'entry': 'src/index.react.js',
+      'entry': 'src/vendor.js',
       'dest': 'public/assets/js',
       'options': {
         'require': vendors
       }
     },
     {
-      'entry': 'src/vendor.js',
+      'entry': 'src/index.react.js',
       'dest': 'public/assets/js',
       'options': {
         'external': vendors
@@ -79,6 +81,7 @@ const task = gulp.task(TASK_NAME, function () {
           })
       });
 
+
     if (watcher.isWatching()) {
       bundler = watchify(bundler);
       bundler.on('update', bundle);
@@ -87,6 +90,7 @@ const task = gulp.task(TASK_NAME, function () {
           're-bundled', 'after', gutil.colors.magenta(time > 1000 ? time / 1000 + ' s' : time + ' ms'))
       });
     }
+
 
     function bundle() {
       return bundler.bundle()
@@ -97,7 +101,6 @@ const task = gulp.task(TASK_NAME, function () {
         .pipe(rename(function (pathObj) {
           pathObj.dirname = path.relative('src', pathObj.dirname);
           pathObj.basename = pathObj.basename.replace('.react', '');
-          pathObj.extname = '.js';
         }))
         .pipe(whenInProductionDoUglify())
         .pipe(gulp.dest(fileConf.dest))
@@ -107,6 +110,7 @@ const task = gulp.task(TASK_NAME, function () {
   }
 
   return mergeSteam.apply(gulp, _.map(conf.files, bundleThis));
+
 });
 
 task.setOptions = setOptions;

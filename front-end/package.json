@@ -14,8 +14,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "autoprefixer-stylus": "^0.5.0",
-    "babel": "^4.7.16",
+    "babel": "^5.1.11",
     "babel-runtime": "^4.7.16",
     "babelify": "^5.0.4",
     "browser-sync": "^2.5.0",
@@ -28,14 +27,17 @@
     "gh-pages": "^0.2.0",
     "gulp": "^3.8.11",
     "gulp-autoprefixer": "^2.1.0",
-    "gulp-stylus": "^2.0.0",
+    "gulp-less": "3.0.3",
     "gulp-newer": "^0.5.0",
     "gulp-rename": "^1.2.0",
     "gulp-streamify": "0.0.5",
     "gulp-uglify": "^1.1.0",
     "gulp-util": "^3.0.4",
     "jsdom": "^3.1.2",
+    "less-plugin-autoprefix": "1.4.1",
     "lodash": "^3.6.0",
+    "lodash-deep": "^1.6.0",
+    "material-ui": "^0.7.3",
     "merge-stream": "^0.1.7",
     "mocha": "^2.2.1",
     "react-docgen": "^1.1.0",
@@ -48,9 +50,12 @@
   "dependencies": {
     "codemirror": "^5.1.0",
     "compression": "^1.4.3",
+    "material-ui": "0.7.3",
     "marked": "^0.3.3",
+    "react-router": "^0.13.2",
     "react": "^0.13.1",
-    "react-bem-render": "^0.2.1"
+    "react-bem-render": "^0.2.1",
+    "react-tap-event-plugin": "0.1.6"
   },
   "browserify": {
     "transform": [

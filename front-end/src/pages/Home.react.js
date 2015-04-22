@@ -1,25 +1,24 @@
-var React = require('react');
+import React from 'react'
+import {
+  FlatButton
+} from 'material-ui'
+import {
+  Navigation,
+  State
+} from 'react-router'
 
 var Home = React.createClass({
-  statics: {
-    routeName: 'Home'
-  },
 
-  getDefaultProps() {
-    return {
-      routeName: 'Home'
-    }
-  },
+  mixins: [Navigation, State],
 
   render() {
     return (
-      <div block={this.$$block}>
-        <header elem='header'>Header</header>
-        <main elem='main'>Hello World</main>
-        <footer elem='footer'>Footer</footer>
+      <div>
+        Hello World
+        <FlatButton label="Click" primary={true}/>
       </div>
     );
   }
 });
 
-module.exports = Home;
+export default Home

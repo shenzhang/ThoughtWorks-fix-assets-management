@@ -15,6 +15,7 @@ function getPathRedirect(less) {
 
   class PathRedirect extends less.FileManager {
     constructor(options) {
+      super();
       this.options = options;
     }
 

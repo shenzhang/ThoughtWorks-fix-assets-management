@@ -16,22 +16,10 @@ import watcher from './libs/watcher'
 const defaultConfig = {
   'files': [
     {
-      'entry': 'semantic/semantic.less',
+      'entry': 'src/index.less',
       'src': [
-        'semantic/{,**/}*.less',
-        'semantic/{,**/}*.variables',
-        'semantic/{,**/}*.overrides'
-      ],
-      'dest': 'public/assets/css',
-      'options': {
-        'watch': true
-      }
-
-    },
-    {
-      'entry': 'src/docs*/index.less',
-      'src': [
-        'src/{,**/}*.less'
+        'src/{,**/}*.less',
+        'less/{,**/}*.less'
       ],
       'dest': 'public/assets/css',
       'options': {
@@ -41,9 +29,8 @@ const defaultConfig = {
   ],
   'options': {
     'paths': [
-      path.join(process.cwd(), 'node_modules/semantic-ui-less'),
-      path.join(process.cwd(), 'node_modules'),
-      path.join(process.cwd(), 'semantic')
+      path.join(process.cwd(), 'node_modules/material-ui/src'),
+      path.join(process.cwd(), 'node_modules')
     ],
     'plugins': [
       new LessPluginPathRedirect({

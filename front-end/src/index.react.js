@@ -1,38 +1,18 @@
-import _ from 'lodash'
-
-import lodashDeep from 'lodash-deep'
-_.mixin(lodashDeep);
+require("babelify/polyfill")
 
 import React from 'react'
+import injectTapEventPlugin from "react-tap-event-plugin"
 
-import {
-  Home,
-  NotFound
-} from './pages'
+import { run } from 'react-router'
 
-import {
-  run,
-  Route,
-  NotFoundRoute,
-  DefaultRoute,
-  RouteHandler
-} from 'react-router'
+import appRoutes from './app-routes.react'
 
-const App = React.createClass({
-  render() {
-    return (
-      <RouteHandler/>
-    );
-  }
-});
+//browser
+window.React = React;
 
-const rootRoutes = (
-  <Route name='app' path="/" handler={App} alt='Home'>
-    <DefaultRoute handler={Home}/>
-    <NotFoundRoute handler={NotFound}/>
-  </Route>
-);
+// enable touch event
+injectTapEventPlugin();
 
-run(rootRoutes, function (Handler, state) {
+run(appRoutes, function (Handler, state) {
   React.render(<Handler />, document.body);
 });
