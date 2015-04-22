@@ -11,7 +11,7 @@ buildscript {
 
 apply plugin: 'java'
 apply plugin: 'idea'
-apply plugin: 'org.springframework.boot.spring-boot'
+apply plugin: 'spring-boot'
 
 jar {
     baseName = 'backend'
