@@ -5,11 +5,9 @@ import watcher from './tasks/libs/watcher';
 import clean from './tasks/clean'
 import browserify from './tasks/browserify'
 import copy from './tasks/copy'
-// import docs from './tasks/docs'
 import less from './tasks/less'
 import server from './tasks/server'
-// import ghPages from './tasks/gh-pages'
-
+import mocha from './tasks/mocha'
 import build from './tasks/build'
 
 build.setOptions({

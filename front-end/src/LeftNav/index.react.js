@@ -11,14 +11,14 @@ import {
 const menuItems =  [{
   text: 'Home',
   route: 'home'
+},{
+  text: 'User',
+  route: 'user'
 }]
 
 const AppLeftNav = React.createClass({
 
   mixins: [Navigation, State],
-
-  getDefaultProps() {
-  },
 
   render() {
     const menuTitle = <div className="menu__title" onClick={this._onHeaderClick}>Menu Title</div>;
@@ -40,17 +40,22 @@ const AppLeftNav = React.createClass({
   },
 
   _getSelectedIndex: function() {
+    if (!this.context.router) {
+      return 0
+    }
     return menuItems.findIndex(menuItem => {
       menuItem.route && this.context.router.isActive(menuItem.route)
     })
   },
 
   _onLeftNavChange: function(e, key, payload) {
+    this.context.router &&
     this.context.router.transitionTo(payload.route);
     this.refs.leftNav.toggle();
   },
 
   _onHeaderClick: function() {
+    this.context.router &&
     this.context.router.transitionTo('root');
     this.refs.leftNav.close();
   }

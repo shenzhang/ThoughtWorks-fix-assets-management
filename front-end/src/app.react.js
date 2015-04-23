@@ -27,13 +27,7 @@ var BasePage = React.createClass({
 
   render() {
     var menuTitle = <div className="menu__title">Menu Title</div>;
-    var menuIcon = (
-      <IconButton
-        className="mui-app-bar-navigation-icon-button"
-        onTouchTap={this._toggleLeftNav}>
-        <Icons.NavigationMenu/>
-      </IconButton>
-    );
+
     return (
       <AppCanvas predefinedLayout={1}>
         <AppBar

@@ -1,22 +1,26 @@
 import React from 'react'
 import {
-  FlatButton
+  RaisedButton,
+  FontIcon,
+  Paper
 } from 'material-ui'
 import {
-  Navigation,
   State
 } from 'react-router'
 
 var Home = React.createClass({
 
-  mixins: [Navigation, State],
+  mixins: [State],
 
   render() {
     return (
-      <div>
-        Hello World
-        <FlatButton label="Click" primary={true}/>
-      </div>
+      <Paper zDepth={1}>
+        <h2>Hello World!</h2>
+        <RaisedButton linkButton={true} href="https://github.com/callemall/material-ui" secondary={true}>
+          <FontIcon className="muidocs-icon-custom-github example-button-icon"/>
+          <span className="mui-raised-button-label example-icon-button-label">Login</span>
+        </RaisedButton>
+      </Paper>
     );
   }
 });
