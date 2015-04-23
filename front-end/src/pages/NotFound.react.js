@@ -3,7 +3,7 @@ import React from 'react'
 var NotFound = React.createClass({
   render() {
     return (
-      <main elem='main'>Page Not Found</main>
+      <main className="page_not_found">Page Not Found</main>
     );
   }
 });

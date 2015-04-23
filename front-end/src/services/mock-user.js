@@ -8,9 +8,7 @@ export default [
     // `match`: result of the resolution of the regular expression
     // `data`: data returns by `fixtures` attribute
     callback: function (match, data) {
-      if (match[1] == 'login') {
-        return data
-      } else if (match[1] == 'logout') {
+      if (match[1]) {
         return data
       } else {
         return new Error('Do not match any urls!')

@@ -1,4 +1,7 @@
 import request from 'superagent'
+import apisBuilder from '../../utils/apisBuilder'
+
+let mock
 
 const endpoint = 'http://localhost:8080'
 
@@ -13,47 +16,12 @@ const userApis = {
   },
 }
 
-/**
- * userApiInterface
- * provide all the api interface for user
- */
-const userApiInterface = Object.keys(userApis).reduce(function(apis, name) {
-  const api = userApis[name]
-  if (api) {
-    apis[name] = function() {
-      const args = arguments
-      return new Promise(function(resolve, reject) {
-        if (validMethod(api.method)) {
-          request[api.method](endpoint + api.url)
-            .send(args[0])
-            .end(function(err, data) {
-              if (err) {
-                return reject(err)
-              }
-              resolve(data)
-            })
-        } else {
-          reject(new Error('invalid method!'))
-        }
-      })
-    }
-  }
-  return apis
-}, {})
-
-// for mocking the http requests
-userApiInterface._request = request;
-
-export default userApiInterface
-
-function validMethod(method) {
-  if (typeof method !== 'string')
-    return new Error('invalid method type!')
-  return [
-    'post',
-    'get',
-    'put',
-    'delete',
-    'head',
-    'update'].find(item => method.toLowerCase() === item)
+// mock the http request if not production
+if (process.env.NODE_ENV !== 'production') {
+  mock = require('./mock-user')
 }
+
+/**
+ * build apis from the config or add mock apis
+ */
+export default apisBuilder(userApis, endpoint, mock)

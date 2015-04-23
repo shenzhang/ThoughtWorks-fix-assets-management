@@ -29,6 +29,8 @@ setOptions();
 
 const task = gulp.task(TASK_NAME, function () {
   function bundle() {
+    process.env.NODE_ENV = process.env.NODE_ENV || 'test'
+    
     return gulp.src(conf.entry, {read: false})
       .pipe(mocha(conf.options))
       .on('error', gutil.log.bind(this));

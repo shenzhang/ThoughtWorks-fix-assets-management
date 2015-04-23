@@ -8,20 +8,39 @@ import {
   State
 } from 'react-router'
 
+import userApi from '../services/user'
+
 var Home = React.createClass({
 
   mixins: [State],
 
+  getInitialState() {
+    return {
+      title: 'Hello World!'
+    }
+  },
+
   render() {
     return (
       <Paper zDepth={1}>
-        <h2>Hello World!</h2>
-        <RaisedButton linkButton={true} href="https://github.com/callemall/material-ui" secondary={true}>
+        <h2>{this.state.title}</h2>
+        <RaisedButton secondary={true}>
           <FontIcon className="muidocs-icon-custom-github example-button-icon"/>
-          <span className="mui-raised-button-label example-icon-button-label">Login</span>
+          <span className="mui-raised-button-label example-icon-button-label" onClick={this._login}>Login</span>
         </RaisedButton>
       </Paper>
     );
+  },
+
+  _login() {
+    userApi.login()
+      .then(this.onLogin, this.onLoginFail)
+  },
+  onLogin(msg) {
+    this.setState({title: msg})
+  },
+  onLoginFail(err) {
+    this.setState({title: err.message})
   }
 });
 
