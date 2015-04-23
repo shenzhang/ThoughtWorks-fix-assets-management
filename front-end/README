@@ -5,15 +5,15 @@ Front End
 - platform
   - Nodejs/iojs
 - Tools
-  - gulp
-  - babel
-  - React
-  - Material Ui
-  - mocha
-  - superagent
+  - [gulp](http://gulpjs.com/)
+  - [babel](http://babeljs.io)
+  - [React](http://facebook.github.io/react/)
+  - [Material Ui](http://callemall.github.io/material-ui)
+  - [mocha](http://mochajs.org/)
+  - [superagent](https://github.com/visionmedia/superagent)
 - Languages
-  - ES6
-  - LESS
+  - [ES6](https://babeljs.io/docs/learn-es6/)
+  - [LESS](http://www.lesscss.net/#docs)
 
 #Seting up
 - install dependencies `npm install`
