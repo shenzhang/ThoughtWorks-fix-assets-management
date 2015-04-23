@@ -24,9 +24,9 @@ var Home = React.createClass({
     return (
       <Paper zDepth={1}>
         <h2>{this.state.title}</h2>
-        <RaisedButton secondary={true}>
+        <RaisedButton secondary={true} onClick={this._login}>
           <FontIcon className="muidocs-icon-custom-github example-button-icon"/>
-          <span className="mui-raised-button-label example-icon-button-label" onClick={this._login}>Login</span>
+          <span className="mui-raised-button-label example-icon-button-label">Login</span>
         </RaisedButton>
       </Paper>
     );

@@ -17,7 +17,7 @@ const userApis = {
 }
 
 // mock the http request if not production
-if (process.env.NODE_ENV !== 'production') {
+if (process.env.NODE_ENV == 'development' || process.env.NODE_ENV == 'test') {
   mock = require('./mock-user')
 }
 

@@ -16,11 +16,13 @@ import uglify from 'gulp-uglify'
 
 import watcher from './libs/watcher'
 
+// warnings: try to vendor react or material-ui
+//           some event will miss tracking
 const vendors = [
   // 'react',
-  // 'lodash',
   // 'material-ui',
-  // 'babelify/polyfill'
+  'lodash',
+  'babelify/polyfill'
 ];
 
 const defaultConfig = {

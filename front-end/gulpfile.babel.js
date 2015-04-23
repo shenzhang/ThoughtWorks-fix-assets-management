@@ -23,6 +23,10 @@ if (gutil.env.prod) {
   process.env.NODE_ENV = 'production';
 }
 
+if (gutil.env.dev) {
+  process.env.NODE_ENV = 'development';
+}
+
 if (gutil.env.watch) {
   watcher.setWatcher();
 }

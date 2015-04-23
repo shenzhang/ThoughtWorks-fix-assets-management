@@ -7,8 +7,10 @@ let mockRequest
  */
 const apisBuilder = function(apiConfig, endpoint, mockApi) {
 
-  //mock the api
-  if (mockApi && process.env.NODE_ENV !== 'production') {
+  //mock the api for dev or test
+  if (mockApi &&
+    (process.env.NODE_ENV == 'development' ||
+    process.env.NODE_ENV == 'test')) {
     mockRequest = require('./superagent-mock')
     mockRequest(request, mockApi)
   }

@@ -19,27 +19,6 @@ function mock (superagent, config) {
    */
   var oldEnd = Request.prototype.end;
 
-  // /**
-  //  * Override get function
-  //  */
-  // superagent.get = function (url, data, fn) {
-  //   var match = config.filter(function (parser) {
-  //     return new RegExp(parser.pattern, 'g').test(url);
-  //   })[0] || null;
-  //
-  //   if (match && !parsers[url] == match) {
-  //     parsers[url] = match;
-  //   }
-  //
-  //   var req;
-  //   if (parsers[url]) {
-  //     req = superagent('GET', url, data, fn);
-  //   } else {
-  //     req = oldGet.call(this, url, data, fn);
-  //   }
-  //   return req;
-  // };
-
   /**
    * Override end function
    */
@@ -68,6 +47,7 @@ function mock (superagent, config) {
     if (parser) {
       var match = new RegExp(parser.pattern, 'g').exec(path);
       fn(null, parsers[this.url].callback(match, parser.fixtures()));
+    } else {
       oldEnd.call(this, fn);
     }
   };
