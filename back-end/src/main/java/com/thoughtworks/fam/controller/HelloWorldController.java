@@ -15,8 +15,8 @@ public class HelloWorldController {
 
     @RequestMapping(method = RequestMethod.GET)
     public HelloWorldDTO say() {
-        HelloWorldDTO dto = new HelloWorldDTO();
-        dto.setMessage(helloWorldService.getMessage());
-        return dto;
+        HelloWorldDTO asset = new HelloWorldDTO();
+        asset.setMessage(helloWorldService.getMessage());
+        return asset;
     }
 }

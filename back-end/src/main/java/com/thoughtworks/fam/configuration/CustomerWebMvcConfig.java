@@ -22,10 +22,15 @@ public class CustomerWebMvcConfig extends WebMvcAutoConfiguration.WebMvcAutoConf
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         String externalResource = System.getProperty("externalResource");
+        System.out.println(externalResource);
         if (!Strings.isNullOrEmpty(externalResource)) {
+            if (!externalResource.endsWith("/")) {
+                externalResource += "/";
+            }
             LOG.info("Install external resource: {}", externalResource);
-            registry.addResourceHandler("/**").addResourceLocations(externalResource);
+            registry.addResourceHandler("/**").addResourceLocations(String.format("file://%s", externalResource));
         }
+
         super.addResourceHandlers(registry);
     }
 }
