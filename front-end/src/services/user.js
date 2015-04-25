@@ -14,6 +14,10 @@ const userApis = {
     method: 'post',
     url: '/user/logout'
   },
+  assets: {
+    method: 'post',
+    url: '/user/assets'
+  }
 }
 
 // mock the http request if not production
