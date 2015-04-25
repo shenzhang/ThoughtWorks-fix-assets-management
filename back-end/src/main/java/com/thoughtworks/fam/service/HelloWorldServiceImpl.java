@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
  * Time: 10:28 AM
  */
 @Service
-public class HelloWorldServiceImpl1 implements HelloWorldService {
+public class HelloWorldServiceImpl implements HelloWorldService {
     @Autowired
     private HelloWorldDao helloWorldDao;
 
