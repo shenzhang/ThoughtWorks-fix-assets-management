@@ -33,6 +33,3 @@ task copyPublic(type: Copy, dependsOn: ':front-end:build') {
     from project(':front-end').file('public')
     into publicDir
 }
-
-processResources.dependsOn copyPublic
-
