@@ -1,0 +1,9 @@
+apply plugin: 'gulp'
+
+task clean {
+    dependsOn gulp_clean
+}
+
+task build {
+    dependsOn gulp_build
+}
