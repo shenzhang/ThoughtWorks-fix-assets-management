@@ -23,5 +23,7 @@ repositories {
 
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-web:1.2.3.RELEASE")
+    compile('com.google.guava:guava:18.0')
+
     testCompile("org.springframework.boot:spring-boot-starter-test:1.2.3.RELEASE")
 }
