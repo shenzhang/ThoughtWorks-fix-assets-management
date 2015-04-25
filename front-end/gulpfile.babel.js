@@ -1,7 +1,8 @@
 import gulp from 'gulp';
 import gutil from 'gulp-util';
-import watcher from './tasks/libs/watcher';
+import runSequence from 'run-sequence';
 
+import watcher from './tasks/libs/watcher';
 import clean from './tasks/clean'
 import browserify from './tasks/browserify'
 import copy from './tasks/copy'
@@ -33,7 +34,7 @@ if (gutil.env.watch) {
 
 gulp.task('dev', () => {
   watcher.setWatcher();
-  gulp.start(['server', 'build']);
+  runSequence('build', 'server');
 });
 
 gulp.task('default', ['build']);
