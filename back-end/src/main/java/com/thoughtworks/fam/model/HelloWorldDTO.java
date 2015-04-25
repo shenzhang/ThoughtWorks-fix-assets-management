@@ -1,4 +1,4 @@
-package com.thoughtworks.fam.web.dto;
+package com.thoughtworks.fam.model;
 
 public class HelloWorldDTO {
 
