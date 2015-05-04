@@ -21,20 +21,20 @@ export default [
       return {
         data: [
           {
-            name: 'Mac Book',
-            number: '1',
+            name: 'Nokia',
+            number: '17006011',
             date: '2015-4-25',
-            type: 'laptop'
+            type: 'Mobile'
           },{
-            name: 'Mac Book',
-            number: '1',
-            date: '2015-4-25',
-            type: 'laptop'
+            name: 'Mac Book Pro',
+            number: '17005800',
+            date: '2015-4-22',
+            type: 'Laptop'
           },{
-            name: 'Mac Book',
-            number: '1',
-            date: '2015-4-25',
-            type: 'laptop'
+            name: 'Scree',
+            number: '17006036',
+            date: '2014-2-15',
+            type: 'Others'
           }
         ]
       }

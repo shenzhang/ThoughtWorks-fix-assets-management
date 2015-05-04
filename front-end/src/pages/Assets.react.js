@@ -72,10 +72,10 @@ var Assets = React.createClass({
     return this.state.assets.map(function (asset) {
       return (
         <tr className="asset__item">
-          <td className="asset__attribute"><FlatButton label={asset.name} /></td>
-          <td className="asset__attribute"><FlatButton label={asset.date} /></td>
-          <td className="asset__attribute"><FlatButton label={asset.number}/></td>
-          <td className="asset__attribute"><FlatButton label={asset.type}/></td>
+          <td className="asset__attribute">{asset.name}</td>
+          <td className="asset__attribute">{asset.date}</td>
+          <td className="asset__attribute">{asset.number}</td>
+          <td className="asset__attribute">{asset.type}</td>
         </tr>
       )
     })
