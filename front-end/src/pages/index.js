@@ -3,4 +3,5 @@ export default {
   User: require('./User.react'),
   NotFound: require('./NotFound.react'),
   Assets: require('./Assets.react'),
+  AssetsTab: require('./AssetsTab.react.js')
 }
