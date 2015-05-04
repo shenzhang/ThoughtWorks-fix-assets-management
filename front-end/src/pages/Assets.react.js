@@ -3,10 +3,10 @@ import {
   RaisedButton,
   FontIcon,
   Paper
-} from 'material-ui'
+  } from 'material-ui'
 import {
   State
-} from 'react-router'
+  } from 'react-router'
 
 import userApi from '../services/user'
 
@@ -26,9 +26,17 @@ var Assets = React.createClass({
   render() {
     return (
       <Paper zDepth={1}>
-        <ul>
-          {this._renderAssets()}
-        </ul>
+        <Paper zDepth={1}>
+          <table>
+            <tr>
+              <th>Name</th>
+              <th>Number</th>
+              <th>Assigned Date</th>
+              <th>Type</th>
+            </tr>
+            {this._renderAssets()}
+          </table>
+        </Paper>
         <RaisedButton secondary={true} onClick={this._getAssets}>
           <FontIcon className="muidocs-icon-custom-github example-button-icon"/>
           <span className="mui-raised-button-label example-icon-button-label">Get Assets</span>
@@ -49,14 +57,14 @@ var Assets = React.createClass({
     //
   },
   _renderAssets() {
-    return this.state.assets.map(function(asset) {
+    return this.state.assets.map(function (asset) {
       return (
-        <li className="asset__item"><ul>
-          <li className="asset__attribute">name: {asset.name}</li>
-          <li className="asset__attribute">date: {asset.date}</li>
-          <li className="asset__attribute">number: {asset.number}</li>
-          <li className="asset__attribute">type: {asset.type}</li>
-        </ul></li>
+        <tr className="asset__item">
+          <td className="asset__attribute">{asset.name}</td>
+          <td className="asset__attribute">{asset.date}</td>
+          <td className="asset__attribute">{asset.number}</td>
+          <td className="asset__attribute">{asset.type}</td>
+        </tr>
       )
     })
   }
