@@ -5,6 +5,6 @@ build
 *.ipr
 *.iws
 *.iml
-.idea
+.idea/
 
 out

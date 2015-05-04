@@ -3,17 +3,20 @@ import {
   Navigation,
   State,
   RouteHandler
-} from 'react-router'
+  } from 'react-router'
 import {
   AppBar,
   AppCanvas,
   LeftNav,
   IconButton,
   Icons
-} from 'material-ui'
+  } from 'material-ui'
 
 import AppLeftNav from './LeftNav'
 import ContentWithNav from './ContentWithNav'
+
+import Header from './Header'
+import Footer from './Footer'
 
 var BasePage = React.createClass({
 
@@ -28,6 +31,7 @@ var BasePage = React.createClass({
   render() {
     return (
       <AppCanvas predefinedLayout={1}>
+        <Header />
         <AppBar
           className="mui-dark-theme"
           onMenuIconButtonTouchTap={this._toggleLeftNav}
@@ -35,10 +39,11 @@ var BasePage = React.createClass({
           title={this.props.title}
           zDepth={0}>
         </AppBar>
-        <AppLeftNav ref="leftNav" />
+        <AppLeftNav ref="leftNav"/>
         <ContentWithNav>
           <RouteHandler />
         </ContentWithNav>
+        <Footer />
       </AppCanvas>
     );
   },
