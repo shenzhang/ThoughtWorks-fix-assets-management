@@ -21,13 +21,11 @@ var BasePage = React.createClass({
 
   getDefaultProps() {
     return {
-      title: 'Title',
+      title: 'Title'
     }
   },
 
   render() {
-    var menuTitle = <div className="menu__title">Menu Title</div>;
-
     return (
       <AppCanvas predefinedLayout={1}>
         <AppBar
