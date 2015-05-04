@@ -8,20 +8,30 @@ var AssetItem = React.createClass({
 
   getInitialState(){
     return {
-      msg: "你点了我!",
       clickCount: 1
     }
   },
   handleClick(){
     this.setState({
-        clickCount: this.state.clickCount + 1
+      clickCount: this.state.clickCount + 1
     });
-    alert("你点了我" + this.state.clickCount + "次!")
+    alert("You have clicked " + this.props.asset.name + " "+this.state.clickCount + " times!")
+  },
+  showDetails(){
+    alert(this.props.asset.name + "'s Details.")
   },
   render() {
-    return(
+    var styleObj = {
+      width: "145px"
+    };
+    return (
       <tr className="asset__item">
-        <td className="asset__attribute" value="sb">{this.props.asset.name}</td>
+        <td className="asset__name">
+          <RaisedButton style={styleObj}
+                        label={this.props.asset.name}
+                        primary={true}
+                        onClick={this.showDetails}/>
+        </td>
         <td className="asset__attribute">{this.props.asset.date}</td>
         <td className="asset__attribute">{this.props.asset.number}</td>
         <td className="asset__attribute">{this.props.asset.type}</td>
