@@ -1,15 +1,15 @@
 import React from 'react'
 
 import {
-  Paper
+  FlatButton,
   } from 'material-ui'
 
 var Header = React.createClass({
   render() {
     return (
-      <Paper zDepth={1}>
-        <center className="footer">I am Footer!</center>
-      </Paper>
+      <center className="footer">
+        <FlatButton label="I am Footer!"/>
+      </center>
     );
   }
 });
