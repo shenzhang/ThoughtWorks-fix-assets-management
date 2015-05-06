@@ -11,7 +11,7 @@ var Login = React.createClass({
 
     getInitialState() {
         return {
-            disabled: false
+            disabled: true
         };
     },
 
@@ -21,11 +21,18 @@ var Login = React.createClass({
                 <p>Log in</p>
                 <div>
                     <p>User name</p>
+                    <input type='text' id='username' onInput={this.onInputed}/>
                 </div>
-                <div></div>
+                <div>
+                    <p>Password</p>
+                    <input type='password' id='password' onInput={this.onInputed}/>
+                </div>
                 <RaisedButton label='Log in' primary={true} onClick={this._login} disabled={this.state.disabled}></RaisedButton>
             </Paper>
         );
+    },
+    onInputed() {
+        this.setState({disabled: !(document.getElementById('username').value && document.getElementById('password').value)});
     },
     _login() {
         userApi.login(this.state.user, this.state.password)

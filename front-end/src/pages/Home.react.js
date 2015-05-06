@@ -33,14 +33,7 @@ var Home = React.createClass({
   },
 
   _login() {
-    userApi.login()
-      .then(this.onLogin, this.onLoginFail)
-  },
-  onLogin(msg) {
-    this.setState({title: msg})
-  },
-  onLoginFail(err) {
-    this.setState({title: err.message})
+    window.location.href = "#/login";
   }
 });
 
