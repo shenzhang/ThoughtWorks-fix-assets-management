@@ -8,7 +8,6 @@ package com.thoughtworks.fam.model;
 public class Asset {
     private String assetName;
     private String number;
-
     private String assignedDate;
     private String type;
     private String ownerName;
@@ -17,7 +16,7 @@ public class Asset {
         return ownerName;
     }
 
-    public String getassetName() {
+    public String getAssetName() {
         return assetName;
     }
 

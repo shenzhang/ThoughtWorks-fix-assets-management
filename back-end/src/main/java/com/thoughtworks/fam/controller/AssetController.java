@@ -1,5 +1,6 @@
 package com.thoughtworks.fam.controller;
 
+import com.thoughtworks.fam.model.Asset;
 import com.thoughtworks.fam.service.AssetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,7 +20,7 @@ public class AssetController {
     private AssetService assetService;
 
     @RequestMapping(method = RequestMethod.GET, value = "/{ownerName}")
-    public List say(@PathVariable("ownerName") String ownerName)  {
-        return assetService.getAssetListByOwnerName(ownerName);
+    public List<Asset> getAssets(@PathVariable("ownerName") String ownerName)  {
+        return assetService.getAssetsByOwnerName(ownerName);
     }
 }

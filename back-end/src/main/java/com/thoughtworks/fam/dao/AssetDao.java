@@ -8,5 +8,5 @@ import java.util.List;
  * Created by SiyuYan on 15-5-2.
  */
 public interface AssetDao {
-    public List assetList(String ownerName);
+    public List<Asset> getAssets(String ownerName);
 }

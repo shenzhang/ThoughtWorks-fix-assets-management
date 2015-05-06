@@ -1,9 +1,12 @@
 package com.thoughtworks.fam.service;
 
 import com.thoughtworks.fam.dao.AssetDao;
+import com.thoughtworks.fam.model.Asset;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -16,9 +19,21 @@ public class AssetServiceImpl implements AssetService {
 
 
     @Override
-    public List getAssetListByOwnerName(String ownerName) {
+    public List<Asset> getAssetsByOwnerName(String ownerName) {
 
-        return assetDao.assetList(ownerName);
+        return orderAssets(assetDao.getAssets(ownerName));
+    }
+
+    private List<Asset> orderAssets(List<Asset> assets) {
+        Collections.sort(assets, new Comparator<Object>() {
+
+            public int compare(Object o1, Object o2) {
+                Asset p1 = (Asset) o1;
+                Asset p2 = (Asset) o2;
+                return (p1.getAssetName().compareTo(p2.getAssetName()));
+            }
+        });
+        return assets;
     }
 
 }
