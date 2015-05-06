@@ -15,7 +15,7 @@ var AssetItem = React.createClass({
     this.setState({
       clickCount: this.state.clickCount + 1
     });
-    alert("You have clicked " + this.props.asset.name + " "+this.state.clickCount + " times!")
+    alert("You have clicked " + this.props.asset.name + " " + this.state.clickCount + " times!")
   },
   showDetails(){
     alert(this.props.asset.name + "'s Details.")
