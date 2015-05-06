@@ -25,7 +25,6 @@ public class AssetControllerTest {
     public void should_get_asset_list_when_give_owner_name() throws Exception {
         String ownerName = "yansiyu";
         assetController.getAssets(ownerName);
-
         verify(assetService).getAssetsByOwnerName("yansiyu");
     }
 }
