@@ -39,10 +39,10 @@ var Login = React.createClass({
             .then(this.onLogin, this.onLoginFail)
     },
     onLogin(msg) {
-        alert('success');
+        alert('success message: '+msg);
     },
     onLoginFail(err) {
-        alert('failure');
+        alert('failure message: '+err);
     }
 });
 
