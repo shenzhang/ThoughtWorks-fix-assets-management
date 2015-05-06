@@ -18,16 +18,19 @@ var Login = React.createClass({
     render() {
         return (
             <Paper zDepth={1}>
-                <p>Log in</p>
-                <div>
-                    <p>User name</p>
-                    <input type='text' id='username' onInput={this.onInputed}/>
+                <div className='page-login'>
+                    <p className='title'>Log in</p>
+                    <div className='content'>
+                        <p>User name</p>
+                        <input type='text' id='username' onInput={this.onInputed}/>
+                    </div>
+                    <div className='content'>
+                        <p>Password</p>
+                        <input type='password' id='password' onInput={this.onInputed}/>
+                        <a href='http://www.baidu.com'>Forget your password?</a>
+                    </div>
+                    <RaisedButton className='button' label='Log in' primary={true} onClick={this._login} disabled={this.state.disabled}></RaisedButton>
                 </div>
-                <div>
-                    <p>Password</p>
-                    <input type='password' id='password' onInput={this.onInputed}/>
-                </div>
-                <RaisedButton label='Log in' primary={true} onClick={this._login} disabled={this.state.disabled}></RaisedButton>
             </Paper>
         );
     },
