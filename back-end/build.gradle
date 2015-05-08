@@ -26,13 +26,13 @@ dependencies {
     )
 }
 
-clean {
+task cleanPublic << {
     delete publicDir
 }
 
-task copyPublic(type: Copy, dependsOn: ':front-end:build') {
-    delete publicDir
+clean.dependsOn cleanPublic
 
+task copyPublic(type: Copy, dependsOn: [':front-end:build', cleanPublic]) {
     from project(':front-end').file('public')
     into publicDir
 }
