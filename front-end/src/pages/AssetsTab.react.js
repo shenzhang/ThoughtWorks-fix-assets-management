@@ -11,9 +11,12 @@ import AssetItem from './AssetItem.react.js'
 
 var AssetsTab = React.createClass({
 
+  handleChange(){
+
+  },
   render() {
     return (
-      <Tabs>
+      <Tabs onChange={this.handleChange}>
         <Tab label="My Assets">
           <div className="tab-template-container">
             <table>
@@ -33,7 +36,7 @@ var AssetsTab = React.createClass({
             </table>
           </div>
         </Tab>
-        <Tab label="Others Assets">
+        <Tab label="Others Assets" >
           <div className="tab-template-container">
             <table>
               <tr>

@@ -26,6 +26,11 @@ var Assets = React.createClass({
   componentDidMount() {
     this._getAssets()
   },
+  handleClick(){
+    this.setState({
+      assets: []
+    });
+  },
   render() {
     return (
       <Paper zDepth={1}>

@@ -12,10 +12,10 @@ var AssetItem = React.createClass({
     }
   },
   handleClick(){
+    alert("You have clicked " + this.props.asset.asset_name + " " + this.state.clickCount + " times!")
     this.setState({
       clickCount: this.state.clickCount + 1
     });
-    alert("You have clicked " + this.props.asset.asset_name + " " + this.state.clickCount + " times!")
   },
   showDetails(){
     alert(this.props.asset.asset_name + "'s Details.")
@@ -25,13 +25,14 @@ var AssetItem = React.createClass({
       width: "145px"
     };
     return (
+      //奇怪的是渲染之后这个td并没有包住下面的td，有danger error但是显示正确
       <div>
-        <td className="asset__name">
+        <td className="asset__item">
           <RaisedButton style={styleObj}
                         label={this.props.asset.asset_name}
                         primary={true}
-                        onClick={this.showDetails}/>
-        </td>
+                        onClick={this.showDetails}/></td>
+
         <td className="asset__attribute">{this.props.asset.date}</td>
         <td className="asset__attribute">{this.props.asset.number}</td>
         <td className="asset__attribute">{this.props.asset.type}</td>
@@ -41,6 +42,7 @@ var AssetItem = React.createClass({
                         onClick={this.handleClick}>
           </RaisedButton>
         </td>
+
       </div>
     )
   }
