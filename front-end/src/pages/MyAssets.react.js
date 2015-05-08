@@ -11,16 +11,13 @@ import AssetName from './items/AssetName.react.js'
 import AssetDate from './items/AssetDate.react.js'
 import AssetNumber from './items/AssetNumber.react.js'
 import AssetType from './items/AssetType.react.js'
-import AssetItem from './AssetButton.react.js'
+import AssetButton from './items/AssetButton.react.js'
 
 var AssetsTab = React.createClass({
-
-  handleChange(){
-
-  },
   render() {
     return (
-      <Tabs onChange={this.handleChange}>
+      //两个组件很相似，如何复用
+      <Tabs>
         <Tab label="My Assets">
           <div className="tab-template-container">
             <table>
@@ -37,8 +34,7 @@ var AssetsTab = React.createClass({
                     <AssetDate asset_date={asset.date}/>
                     <AssetNumber asset_number={asset.number}/>
                     <AssetType asset_type={asset.type}/>
-                    <AssetItem asset={asset}/>
-
+                    <AssetButton asset={asset}/>
                   </tr>
                 )
               })}
@@ -65,7 +61,7 @@ var AssetsTab = React.createClass({
                     <AssetDate asset_date={asset.date}/>
                     <AssetNumber asset_number={asset.number}/>
                     <AssetType asset_type={asset.type}/>
-                    <AssetItem asset={asset}/>
+                    <AssetButton asset={asset}/>
                   </tr>
                 )
               })}

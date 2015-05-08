@@ -11,7 +11,7 @@ import {
   } from 'react-router'
 
 import userApi from '../services/user'
-import AssetsTab from './AssetsTab.react.js'
+import AssetsTab from './MyAssets.react.js'
 
 var Assets = React.createClass({
 
