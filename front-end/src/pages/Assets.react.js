@@ -4,7 +4,9 @@ import {
   RaisedButton,
   FontIcon,
   Paper,
-  } from 'material-ui'
+  Tab,
+  Tabs
+  }from 'material-ui'
 
 import {
   State
@@ -12,6 +14,9 @@ import {
 
 import userApi from '../services/user'
 import AssetsTab from './MyAssets.react.js'
+
+import MyAssets from './MyAssets.react.js'
+import OthersAssets from './OthersAssets.react.js'
 
 var Assets = React.createClass({
 
@@ -33,8 +38,16 @@ var Assets = React.createClass({
   },
   render() {
     return (
+      //两个组件很相似，如何复用
       <Paper zDepth={1}>
-        <AssetsTab assets={this.state.assets}/>
+        <Tabs>
+          <Tab label="My Assets">
+            <MyAssets assets={this.state.assets}/>
+          </Tab>
+          <Tab label="Others Assets">
+            <OthersAssets assets={this.state.assets}/>
+          </Tab>
+        </Tabs>
         <RaisedButton secondary={true} onClick={this._getAssets}>
           <FontIcon className="muidocs-icon-custom-github example-button-icon"/>
           <span className="mui-raised-button-label example-icon-button-label">Get Assets</span>
