@@ -36,3 +36,8 @@ task copyPublic(type: Copy, dependsOn: [':front-end:build', cleanPublic]) {
     from project(':front-end').file('public')
     into publicDir
 }
+
+task copyPublicWithoutBuild(type: Copy, dependsOn: cleanPublic) {
+    from project(':front-end').file('public')
+    into publicDir
+}
