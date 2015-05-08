@@ -15,17 +15,22 @@ import OwnerName from './items/OwnerName.react.js'
 
 var OthersAssets = React.createClass({
 
+  _create_table_head(){
+    return (
+      <tr className="asset__head">
+        <th className="asset__head__attribute">OwnerName</th>
+        <th className="asset__head__attribute">AssetName</th>
+        <th className="asset__head__attribute">Number</th>
+        <th className="asset__head__attribute">Assigned Date</th>
+        <th className="asset__head__attribute">Type</th>
+      </tr>
+    )
+  },
   render() {
     return (
-      <div className="tab-template-container">
-        <table>
-          <tr>
-            <th><FlatButton label="OwnerName"/></th>
-            <th><FlatButton label="AssetName"/></th>
-            <th><FlatButton label="Number"/></th>
-            <th><FlatButton label="Assigned Date"/></th>
-            <th><FlatButton label="Type"/></th>
-          </tr>
+      <div>
+        <table className="others_assets_tab__container">
+          {this._create_table_head()}
           {this.props.assets.map(function (asset) {
             return (
               <tr className="asset__item">

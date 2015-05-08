@@ -10,19 +10,24 @@ import AssetDate from './items/AssetDate.react.js'
 import AssetNumber from './items/AssetNumber.react.js'
 import AssetType from './items/AssetType.react.js'
 import AssetButton from './items/AssetButton.react.js'
-import OwnerName from './items/OwnerName.react.js'
 
 module.exports = React.createClass({
+
+  _create_table_head(){
+    return (
+      <tr className="asset-header">
+        <th><FlatButton label="AssetName"/></th>
+        <th><FlatButton label="Number"/></th>
+        <th><FlatButton label="Assigned Date"/></th>
+        <th><FlatButton label="Type"/></th>
+      </tr>
+    )
+  },
   render() {
     return (
-      <div className="tab-template-container">
-        <table>
-          <tr>
-            <th><FlatButton label="AssetName"/></th>
-            <th><FlatButton label="Number"/></th>
-            <th><FlatButton label="Assigned Date"/></th>
-            <th><FlatButton label="Type"/></th>
-          </tr>
+      <div>
+        <table className="my_assets_tab__container">
+          {this._create_table_head()}
           {this.props.assets.map(function (asset) {
             return (
               <tr className="asset__item">
@@ -35,7 +40,7 @@ module.exports = React.createClass({
             )
           })}
         </table>
-      </div>
+      </div >
     )
   }
 
