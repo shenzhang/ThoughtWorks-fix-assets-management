@@ -15,27 +15,27 @@ import OwnerName from './items/OwnerName.react.js'
 module.exports = React.createClass({
   render() {
     return (
-    <div className="tab-template-container">
-      <table>
-        <tr>
-          <th><FlatButton label="AssetName"/></th>
-          <th><FlatButton label="Number"/></th>
-          <th><FlatButton label="Assigned Date"/></th>
-          <th><FlatButton label="Type"/></th>
-        </tr>
-        {this.props.assets.map(function (asset) {
-          return (
-            <tr className="asset__item">
-              <AssetName asset_name={asset.asset_name}/>
-              <AssetDate asset_date={asset.date}/>
-              <AssetNumber asset_number={asset.number}/>
-              <AssetType asset_type={asset.type}/>
-              <AssetButton asset={asset}/>
-            </tr>
-          )
-        })}
-      </table>
-    </div>
+      <div className="tab-template-container">
+        <table>
+          <tr>
+            <th><FlatButton label="AssetName"/></th>
+            <th><FlatButton label="Number"/></th>
+            <th><FlatButton label="Assigned Date"/></th>
+            <th><FlatButton label="Type"/></th>
+          </tr>
+          {this.props.assets.map(function (asset) {
+            return (
+              <tr className="asset__item">
+                <AssetName asset_name={asset.asset_name}/>
+                <AssetDate asset_date={asset.date}/>
+                <AssetNumber asset_number={asset.number}/>
+                <AssetType asset_type={asset.type}/>
+                <AssetButton asset={asset}/>
+              </tr>
+            )
+          })}
+        </table>
+      </div>
     )
   }
 

@@ -13,7 +13,6 @@ import {
   } from 'react-router'
 
 import userApi from '../services/user'
-import AssetsTab from './MyAssets.react.js'
 
 import MyAssets from './MyAssets.react.js'
 import OthersAssets from './OthersAssets.react.js'
