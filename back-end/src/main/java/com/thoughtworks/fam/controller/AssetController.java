@@ -23,4 +23,10 @@ public class AssetController {
     public List<Asset> getAssets(@PathVariable("ownerName") String ownerName)  {
         return assetService.getAssetsByOwnerName(ownerName);
     }
+    @RequestMapping(method = RequestMethod.GET,value = "/others/{ownerName}")
+    public List<Asset> getAllAssets(@PathVariable("ownerName") String ownerName)  {
+        return assetService.getAssetsExceptOwner(ownerName);
+    }
+
+
 }

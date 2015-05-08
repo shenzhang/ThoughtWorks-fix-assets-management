@@ -11,10 +11,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 import static org.mockito.MockitoAnnotations.initMocks;
-
 public class AssetServiceImplTest {
     @Mock
     AssetDao assetDao;
@@ -36,7 +34,7 @@ public class AssetServiceImplTest {
     public void should_get_asset_list_when_give_owner_name() throws Exception {
         String ownerName = "yansiyu";
         assetService.getAssetsByOwnerName(ownerName);
-        verify(assetDao).getAssets(ownerName);
+        verify(assetDao, only()).getAssets(ownerName);
         assertEquals("MBP", assetDao.getAssets(ownerName).get(0).getAssetName());
     }
 

@@ -9,4 +9,5 @@ import java.util.List;
  */
 public interface AssetDao {
     public List<Asset> getAssets(String ownerName);
+    public List<Asset> getOthersAssets(String ownerName);
 }

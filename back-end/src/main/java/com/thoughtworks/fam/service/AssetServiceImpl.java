@@ -31,4 +31,16 @@ public class AssetServiceImpl implements AssetService {
         return assets;
     }
 
+    @Override
+    public List<Asset> getAssetsExceptOwner(String ownerName) {
+        List<Asset> assets = assetDao.getOthersAssets(ownerName);
+        Collections.sort(assets, new Comparator<Asset>() {
+
+            public int compare( Asset p1, Asset p2) {
+                return (p1.getOwnerName().compareTo(p2.getOwnerName()));
+            }
+        });
+        return assets;
+    }
+
 }
