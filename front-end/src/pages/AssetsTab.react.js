@@ -30,6 +30,7 @@ var AssetsTab = React.createClass({
                 return (
                   <tr>
                     <AssetItem asset={asset}/>
+
                   </tr>
                 )
               })}
