@@ -4,7 +4,7 @@ var AssetType = React.createClass({
 
   render() {
     return (
-      <td className="asset__attribute">{this.props.asset.type}</td>
+      <td className="asset__attribute">{this.props.asset_type}</td>
     )
   }
 });

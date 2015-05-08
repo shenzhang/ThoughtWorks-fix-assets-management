@@ -2,6 +2,8 @@ import React from 'react'
 
 import AssetName from './items/AssetName.react.js'
 import AssetDate from './items/AssetDate.react.js'
+import AssetNumber from './items/AssetNumber.react.js'
+import AssetType from './items/AssetType.react.js'
 
 import {
   RaisedButton,
@@ -27,6 +29,8 @@ var AssetItem = React.createClass({
       <div>
         <AssetName asset_name={this.props.asset.asset_name}/>
         <AssetDate asset_date={this.props.asset.date}/>
+        <AssetNumber asset_number={this.props.asset.number}/>
+        <AssetType asset_type={this.props.asset.type}/>
         <td className="asset__attribute">
           <RaisedButton label="Button"
                         secondary={true}

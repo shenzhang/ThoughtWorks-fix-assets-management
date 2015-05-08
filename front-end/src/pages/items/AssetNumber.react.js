@@ -4,7 +4,7 @@ var AssetNumber = React.createClass({
 
   render() {
     return (
-      <td className="asset__attribute">{this.props.asset.number}</td>
+      <td className="asset__attribute">{this.props.asset_number}</td>
 
     )
   }
