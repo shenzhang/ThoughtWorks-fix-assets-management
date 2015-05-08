@@ -2,6 +2,7 @@ import React from 'react'
 
 import {
   FlatButton,
+  RaisedButton,
   Tab,
   Tabs
   }from 'material-ui'
@@ -10,13 +11,6 @@ import AssetItem from './AssetItem.react.js'
 
 var AssetsTab = React.createClass({
 
-  _renderAssets() {
-    return this.props.assets.map(function (asset) {
-      return (
-        <AssetItem asset = {asset}/>
-      )
-    })
-  },
   render() {
     return (
       <Tabs>
@@ -24,18 +18,42 @@ var AssetsTab = React.createClass({
           <div className="tab-template-container">
             <table>
               <tr>
-                <th><FlatButton label="Name"/></th>
+                <th><FlatButton label="AssetName"/></th>
                 <th><FlatButton label="Number"/></th>
                 <th><FlatButton label="Assigned Date"/></th>
                 <th><FlatButton label="Type"/></th>
               </tr>
-              {this._renderAssets()}
+              {this.props.assets.map(function (asset) {
+                return (
+                  <tr>
+                    <AssetItem asset={asset}/>
+                  </tr>
+                )
+              })}
             </table>
           </div>
         </Tab>
         <Tab label="Others Assets">
           <div className="tab-template-container">
-            <h2 className="mui-font-style-headline">There are others assets.</h2>
+            <table>
+              <tr>
+                <th><FlatButton label="OwnerName"/></th>
+                <th><FlatButton label="AssetName"/></th>
+                <th><FlatButton label="Number"/></th>
+                <th><FlatButton label="Assigned Date"/></th>
+                <th><FlatButton label="Type"/></th>
+              </tr>
+              {this.props.assets.map(function (asset) {
+                return (
+                  <tr>
+                    <td>
+                      <RaisedButton label={asset.owner_name} primary={true}/>
+                    </td>
+                    <AssetItem asset={asset}/>
+                  </tr>
+                )
+              })}
+            </table>
           </div>
         </Tab>
       </Tabs>

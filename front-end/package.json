@@ -1,5 +1,5 @@
 {
-  "name": "Thoughtworks-fix-assets-front-end",
+  "asset_name": "Thoughtworks-fix-assets-front-end",
   "version": "0.0.1",
   "description": "Front End ------------- #Dependencies - nodejs - gulp - babel - ES6 - Material Ui",
   "scripts": {

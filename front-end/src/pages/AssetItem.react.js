@@ -15,20 +15,20 @@ var AssetItem = React.createClass({
     this.setState({
       clickCount: this.state.clickCount + 1
     });
-    alert("You have clicked " + this.props.asset.name + " " + this.state.clickCount + " times!")
+    alert("You have clicked " + this.props.asset.asset_name + " " + this.state.clickCount + " times!")
   },
   showDetails(){
-    alert(this.props.asset.name + "'s Details.")
+    alert(this.props.asset.asset_name + "'s Details.")
   },
   render() {
     var styleObj = {
       width: "145px"
     };
     return (
-      <tr className="asset__item">
+      <div>
         <td className="asset__name">
           <RaisedButton style={styleObj}
-                        label={this.props.asset.name}
+                        label={this.props.asset.asset_name}
                         primary={true}
                         onClick={this.showDetails}/>
         </td>
@@ -41,7 +41,7 @@ var AssetItem = React.createClass({
                         onClick={this.handleClick}>
           </RaisedButton>
         </td>
-      </tr>
+      </div>
     )
   }
 });

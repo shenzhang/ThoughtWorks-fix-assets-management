@@ -21,17 +21,20 @@ export default [
       return {
         data: [
           {
-            name: 'Nokia',
+            owner_name: "JimmyLv",
+            asset_name: 'Nokia',
             number: '17006011',
             date: '2015-4-25',
             type: 'Mobile'
           },{
-            name: 'Mac Book Pro',
+            owner_name: "JimmyLv",
+            asset_name: 'Mac Book Pro',
             number: '17005800',
             date: '2015-4-22',
             type: 'Laptop'
           },{
-            name: 'Scree',
+            owner_name: "JimmyLv",
+            asset_name: 'Scree',
             number: '17006036',
             date: '2014-2-15',
             type: 'Others'
