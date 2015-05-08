@@ -5,6 +5,7 @@ import {
   Paper
 } from 'material-ui'
 import {
+  Navigation,
   State
 } from 'react-router'
 
@@ -12,7 +13,7 @@ import userApi from '../services/user'
 
 var Home = React.createClass({
 
-  mixins: [State],
+  mixins: [Navigation, State],
 
   getInitialState() {
     return {
@@ -33,7 +34,7 @@ var Home = React.createClass({
   },
 
   _login() {
-    window.location.href = "#/login";
+    this.context.router.transitionTo('login');
   }
 });
 
