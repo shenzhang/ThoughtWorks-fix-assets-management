@@ -12,8 +12,9 @@ import AssetDate from './items/AssetDate.react.js'
 import AssetNumber from './items/AssetNumber.react.js'
 import AssetType from './items/AssetType.react.js'
 import AssetButton from './items/AssetButton.react.js'
+import OwnerName from './items/OwnerName.react.js'
 
-var AssetsTab = React.createClass({
+module.exports = React.createClass({
   render() {
     return (
       //两个组件很相似，如何复用
@@ -29,7 +30,7 @@ var AssetsTab = React.createClass({
               </tr>
               {this.props.assets.map(function (asset) {
                 return (
-                  <tr>
+                  <tr className="asset__item">
                     <AssetName asset_name={asset.asset_name}/>
                     <AssetDate asset_date={asset.date}/>
                     <AssetNumber asset_number={asset.number}/>
@@ -41,7 +42,7 @@ var AssetsTab = React.createClass({
             </table>
           </div>
         </Tab>
-        <Tab label="Others Assets" >
+        <Tab label="Others Assets">
           <div className="tab-template-container">
             <table>
               <tr>
@@ -53,10 +54,8 @@ var AssetsTab = React.createClass({
               </tr>
               {this.props.assets.map(function (asset) {
                 return (
-                  <tr>
-                    <td>
-                      <RaisedButton label={asset.owner_name} primary={true}/>
-                    </td>
+                  <tr className="asset__item">
+                    <OwnerName owner_name={asset.owner_name}/>
                     <AssetName asset_name={asset.asset_name}/>
                     <AssetDate asset_date={asset.date}/>
                     <AssetNumber asset_number={asset.number}/>
@@ -72,6 +71,4 @@ var AssetsTab = React.createClass({
     )
   }
 
-});
-
-export default AssetsTab
+})
