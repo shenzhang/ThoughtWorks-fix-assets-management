@@ -34,13 +34,11 @@ module.exports = React.createClass({
     return (
       this.props.assets.map(function (asset) {
         return (
-          <tr>
-            <tr className="asset__item" onClick={self.handleClick}>
-              <td className="asset__attribute">{asset.asset_name}</td>
-              <td className="asset__attribute">{asset.date}</td>
-              <td className="asset__attribute">{asset.number}</td>
-              <td className="asset__attribute">{asset.type}</td>
-            </tr>
+          <tr className="asset__item" onClick={self.handleClick}>
+            <td className="asset__attribute">{asset.asset_name}</td>
+            <td className="asset__attribute">{asset.date}</td>
+            <td className="asset__attribute">{asset.number}</td>
+            <td className="asset__attribute">{asset.type}</td>
             <AssetButton asset={asset}/>
           </tr>
         )
