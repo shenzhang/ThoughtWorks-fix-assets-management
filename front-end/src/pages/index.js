@@ -4,5 +4,6 @@ export default {
   Login: require('./Login.react'),
   NotFound: require('./NotFound.react'),
   Assets: require('./Assets.react'),
-  AssetsTable: require('./AssetsTable.react.js')
+  AssetsTable: require('./AssetsTable.react.js'),
+  CreateUser: require('./CreateUser.react')
 }
