@@ -15,7 +15,6 @@ import {
 import userApi from '../services/user'
 
 import AssetsTable from './AssetsTable.react.js'
-import OthersAssets from './OthersAssets.react.js'
 
 var Assets = React.createClass({
 
@@ -37,7 +36,6 @@ var Assets = React.createClass({
   },
   render() {
     return (
-      //两个组件很相似，如何复用
       <Paper zDepth={1}>
         <Tabs>
           <Tab label="My Assets">
