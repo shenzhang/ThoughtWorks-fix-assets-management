@@ -11,7 +11,8 @@ import {
   User,
   Assets,
   Login,
-  NotFound
+  NotFound,
+  CreateUser
 } from './pages'
 
 import App from './app.react'
@@ -22,6 +23,7 @@ const appRoutes = (
     <Route name='user' handler={User}/>
     <Route name='assets' handler={Assets}/>
     <Route name='login' handler={Login}/>
+    <Route name='user/create' handler={CreateUser}/>
     <NotFoundRoute handler={NotFound}/>
   </Route>
 )

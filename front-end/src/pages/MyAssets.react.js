@@ -5,6 +5,9 @@ import {
   RaisedButton,
   }from 'material-ui'
 
+import AssetDate from './items/AssetDate.react.js'
+import AssetNumber from './items/AssetNumber.react.js'
+import AssetType from './items/AssetType.react.js'
 import AssetButton from './items/AssetButton.react.js'
 
 module.exports = React.createClass({
