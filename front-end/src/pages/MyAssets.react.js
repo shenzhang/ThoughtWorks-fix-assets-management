@@ -5,12 +5,6 @@ import {
   RaisedButton,
   }from 'material-ui'
 
-import Link from 'react-router'
-
-import AssetName from './items/AssetName.react.js'
-import AssetDate from './items/AssetDate.react.js'
-import AssetNumber from './items/AssetNumber.react.js'
-import AssetType from './items/AssetType.react.js'
 import AssetButton from './items/AssetButton.react.js'
 
 module.exports = React.createClass({
@@ -26,7 +20,7 @@ module.exports = React.createClass({
     )
   },
   handleClick(){
-    window.location.href = "http://www.jimmylv.info"
+    window.location.href = "about:blank"
   },
   _create_table_body()
   {
