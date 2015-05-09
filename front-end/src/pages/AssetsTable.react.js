@@ -9,9 +9,17 @@ import AssetButton from './items/AssetButton.react.js'
 
 module.exports = React.createClass({
 
+  _create_owner_name_title(){
+    if (this.props.hasOwner) {
+      return (
+        <th className="asset__head__attribute">OwnerName</th>
+      )
+    }
+  },
   _create_table_head(){
     return (
       <tr className="asset__head">
+        {this._create_owner_name_title()}
         <th className="asset__head__attribute">AssetName</th>
         <th className="asset__head__attribute">Number</th>
         <th className="asset__head__attribute">Assigned Date</th>
@@ -19,15 +27,15 @@ module.exports = React.createClass({
       </tr>
     )
   },
-  handleClick(){
-    window.location.href = "about:blank"
-  },
   _create_owner_name(asset){
     if (this.props.hasOwner) {
       return (
         <td className="asset__attribute">{asset.owner_name}</td>
       )
     }
+  },
+  handleClick(){
+    window.location.href = "about:blank"
   },
   _create_table_body()
   {

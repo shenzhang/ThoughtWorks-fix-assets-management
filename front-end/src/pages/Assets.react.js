@@ -14,7 +14,7 @@ import {
 
 import userApi from '../services/user'
 
-import MyAssets from './MyAssets.react.js'
+import AssetsTable from './AssetsTable.react.js'
 import OthersAssets from './OthersAssets.react.js'
 
 var Assets = React.createClass({
@@ -41,10 +41,10 @@ var Assets = React.createClass({
       <Paper zDepth={1}>
         <Tabs>
           <Tab label="My Assets">
-            <MyAssets assets={this.state.assets} />
+            <AssetsTable assets={this.state.assets} hasOwner={false}/>
           </Tab>
           <Tab label="Others Assets">
-            <OthersAssets assets={this.state.assets}/>
+            <AssetsTable assets={this.state.assets} hasOwner={true}/>
           </Tab>
         </Tabs>
         <RaisedButton secondary={true} onClick={this._getAssets}>
