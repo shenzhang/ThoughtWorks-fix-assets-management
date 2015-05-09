@@ -33,11 +33,12 @@ const task = gulp.task(TASK_NAME, function () {
 
     return gulp.src(conf.entry, {read: false})
       .pipe(mocha(conf.options))
-      .once('error', function () {
-          process.exit(1);
+      .once('error', function (err) {
+        gutil.loig(err)
+        process.exit(1);
       })
       .once('end', function () {
-          process.exit();
+        process.exit();
       });
     }
 

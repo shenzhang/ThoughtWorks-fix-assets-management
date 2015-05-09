@@ -55,6 +55,7 @@ function mock (superagent, config) {
         fixtureError = err;
       }
       fn(fixtureError, parsers[this.url].callback(match, fixtureData));
+      this.abort();
     } else {
       oldEnd.call(this, fn);
     }

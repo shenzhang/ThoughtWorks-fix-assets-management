@@ -8,13 +8,10 @@ describe('User Services', function() {
       username: 'admin',
       password: 'pw'
     })
-      .then(function(data) {
-        data.username.should.be.equal('admin')
-        done()
-      })
-      .catch(function(err) {
-        done(err)
-      })
+    .then(function(data) {
+      data.username.should.be.equal('admin')
+      done()
+    })
   })
   it('should not be able to login when password is incorrect', function(done) {
     user.login({
