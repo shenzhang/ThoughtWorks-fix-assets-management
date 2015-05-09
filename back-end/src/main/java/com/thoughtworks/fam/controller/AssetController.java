@@ -12,7 +12,7 @@ import java.util.List;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 @RestController
-@RequestMapping(value = "asset")
+@RequestMapping(value = "assets")
 public class AssetController {
     @Autowired
     private AssetService assetService;
