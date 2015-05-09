@@ -56,9 +56,9 @@ var Assets = React.createClass({
     userApi.assets(userData)
       .then(this.onAssetsLoad, this.onAssetsLoadFailed)
   },
-  onAssetsLoad(assetData) {
+  onAssetsLoad(assets) {
     this.setState({
-      assets: assetData.body
+      assets: assets.data
     })
   },
   onAssetsLoadFailed(err) {
