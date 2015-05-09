@@ -15,11 +15,11 @@ module.exports = React.createClass({
 
   _create_table_head(){
     return (
-      <tr className="asset-header">
-        <th><FlatButton label="AssetName"/></th>
-        <th><FlatButton label="Number"/></th>
-        <th><FlatButton label="Assigned Date"/></th>
-        <th><FlatButton label="Type"/></th>
+      <tr className="asset__head">
+        <th className="asset__head__attribute">AssetName</th>
+        <th className="asset__head__attribute">Number</th>
+        <th className="asset__head__attribute">Assigned Date</th>
+        <th className="asset__head__attribute">Type</th>
       </tr>
     )
   },
