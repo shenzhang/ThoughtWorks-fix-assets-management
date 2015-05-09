@@ -5,11 +5,6 @@ import org.junit.Before;
 import org.springframework.boot.test.TestRestTemplate;
 import org.springframework.web.client.RestTemplate;
 
-/**
- * User: Zhang Shen
- * Date: 4/26/15
- * Time: 11:45 PM
- */
 public abstract class IntegrationTest{
     protected RestTemplate restTemplate;
 

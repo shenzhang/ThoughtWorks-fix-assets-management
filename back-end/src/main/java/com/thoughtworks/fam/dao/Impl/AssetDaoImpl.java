@@ -1,5 +1,9 @@
-package com.thoughtworks.fam.dao;
+package com.thoughtworks.fam.dao.Impl;
 
+import com.thoughtworks.fam.dao.AssetDao;
+import com.thoughtworks.fam.dao.Except;
+import com.thoughtworks.fam.dao.Only;
+import com.thoughtworks.fam.dao.Predicate;
 import com.thoughtworks.fam.model.Asset;
 import org.springframework.stereotype.Repository;
 

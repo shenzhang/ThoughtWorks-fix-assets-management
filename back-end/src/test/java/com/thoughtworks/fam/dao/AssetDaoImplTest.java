@@ -1,5 +1,6 @@
 package com.thoughtworks.fam.dao;
 
+import com.thoughtworks.fam.dao.Impl.AssetDaoImpl;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

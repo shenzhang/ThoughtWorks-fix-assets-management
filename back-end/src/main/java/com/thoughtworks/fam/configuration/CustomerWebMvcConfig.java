@@ -11,11 +11,6 @@ import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 
-/**
- * User: Zhang Shen
- * Date: 4/25/15
- * Time: 12:36 PM
- */
 @Configuration
 @Order(Ordered.HIGHEST_PRECEDENCE + 10)
 @AutoConfigureAfter(DispatcherServletAutoConfiguration.class)

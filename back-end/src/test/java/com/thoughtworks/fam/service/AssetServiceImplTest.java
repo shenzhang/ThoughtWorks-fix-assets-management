@@ -2,6 +2,7 @@ package com.thoughtworks.fam.service;
 
 import com.thoughtworks.fam.dao.AssetDao;
 import com.thoughtworks.fam.model.Asset;
+import com.thoughtworks.fam.service.Impl.AssetServiceImpl;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
