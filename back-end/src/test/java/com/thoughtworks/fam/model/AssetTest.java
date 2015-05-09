@@ -11,7 +11,7 @@ public class AssetTest {
         Asset asset = new Asset("Nokia", "17006011", "2014-04-20", "Mobile", "yansiyu");
         assertEquals("Nokia", asset.getAssetName());
         assertEquals("17006011", asset.getNumber());
-        assertEquals("2014-04-20", asset.getAssignedDate());
+        assertEquals("2014-04-20", asset.getAssignDate());
         assertEquals("Mobile", asset.getType());
         assertEquals("yansiyu", asset.getOwnerName());
     }

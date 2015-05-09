@@ -9,4 +9,15 @@ public interface AssetService {
     public List<Asset> getAssetsByOwnerName(String ownerName);
 
     public List<Asset> getAssetsExceptOwner(String ownerName);
+
+    Asset save(Asset asset);
+
+    List<Asset> findAll();
+
+    List<Asset> findAssetsByUserName(String userName);
+
+    boolean isValid(String name, String password);
+
+    boolean createUser(String email);
+
 }
