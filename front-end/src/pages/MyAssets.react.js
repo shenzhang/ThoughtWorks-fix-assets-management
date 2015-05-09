@@ -5,6 +5,8 @@ import {
   RaisedButton,
   }from 'material-ui'
 
+import Link from 'react-router'
+
 import AssetName from './items/AssetName.react.js'
 import AssetDate from './items/AssetDate.react.js'
 import AssetNumber from './items/AssetNumber.react.js'
@@ -23,25 +25,40 @@ module.exports = React.createClass({
       </tr>
     )
   },
-  render() {
+  handleClick(){
+    window.location.href = "http://www.jimmylv.info"
+  },
+  _create_table_body()
+  {
+    var self = this;
     return (
-      <div>
-        <table className="my_assets_tab__container">
-          {this._create_table_head()}
-          {this.props.assets.map(function (asset) {
-            return (
-              <tr className="asset__item">
-                <AssetName asset_name={asset.asset_name}/>
-                <AssetDate asset_date={asset.date}/>
-                <AssetNumber asset_number={asset.number}/>
-                <AssetType asset_type={asset.type}/>
-                <AssetButton asset={asset}/>
-              </tr>
-            )
-          })}
-        </table>
-      </div >
+      this.props.assets.map(function (asset) {
+        return (
+          <tr>
+            <tr className="asset__item" onClick={self.handleClick}>
+              <td className="asset__attribute">{asset.asset_name}</td>
+              <td className="asset__attribute">{asset.date}</td>
+              <td className="asset__attribute">{asset.number}</td>
+              <td className="asset__attribute">{asset.type}</td>
+            </tr>
+            <AssetButton asset={asset}/>
+          </tr>
+        )
+      })
     )
   }
-
+  ,
+  render()
+  {
+    return (
+      <table className="my_assets_tab__container">
+        <thead>
+        {this._create_table_head()}
+        </thead>
+        <tbody>
+        {this._create_table_body()}
+        </tbody>
+      </table>
+    )
+  }
 })
