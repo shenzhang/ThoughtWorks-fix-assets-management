@@ -5,13 +5,11 @@ import com.thoughtworks.fam.model.Asset;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-/**
- * Created by SiyuYan on 15-5-2.
- */
+import static java.util.Collections.sort;
+
 @Service
 public class AssetServiceImpl implements AssetService {
     @Autowired
@@ -20,12 +18,12 @@ public class AssetServiceImpl implements AssetService {
 
     @Override
     public List<Asset> getAssetsByOwnerName(String ownerName) {
-
         List<Asset> assets = assetDao.getAssets(ownerName);
-        Collections.sort(assets, new Comparator<Asset>() {
+        sort(assets, new Comparator<Asset>() {
 
-            public int compare( Asset p1, Asset p2) {
-                return (p1.getAssetName().compareTo(p2.getAssetName()));
+            public int compare(Asset asset1, Asset asset2) {
+          // TODO:if asset is null,throw exception
+                return (asset1.getAssetName().compareTo(asset2.getAssetName()));
             }
         });
         return assets;
@@ -34,10 +32,10 @@ public class AssetServiceImpl implements AssetService {
     @Override
     public List<Asset> getAssetsExceptOwner(String ownerName) {
         List<Asset> assets = assetDao.getOthersAssets(ownerName);
-        Collections.sort(assets, new Comparator<Asset>() {
+        sort(assets, new Comparator<Asset>() {
 
-            public int compare( Asset p1, Asset p2) {
-                return (p1.getOwnerName().compareTo(p2.getOwnerName()));
+            public int compare(Asset asset1, Asset asset2) {
+                return (asset1.getOwnerName().compareTo(asset2.getOwnerName()));
             }
         });
         return assets;

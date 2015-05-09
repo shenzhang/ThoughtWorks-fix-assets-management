@@ -11,7 +11,6 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import static org.mockito.Mockito.verify;
 import static org.mockito.MockitoAnnotations.initMocks;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 public class AssetControllerTest {
@@ -30,19 +29,32 @@ public class AssetControllerTest {
     }
 
     @Test
-    public void should_get_asset_list_when_give_owner_name() throws Exception {
+    public void should_get_my_asset_list_when_give_owner_name() throws Exception {
         String ownerName = "yansiyu";
         assetController.getAssets(ownerName);
         verify(assetService).getAssetsByOwnerName("yansiyu");
 
-        this.mockMvc.perform(get("/asset/whatever"))
-                .andExpect(status().isOk())
-                .andExpect(content().string("[]"));
+        this.mockMvc.perform(get("/asset/my/whatever"))
+                .andExpect(status().isOk());
 
-        this.mockMvc.perform(get("/asset2/{id}", ownerName)) //执行请求
-                .andExpect(status().isNotFound());//验证控制器不存在
+
+        this.mockMvc.perform(get("/asset2/my/{id}", ownerName))
+                .andExpect(status().isNotFound());
 
     }
+    @Test
+    public void should_get_other_asset_list_when_give_owner_name() throws Exception {
+        String ownerName = "yansiyu";
+        assetController.getOtherAssets(ownerName);
+        verify(assetService).getAssetsExceptOwner(ownerName);
 
+        this.mockMvc.perform(get("/asset/other/whatever"))
+                .andExpect(status().isOk());
+
+
+        this.mockMvc.perform(get("/asset2/other/{id}", ownerName))
+                .andExpect(status().isNotFound());
+
+    }
 
 }

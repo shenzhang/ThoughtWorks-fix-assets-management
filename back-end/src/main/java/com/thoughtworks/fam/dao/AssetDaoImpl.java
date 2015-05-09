@@ -5,9 +5,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
-/**
- * Created by SiyuYan on 15-5-2.
- */
 @Repository
 public class AssetDaoImpl implements AssetDao {
     List<Asset> AllAssetList = Arrays.asList(
@@ -24,22 +21,20 @@ public class AssetDaoImpl implements AssetDao {
 
     @Override
     public List<Asset> getAssets(String ownerName) {
-        List<Asset> ownerAssets = new ArrayList<Asset>();
-        for (Asset asset : AllAssetList) {
-            if (asset.getOwnerName().equals(ownerName))
-                ownerAssets.add(asset);
-        }
-        return ownerAssets;
+        return getAssets(new Only(ownerName));
     }
 
     @Override
     public List<Asset> getOthersAssets(String ownerName) {
-        List<Asset> othersAssets = new ArrayList<Asset>();
+        return getAssets(new Except(ownerName));
+    }
+
+    private List<Asset> getAssets(Predicate<String> predicate) {
+        List<Asset> assets = new ArrayList<Asset>();
         for (Asset asset : AllAssetList) {
-            if (asset.getOwnerName().equals(ownerName))
-                continue;
-            else othersAssets.add(asset);
+            if (predicate.test(asset.getOwnerName()))
+                assets.add(asset);
         }
-        return othersAssets;
+        return assets;
     }
 }
