@@ -4,7 +4,7 @@ export default [
     // callback that returns the data
     fixtures: function (data) {
       if (data && data.username === 'admin') {
-        if (data.password === 'pw') {
+        if (data.password === 'admin') {
           // login success
           return {
             username: 'admin'
@@ -12,12 +12,12 @@ export default [
         } else {
           // password incorrect
           throw new function PasswordIncorrectError() {
-            this.errorMessage = 'Password is incorrect!'
+            this.errorMessage = 'The password is not correct, please input again.'
           };
         }
       } else {
         throw new function UserNotFoundError() {
-          this.errorMessage = 'User not found!'
+          this.errorMessage = 'The user is not exist.'
         }
       }
       return 'success'

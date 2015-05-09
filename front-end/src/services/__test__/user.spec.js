@@ -6,7 +6,7 @@ describe('User Services', function() {
   it('should be able to login', function(done) {
     user.login({
       username: 'admin',
-      password: 'pw'
+      password: 'admin'
     })
     .then(function(data) {
       data.username.should.be.equal('admin');
@@ -18,7 +18,7 @@ describe('User Services', function() {
       username: 'tuber',
       password: 'tuber'
     }).then(null, function(err) {
-      err.errorMessage.should.be.equal('User not found!');
+      err.errorMessage.should.be.equal('The user is not exist.');
       done()
     })
     .catch(done)
@@ -26,9 +26,9 @@ describe('User Services', function() {
   it('should not be able to login when password is incorrect', function(done) {
     user.login({
       username: 'admin',
-      password: 'admin'
+      password: 'pw'
     }).then(null, function(err) {
-      err.errorMessage.should.be.equal('Password is incorrect!');
+      err.errorMessage.should.be.equal('The password is not correct, please input again.');
       done()
     })
     .catch(done)

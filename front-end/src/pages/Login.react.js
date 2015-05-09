@@ -59,7 +59,7 @@ var Login = React.createClass({
         alert('success message: '+msg.username);
     },
     onLoginFail(err) {
-        if (err.errorMessage==='User not found!') {
+        if (err.errorMessage==='The user is not exist.') {
             this.setState({userError: err.errorMessage});
         } else {
             this.setState({passwordError: err.errorMessage});
