@@ -41,7 +41,7 @@ var Assets = React.createClass({
       <Paper zDepth={1}>
         <Tabs>
           <Tab label="My Assets">
-            <MyAssets assets={this.state.assets}/>
+            <MyAssets assets={this.state.assets} />
           </Tab>
           <Tab label="Others Assets">
             <OthersAssets assets={this.state.assets}/>

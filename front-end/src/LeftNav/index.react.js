@@ -24,6 +24,7 @@ const AppLeftNav = React.createClass({
   mixins: [Navigation, State],
 
   render() {
+    //add attribute
     const menuTitle = <div className="menu__title" onClick={this._onHeaderClick}>Menu Title</div>;
 
     return (

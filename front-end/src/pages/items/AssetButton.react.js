@@ -12,11 +12,13 @@ var AssetButton = React.createClass({
       clickCount: 1
     }
   },
-  handleClick(){
+  handleClick(event){
     alert("You have clicked " + this.props.asset.asset_name + " " + this.state.clickCount + " times!")
     this.setState({
       clickCount: this.state.clickCount + 1
     });
+    event.stopPropagation();
+    event.nativeEvent.stopImmediatePropagation();
   },
   render() {
     return (
