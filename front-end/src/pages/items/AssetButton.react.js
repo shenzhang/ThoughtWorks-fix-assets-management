@@ -22,7 +22,7 @@ var AssetButton = React.createClass({
   },
   render() {
     return (
-        <td className="asset__attribute">
+        <td className="asset__button">
           <RaisedButton label="Button"
                         secondary={true}
                         onClick={this.handleClick}>
