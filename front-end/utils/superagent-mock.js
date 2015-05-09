@@ -46,7 +46,15 @@ function mock (superagent, config) {
 
     if (parser) {
       var match = new RegExp(parser.pattern, 'g').exec(path);
-      fn(null, parsers[this.url].callback(match, parser.fixtures()));
+      var fixtureData = null;
+      var fixtureError = null;
+
+      try {
+        fixtureData = parser.fixtures();
+      } catch(err) {
+        fixtureError = err;
+      }
+      fn(fixtureError, parsers[this.url].callback(match, fixtureData));
     } else {
       oldEnd.call(this, fn);
     }
