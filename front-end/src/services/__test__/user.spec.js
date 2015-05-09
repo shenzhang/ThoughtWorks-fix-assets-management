@@ -13,6 +13,16 @@ describe('User Services', function() {
       done()
     })
   })
+  it('should not be able to login when username is not exist', function(done) {
+    user.login({
+      username: 'tuber',
+      password: 'tuber'
+    }).then(null, function(err) {
+      err.errorMessage.should.be.equal('User not found!')
+      done()
+    })
+    .catch(done)
+  })
   it('should not be able to login when password is incorrect', function(done) {
     user.login({
       username: 'admin',

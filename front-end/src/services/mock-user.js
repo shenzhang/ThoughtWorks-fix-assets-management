@@ -16,6 +16,10 @@ export default [
           }
           return
         }
+      } else {
+        throw new function UserNotFoundError() {
+          this.errorMessage = 'User not found!'
+        }
       }
       return 'success'
     },
