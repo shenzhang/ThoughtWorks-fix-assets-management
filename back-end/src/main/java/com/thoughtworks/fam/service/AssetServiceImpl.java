@@ -17,12 +17,13 @@ public class AssetServiceImpl implements AssetService {
 
 
     @Override
-    public List<Asset> getAssetsByOwnerName(String ownerName) {
+    public List<Asset> getAssetsByOwnerName(String ownerName){
         List<Asset> assets = assetDao.getAssets(ownerName);
         sort(assets, new Comparator<Asset>() {
 
-            public int compare(Asset asset1, Asset asset2) {
-          // TODO:if asset is null,throw exception
+            public int compare(Asset asset1, Asset asset2){
+                if (asset1 == null || asset2 == null)
+                    throw new RuntimeException("my assets can not be null");
                 return (asset1.getAssetName().compareTo(asset2.getAssetName()));
             }
         });
@@ -35,6 +36,8 @@ public class AssetServiceImpl implements AssetService {
         sort(assets, new Comparator<Asset>() {
 
             public int compare(Asset asset1, Asset asset2) {
+                if (asset1 == null || asset2 == null)
+                    throw new RuntimeException("others assets can not be null");
                 return (asset1.getOwnerName().compareTo(asset2.getOwnerName()));
             }
         });

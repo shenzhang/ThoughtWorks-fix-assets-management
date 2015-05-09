@@ -56,5 +56,30 @@ public class AssetServiceImplTest {
         assertThat(assetDao.getOthersAssets(ownerName).get(0).getOwnerName(), is("lvjing"));
 
     }
-    // TODO:if assetlist has null,throw exception
+
+
+
+    @Test(expected = RuntimeException.class)
+    public void should_get_exception_when_get_my_asset_by_owner_name() throws Exception {
+        List<Asset> assets = Arrays.asList(
+                new Asset("Nokia", "17006011", "2014-04-20", "Mobile", "yansiyu"),
+                null
+        );
+        when(assetDao.getAssets("yansiyu")).thenReturn(assets);
+
+        String ownerName = "yansiyu";
+        assetService.getAssetsByOwnerName(ownerName);
+
+    }
+    @Test(expected = RuntimeException.class)
+    public void should_get_exception_when_get_other_asset_by_owner_name() throws Exception {
+        List<Asset> assets = Arrays.asList(
+                new Asset("Nokia", "17006011", "2014-04-20", "Mobile", "yansiyu"),
+                null
+        );
+        when(assetDao.getOthersAssets("yansiyu")).thenReturn(assets);
+
+        String ownerName = "yansiyu";
+        assetService.getAssetsExceptOwner(ownerName);
+    }
 }
