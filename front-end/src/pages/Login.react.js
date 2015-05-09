@@ -1,9 +1,11 @@
 import React from 'react';
 import {
     RaisedButton,
-    Paper
+    Paper,
+    TextField
     } from 'material-ui';
 import {
+    Link,
     State
     } from 'react-router';
 import userApi from './../services/user'
@@ -22,15 +24,12 @@ var Login = React.createClass({
             <Paper zDepth={1}>
                 <div className='page-login'>
                     <p className='title'>Log in</p>
-                    <div className='content'>
-                        <p>User name</p>
-                        <input type='text' id='username' onInput={this.onInputed}/>
-                    </div>
-                    <div className='content'>
-                        <p>Password</p>
-                        <input type='password' id='password' onInput={this.onInputed}/>
-                        <a href='http://www.baidu.com'>Forget your password?</a>
-                    </div>
+                    <TextField id='username' className='content'
+                        floatingLabelText="User Name" onInput={this.onInputed} />
+                    <TextField id='password' className='content' type='password'
+                               floatingLabelText="Password" onInput={this.onInputed} >
+                        <Link to='/notFound'>Forget your password?</Link>
+                    </TextField>
                     <RaisedButton className='button' label='Log in' primary={true} onClick={this._login} disabled={this.state.disabled}></RaisedButton>
                 </div>
             </Paper>
