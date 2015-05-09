@@ -13,8 +13,11 @@ export default [
           // password incorrect
           throw new function PasswordIncorrectError() {
             this.errorMessage = 'Password is incorrect!'
-          }
-          return
+          };
+        }
+      } else {
+        throw new function UserNotFoundError() {
+          this.errorMessage = 'User not found!'
         }
       }
       return 'success'
@@ -54,6 +57,29 @@ export default [
             type: 'Others'
           }
         ]
+      }
+    },
+    // `match`: result of the resolution of the regular expression
+    // `data`: data returns by `fixtures` attribute
+    callback: function (match, data) {
+      if (match[1]) {
+        return data
+      } else {
+        return new Error('Do not match any urls!')
+      }
+    }
+  },{
+    pattern: 'http://localhost:8080/user/(create)',
+    // callback that returns the data
+    fixtures: function (data) {
+      if(data.username === 'jtao1') {
+        return {
+          message: 'success'
+        }
+      } else {
+        throw new function() {
+          this.message = 'Error when create new user!';
+        };
       }
     },
     // `match`: result of the resolution of the regular expression

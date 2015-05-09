@@ -4,11 +4,6 @@ import com.thoughtworks.fam.dao.HelloWorldDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-/**
- * User: Zhang Shen
- * Date: 4/25/15
- * Time: 10:28 AM
- */
 @Service
 public class HelloWorldServiceImpl implements HelloWorldService {
     @Autowired
