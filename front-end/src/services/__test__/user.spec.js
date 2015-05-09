@@ -33,7 +33,7 @@ describe('User Services', function() {
     })
     .catch(done)
   });
-  it.skip('should be able to get his assets', function(done) {
+  it('should be able to get his assets', function(done) {
     user.assets({
       asset_name: 'Sam',
       token: 'xxxx'
