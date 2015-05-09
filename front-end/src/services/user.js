@@ -15,8 +15,8 @@ const userApis = {
     url: '/user/logout'
   },
   assets: {
-    method: 'post',
-    url: '/user/assets'
+    method: 'get',
+    url: '/asset/my/yansiyu'
   },
   create: {
     method: 'post',
