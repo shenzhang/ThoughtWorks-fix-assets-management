@@ -2,7 +2,8 @@ import React from 'react';
 import {
   RaisedButton,
   Paper,
-  TextField
+  TextField,
+  FlatButton
   } from 'material-ui';
 import {
   State
@@ -28,6 +29,10 @@ var CreateUser = React.createClass({
             <p>User name</p>
             <TextField hintText='User Name' ref='username' onChange={this.onInputed}/>
           </div>
+          <div className='content'>
+            <p>Password</p>
+            <TextField hintText='User Name' ref='password' defaultValue='P@ss123456' onChange={this.onInputed}/>
+          </div>
           <RaisedButton className='button' label='Create User' primary={true} onClick={this._createUser} disabled={this.state.disabled}></RaisedButton>
         </div>
       </Paper>
@@ -38,14 +43,15 @@ var CreateUser = React.createClass({
   },
   _createUser() {
     userApi.create({
-      username: this.refs.username.getValue()
+      username: this.refs.username.getValue(),
+      password: this.refs.password.getValue()
     }).then(this.onLogin, this.onLoginFail)
   },
   onLogin(msg) {
-    alert('success message: '+msg);
+    alert('success message: '+msg.message);
   },
   onLoginFail(err) {
-    alert('failure message: '+err);
+    alert('failure message: '+err.message);
   }
 });
 
