@@ -15,7 +15,9 @@ var Login = React.createClass({
 
     getInitialState() {
         return {
-            disabled: true
+            disabled: true,
+            userError: '',
+            passwordError: ''
         };
     },
 
@@ -24,29 +26,44 @@ var Login = React.createClass({
             <Paper zDepth={1}>
                 <div className='page-login'>
                     <p className='title'>Log in</p>
-                    <TextField id='username' className='content'
-                        floatingLabelText="User Name" onInput={this.onInputed} />
-                    <TextField id='password' className='content' type='password'
-                               floatingLabelText="Password" onInput={this.onInputed} >
-                        <Link to='/notFound'>Forget your password?</Link>
-                    </TextField>
-                    <RaisedButton className='button' label='Log in' primary={true} onClick={this._login} disabled={this.state.disabled}></RaisedButton>
+                    <div className='content'>
+                        <TextField ref='username'
+                            floatingLabelText="User Name" onInput={this.onInputed} />
+                        <span>{this.state.userError}</span>
+                    </div>
+                    <div className='content'>
+                        <TextField ref='password' className='content' type='password'
+                                   floatingLabelText="Password" onInput={this.onInputed} />
+                        <span>{this.state.passwordError}</span>
+                    </div>
+                    <Link to='/notFound'>Forget your password?</Link>
+                    <RaisedButton className='button' label='Log In' primary={true} onClick={this._login} disabled={this.state.disabled}></RaisedButton>
                 </div>
             </Paper>
         );
     },
     onInputed() {
-        this.setState({disabled: !(document.getElementById('username').value && document.getElementById('password').value)});
+        this.setState({disabled: !(this.refs.username.getValue() && this.refs.password.getValue())});
     },
     _login() {
-        userApi.login(this.state.user, this.state.password)
-            .then(this.onLogin, this.onLoginFail)
+        this.setState({
+            userError: '',
+            passwordError: ''
+        });
+        userApi.login({
+            username: this.refs.username.getValue(),
+            password: this.refs.password.getValue()
+        }).then(this.onLogin, this.onLoginFail)
     },
     onLogin(msg) {
-        alert('success message: '+msg);
+        alert('success message: '+msg.username);
     },
     onLoginFail(err) {
-        alert('failure message: '+err);
+        if (err.errorMessage==='User not found!') {
+            this.setState({userError: err.errorMessage});
+        } else {
+            this.setState({passwordError: err.errorMessage});
+        }
     }
 });
 

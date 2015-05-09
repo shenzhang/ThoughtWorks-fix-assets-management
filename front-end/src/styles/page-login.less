@@ -1,19 +1,23 @@
 .page-login {
+  width: 400px;
+  margin: 0 auto;
   .title {
     text-align: center;
     margin-bottom: 0;
     font-size: 20px;
+    width: 256px;
   }
   .content {
-    margin: 0 auto;
-    display: block;
-    +.content {
-      margin-bottom: 50px;
+    span {
+      color: #ff0000;
+      font-size: 14px;
     }
   }
+  a {
+    display: block;
+  }
   .button {
-    left: 50%;
-    position: relative;
-    transform: translate3D(-50%,0,0);
+    margin-top: 20px;
+    width: 256px;
   }
 }
