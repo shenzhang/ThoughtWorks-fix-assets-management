@@ -2,7 +2,21 @@ export default [
   {
     pattern: 'http://localhost:8080/user/(login|logout)',
     // callback that returns the data
-    fixtures: function () {
+    fixtures: function (data) {
+      if (data && data.username === 'admin') {
+        if (data.password === 'pw') {
+          // login success
+          return {
+            username: 'admin'
+          }
+        } else {
+          // password incorrect
+          throw new function PasswordIncorrectError() {
+            this.errorMessage = 'Password is incorrect!'
+          }
+          return
+        }
+      }
       return 'success'
     },
     // `match`: result of the resolution of the regular expression

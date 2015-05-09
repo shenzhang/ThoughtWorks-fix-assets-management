@@ -50,7 +50,7 @@ function mock (superagent, config) {
       var fixtureError = null;
 
       try {
-        fixtureData = parser.fixtures();
+        fixtureData = parser.fixtures(this._data);
       } catch(err) {
         fixtureError = err;
       }

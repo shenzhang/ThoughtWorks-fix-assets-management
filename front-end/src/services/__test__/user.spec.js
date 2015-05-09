@@ -4,16 +4,29 @@ import user from '../user'
 
 describe('User Services', function() {
   it('should be able to login', function(done) {
-    user.login()
+    user.login({
+      username: 'admin',
+      password: 'pw'
+    })
       .then(function(data) {
-        data.should.be.equal('success')
+        data.username.should.be.equal('admin')
         done()
       })
       .catch(function(err) {
         done(err)
       })
   })
-  it('should be able to get his assets', function(done) {
+  it('should not be able to login when password is incorrect', function(done) {
+    user.login({
+      username: 'admin',
+      password: 'admin'
+    }).then(null, function(err) {
+      err.errorMessage.should.be.equal('Password is incorrect!')
+      done()
+    })
+    .catch(done)
+  })
+  it.skip('should be able to get his assets', function(done) {
     user.assets({
       asset_name: 'Sam',
       token: 'xxxx'
