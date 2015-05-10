@@ -16,8 +16,4 @@ public interface AssetService {
 
     List<Asset> findAssetsByUserName(String userName);
 
-    boolean isValid(String name, String password);
-
-    boolean createUser(String email);
-
 }

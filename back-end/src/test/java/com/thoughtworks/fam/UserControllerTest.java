@@ -14,14 +14,12 @@ public class UserControllerTest {
     @Test
     public void should_handle_username_is_null() throws ParseException {
         List<Asset> assets = new UserController().getAssets(null);
-
         assertNull(assets);
     }
 
     @Test
     public void should_handle_username_is_empty_string() throws ParseException {
         List<Asset> assets = new UserController().getAssets("");
-
         assertNull(assets);
     }
 

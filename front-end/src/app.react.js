@@ -24,14 +24,13 @@ var BasePage = React.createClass({
 
   getDefaultProps() {
     return {
-      title: 'Title'
+      title: ''
     }
   },
 
   render() {
     return (
       <AppCanvas predefinedLayout={1}>
-        <Header />
         <AppBar
           className="mui-dark-theme"
           onMenuIconButtonTouchTap={this._toggleLeftNav}

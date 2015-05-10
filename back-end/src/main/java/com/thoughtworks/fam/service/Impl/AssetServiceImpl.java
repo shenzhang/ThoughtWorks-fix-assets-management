@@ -60,15 +60,6 @@ public class AssetServiceImpl implements AssetService {
         return assetDao.findAssetsByUserName(userName);
     }
 
-    @Override
-    public boolean isValid(String name, String password) {
-        return name.equals("admin") && password.equals("P@ss123456");
-    }
-
-    @Override
-    public boolean createUser(String email) {
-        return false;
-    }
 
 
 }
