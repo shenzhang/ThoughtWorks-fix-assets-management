@@ -6,12 +6,13 @@ import {
     } from 'material-ui';
 import {
     Link,
+    Navigation,
     State
     } from 'react-router';
 import userApi from './../services/user'
 
 var Login = React.createClass({
-    mixins: [State],
+    mixins: [State,Navigation],
 
     getInitialState() {
         return {
@@ -56,7 +57,7 @@ var Login = React.createClass({
         }).then(this.onLogin, this.onLoginFail)
     },
     onLogin(msg) {
-        alert('success message: '+msg.username);
+        this.context.router.transitionTo('home');
     },
     onLoginFail(err) {
         if (err.errorMessage==='The user is not exist.') {
