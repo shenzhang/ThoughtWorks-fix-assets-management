@@ -12,6 +12,9 @@ const menuItems =  [{
   text: 'Home',
   route: 'home'
 },{
+  text: 'Login',
+  route: 'login'
+},{
   text: 'User',
   route: 'user'
 },{
