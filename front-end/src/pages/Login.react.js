@@ -52,7 +52,7 @@ var Login = React.createClass({
             passwordError: ''
         });
         userApi.login({
-            username: this.refs.username.getValue(),
+            userName: this.refs.username.getValue(),
             password: this.refs.password.getValue()
         }).then(this.onLogin, this.onLoginFail)
     },
