@@ -15,13 +15,4 @@ public class AuthServiceImpl implements AuthService {
         return nullUser;
     }
 
-    @Override
-    public User createUser(String email) {
-        if(email.equals("jtao@thoughtworks.com")) {
-            return new User("jtao", "jtao@thoughtworks.com");
-
-        }
-        return nullUser;
-    }
-
 }

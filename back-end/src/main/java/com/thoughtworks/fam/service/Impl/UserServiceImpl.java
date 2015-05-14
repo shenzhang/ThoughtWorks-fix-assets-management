@@ -10,11 +10,13 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService {
 
 
+    public static String EMAIL_SUFFIX = "@thoughtworks.com";
+
     @Autowired
     private UserDao userDao;
 
     @Override
-    public User save(User user) {
-        return userDao.save(user);
+    public User save(String name) {
+        return userDao.save(new User(name, name + EMAIL_SUFFIX));
     }
 }

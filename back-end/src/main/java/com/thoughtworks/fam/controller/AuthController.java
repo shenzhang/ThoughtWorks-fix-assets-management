@@ -13,18 +13,12 @@ import org.springframework.web.bind.annotation.RestController;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @RestController
-@RequestMapping(value = "/user")
+@RequestMapping(value = "/auth")
 public class AuthController {
 
     @Autowired
     private AuthService authService;
 
-    @RequestMapping(value = "/create", method = POST)
-    public ResponseEntity<User> create(@RequestParam String email) {
-
-        User user = authService.createUser(email);
-        return new ResponseEntity<User>(user, HttpStatus.OK);
-    }
 
     @RequestMapping(value = "/login", method = POST)
     public ResponseEntity<User> login(@RequestParam String userName, @RequestParam String password) {
