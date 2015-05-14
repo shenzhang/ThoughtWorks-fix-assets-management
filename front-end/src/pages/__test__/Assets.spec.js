@@ -10,7 +10,6 @@ describe('Assets Page Component', function () {
     assets = TestUtils.renderIntoDocument(<Assets />)
   });
   it('should be able to initialized independently', function () {
-    TestUtils.isDOMComponent(Assets).should.be.equal(true)
-    done()
+    TestUtils.isCompositeComponent(Assets).should.not.be.equal(true)
   })
-}
+})
