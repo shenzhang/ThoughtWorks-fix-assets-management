@@ -12,3 +12,4 @@ else
 fi
 
 echo "Check failed"
+exit 1
