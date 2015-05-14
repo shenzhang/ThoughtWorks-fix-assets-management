@@ -23,16 +23,19 @@ var Assets = React.createClass({
   getInitialState() {
     return {
       title: 'User Assets',
-      assets: []
+      assets: [],
     }
   },
   componentDidMount() {
-    this._getAssets()
-  },
-  handleClick(){
-    this.setState({
-      assets: []
-    });
+    //this._getAssets()
+    $.get("http://localhost:8080/asset/my/yansiyu", function(result) {
+      var assets = result.body;
+      if (this.isMounted()) {
+        this.setState({
+          assets: assets
+        });
+      }
+    }.bind(this));
   },
   render() {
     return (
