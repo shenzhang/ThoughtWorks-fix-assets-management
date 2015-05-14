@@ -6,9 +6,6 @@ import java.util.List;
 
 
 public interface AssetService {
-    public List<Asset> getAssetsByOwnerName(String ownerName);
-
-    public List<Asset> getAssetsExceptOwner(String ownerName);
 
     Asset save(Asset asset);
 

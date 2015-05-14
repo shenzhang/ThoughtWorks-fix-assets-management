@@ -21,9 +21,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-/**
- * Created by Brenda on 5/9/15.
- */
 public class ApplicationFilter extends GenericFilterBean {
 
     public static final String TOKEN_SESSION_KEY = "token";

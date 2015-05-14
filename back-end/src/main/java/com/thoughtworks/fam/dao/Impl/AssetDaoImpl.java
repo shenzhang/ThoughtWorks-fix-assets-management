@@ -1,13 +1,9 @@
 package com.thoughtworks.fam.dao.Impl;
 
 import com.thoughtworks.fam.dao.AssetDao;
-import com.thoughtworks.fam.dao.Except;
-import com.thoughtworks.fam.dao.Only;
-import com.thoughtworks.fam.dao.Predicate;
 import com.thoughtworks.fam.model.Asset;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -35,16 +31,6 @@ public class AssetDaoImpl implements AssetDao {
     }};
 
     @Override
-    public List<Asset> getAssets(String ownerName) {
-        return getAssets(new Only(ownerName));
-    }
-
-    @Override
-    public List<Asset> getOthersAssets(String ownerName) {
-        return getAssets(new Except(ownerName));
-    }
-
-    @Override
     public Asset save(Asset asset) {
         return null;
     }
@@ -59,12 +45,4 @@ public class AssetDaoImpl implements AssetDao {
         return allAssets.get(userName);
     }
 
-    private List<Asset> getAssets(Predicate<String> predicate) {
-        List<Asset> assets = new ArrayList<Asset>();
-        for (Asset asset : AllAssetList) {
-            if (predicate.test(asset.getOwnerName()))
-                assets.add(asset);
-        }
-        return assets;
-    }
 }
