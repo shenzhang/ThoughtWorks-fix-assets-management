@@ -51,10 +51,16 @@ export default [
             type: 'Laptop'
           },{
             owner_name: "JimmyLv",
-            asset_name: 'Scree',
+            asset_name: 'Screen',
             number: '17006036',
             date: '2014-2-15',
             type: 'Others'
+          },{
+            owner_name: "SiyuYan",
+            asset_name: 'Mac Book Air',
+            number: '17004032',
+            date: '2015-8-15',
+            type: 'Laptop'
           }
         ]
       }
