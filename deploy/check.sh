@@ -8,10 +8,8 @@ if [ -z "$TOTAL" ]; then
   TOTAL=10
 fi
 
-sleep 5
-
 while [ $COUNT -lt $TOTAL ]; do
-	curl -s -m 5 -o /dev/null $URL
+	curl -s -m 2 -o /dev/null $URL
 
 	if [ $? -ne 0 ]; then
 	  echo "failed, continue..."
@@ -21,6 +19,8 @@ while [ $COUNT -lt $TOTAL ]; do
 	fi
 
 	let COUNT=COUNT+1
+
+	sleep 5
 done
 
 echo "Check failed"
