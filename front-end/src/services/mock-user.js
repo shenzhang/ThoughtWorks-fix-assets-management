@@ -31,7 +31,8 @@ export default [
         return new Error('Do not match any urls!')
       }
     }
-  },{
+  },
+  {
     pattern: 'http://localhost:8080/user/(assets)',
     // callback that returns the data
     fixtures: function () {
@@ -43,19 +44,19 @@ export default [
             number: '17006011',
             date: '2015-4-25',
             type: 'Mobile'
-          },{
+          }, {
             owner_name: "JimmyLv",
             asset_name: 'Mac Book Pro',
             number: '17005800',
             date: '2015-4-22',
             type: 'Laptop'
-          },{
+          }, {
             owner_name: "JimmyLv",
             asset_name: 'Screen',
             number: '17006036',
             date: '2014-2-15',
             type: 'Others'
-          },{
+          }, {//should be returned by back-end, should not mock in front-end
             owner_name: "SiyuYan",
             asset_name: 'Mac Book Air',
             number: '17004032',
@@ -68,22 +69,23 @@ export default [
     // `match`: result of the resolution of the regular expression
     // `data`: data returns by `fixtures` attribute
     callback: function (match, data) {
-      if (match[1]) {
+      if (match[1] == "assets") {
         return data
       } else {
         return new Error('Do not match any urls!')
       }
     }
-  },{
+  },
+  {
     pattern: 'http://localhost:8080/user/(create)',
     // callback that returns the data
     fixtures: function (data) {
-      if(data.username === 'jtao1') {
+      if (data.username === 'jtao1') {
         return {
           message: 'success'
         }
       } else {
-        throw new function() {
+        throw new function () {
           this.message = 'Error when create new user!';
         };
       }
