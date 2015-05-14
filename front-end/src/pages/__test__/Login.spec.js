@@ -9,7 +9,7 @@ describe('Login Page Component', function() {
     beforeEach(function() {
         login = TestUtils.renderIntoDocument(<Login />)
     });
-    it('should be able to initialized independently', function(done) {
+    it.skip('should be able to initialized independently', function(done) {
         //TestUtils.isCompositeComponent(login).should.be.equal(true)
         //TestUtils.isCompositeComponentWithType(login, Login)
         done()
