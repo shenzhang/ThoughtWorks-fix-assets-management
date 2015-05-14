@@ -8,6 +8,8 @@ if [ -z "$TOTAL" ]; then
   TOTAL=10
 fi
 
+sleep 5
+
 while [ $COUNT -lt $TOTAL ]; do
 	curl -s -m 5 -o /dev/null $URL
 
