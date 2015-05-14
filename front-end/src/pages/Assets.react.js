@@ -23,13 +23,27 @@ var Assets = React.createClass({
   getInitialState() {
     return {
       title: 'User Assets',
-      assets: [],
+      assets: []
     }
   },
   componentDidMount() {
     //this._getAssets()
+    console.log("These are assets from back-end:")
+    /*
+    $.ajax({
+      url: this.props.url,
+      dataType: 'json',
+      success: function(data) {
+        this.setState({data: data});
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.error(this.props.url, status, err.toString());
+      }.bind(this)
+    });
+    */
     $.get("http://localhost:8080/asset/my/yansiyu", function(result) {
-      var assets = result.body;
+      var assets = result.body
+      console.log(assets)
       if (this.isMounted()) {
         this.setState({
           assets: assets
