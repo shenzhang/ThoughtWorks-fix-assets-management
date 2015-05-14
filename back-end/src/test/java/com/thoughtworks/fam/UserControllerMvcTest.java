@@ -3,7 +3,6 @@ package com.thoughtworks.fam;
 import com.thoughtworks.fam.controller.UserController;
 import com.thoughtworks.fam.model.User;
 import com.thoughtworks.fam.service.UserService;
-import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -46,6 +45,4 @@ public class UserControllerMvcTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.name", is("jtao")));
     }
-    
-
 }

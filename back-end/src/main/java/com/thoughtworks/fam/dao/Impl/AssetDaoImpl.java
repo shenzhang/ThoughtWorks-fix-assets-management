@@ -32,7 +32,7 @@ public class AssetDaoImpl implements AssetDao {
 
     @Override
     public Asset save(Asset asset) {
-        return null;
+        return asset;
     }
 
     @Override
