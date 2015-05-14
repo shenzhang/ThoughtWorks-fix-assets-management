@@ -2,14 +2,24 @@
 
 echo "Begin checking url: $URL"
 
-curl -s -m 5 -o /dev/null $URL
+COUNT=0
 
-if [ $? -ne 0 ]; then
-  echo "failed, continue..."
-else
-  echo "success"
-  exit 0
+if [ -z "$TOTAL" ]; then
+  TOTAL=10
 fi
+
+while [ $COUNT -lt $TOTAL ]; do
+	curl -s -m 5 -o /dev/null $URL
+
+	if [ $? -ne 0 ]; then
+	  echo "failed, continue..."
+	else
+	  echo "success"
+	  exit 0
+	fi
+
+	let COUNT=COUNT+1
+done
 
 echo "Check failed"
 exit 1
