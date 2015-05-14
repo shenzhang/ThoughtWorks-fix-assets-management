@@ -8,6 +8,6 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User save(User user) {
-        return null;
+        return user;
     }
 }

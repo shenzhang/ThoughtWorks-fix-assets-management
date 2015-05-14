@@ -6,6 +6,4 @@ public interface AuthService {
 
     User isValid(String name, String password);
 
-    User createUser(String email);
-
 }

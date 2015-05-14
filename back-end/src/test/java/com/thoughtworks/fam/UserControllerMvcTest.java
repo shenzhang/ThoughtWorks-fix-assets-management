@@ -1,8 +1,8 @@
 package com.thoughtworks.fam;
 
-import com.thoughtworks.fam.controller.AuthController;
+import com.thoughtworks.fam.controller.UserController;
 import com.thoughtworks.fam.model.User;
-import com.thoughtworks.fam.service.AuthService;
+import com.thoughtworks.fam.service.UserService;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -22,59 +22,27 @@ public class UserControllerMvcTest {
 
 
     @Mock
-    private AuthService authService;
+    private UserService userService;
 
     private MockMvc mockMvc;
 
     @InjectMocks
-    private AuthController authController;
+    private UserController userController;
 
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
-        mockMvc = MockMvcBuilders.standaloneSetup(authController).build();
+        mockMvc = MockMvcBuilders.standaloneSetup(userController).build();
     }
+
 
     @Test
     public void should_create_user_success() throws Exception {
-        given(authService.createUser("jtao@thoughtworks.com"))
+        given(userService.save("jtao"))
                 .willReturn(new User("jtao", "jtao@thoughtworks.com"));
-        this.mockMvc.perform(post("/user/create").contentType(MediaType.APPLICATION_FORM_URLENCODED)
-                .param("email", "jtao@thoughtworks.com"))
+        this.mockMvc.perform(post("/users/create").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                .param("userName", "jtao"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.name", is("jtao")));
     }
-
-    @Test
-    public void should_create_user_failed() throws Exception {
-        given(authService.createUser("jtao1@thoughtworks.com")).willReturn(new User("not exist", "not exist"));
-        this.mockMvc.perform(post("/user/create").contentType(MediaType.APPLICATION_FORM_URLENCODED)
-                .param("email", "jtao1@thoughtworks.com"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.name", is("not exist")));
-
-    }
-
-    @Test
-    public void should_login_user_success() throws Exception {
-        given(authService.isValid("admin", "P@ss123456")).willReturn(new User("jtao", "jtao@thoughtworks.com"));
-        this.mockMvc.perform(post("/user/login").contentType(MediaType.APPLICATION_FORM_URLENCODED)
-                .param("userName", "admin")
-                .param("password", "P@ss123456"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.name", is("jtao")));
-
-    }
-
-    @Test
-    public void should_login_failed() throws Exception {
-        given(authService.isValid("admin", "P@ss123456")).willReturn(new User("not exist", "not exist"));
-        this.mockMvc.perform(post("/user/login").contentType(MediaType.APPLICATION_FORM_URLENCODED)
-                .param("userName", "admin")
-                .param("password", "P@ss123456"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.name", is("not exist")));
-
-    }
-
 }

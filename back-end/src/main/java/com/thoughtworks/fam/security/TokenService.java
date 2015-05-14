@@ -8,9 +8,6 @@ import org.springframework.security.core.Authentication;
 
 import java.util.UUID;
 
-/**
- * Created by Brenda on 5/9/15.
- */
 public class TokenService {
     private static final Cache cache = CacheManager.getInstance().getCache("apiAuthCache");
 
