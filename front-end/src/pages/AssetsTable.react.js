@@ -42,10 +42,10 @@ module.exports = React.createClass({
         <tbody>
         {this.props.assets.map(function (asset, index) {
           return (
-            <tr className="asset__item" onClick={self.handleClick} key={index}>
+            <tr className="asset__item" key={index}>
               {self._create_owner_name(asset)}
               <td className="asset__attribute">{asset.asset_name}</td>
-              <td className="asset__attribute">{asset.number}</td>
+              <td className="asset__attribute"><button className="asset__number" onClick={self.handleClick}>{asset.number}</button></td>
               <td className="asset__attribute">{asset.date}</td>
               <td className="asset__attribute">{asset.type}</td>
               <AssetButton asset={asset}/>
