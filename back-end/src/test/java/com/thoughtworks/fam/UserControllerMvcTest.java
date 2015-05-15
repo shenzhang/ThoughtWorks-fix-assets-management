@@ -45,4 +45,13 @@ public class UserControllerMvcTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.name", is("jtao")));
     }
+
+    @Test
+    public void should_create_user_failed() throws Exception {
+        given(userService.save("jtao"))
+                .willReturn(null);
+        this.mockMvc.perform(post("/users/create").contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                .param("userName", "jtao"))
+                .andExpect(status().isUnauthorized());
+    }
 }
