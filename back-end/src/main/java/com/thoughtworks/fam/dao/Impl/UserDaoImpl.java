@@ -2,6 +2,7 @@ package com.thoughtworks.fam.dao.Impl;
 
 import com.thoughtworks.fam.dao.UserDao;
 import com.thoughtworks.fam.model.User;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -9,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Component
 public class UserDaoImpl implements UserDao {
 
     private Map<String,User> allUsers =

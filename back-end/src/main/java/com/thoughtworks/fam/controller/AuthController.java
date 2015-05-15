@@ -1,8 +1,8 @@
 package com.thoughtworks.fam.controller;
 
 
-import com.thoughtworks.fam.model.User;
 import com.thoughtworks.fam.service.AuthService;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,9 +21,9 @@ public class AuthController {
 
 
     @RequestMapping(value = "/login", method = POST)
-    public ResponseEntity<User> login(@RequestParam String userName, @RequestParam String password) {
+    public ResponseEntity<JSONObject> login(@RequestParam String user, @RequestParam String password) {
 
-        User user = authService.isValid(userName, password);
-        return new ResponseEntity<User>(user, HttpStatus.OK);
+        JSONObject result = authService.validate(user, password);
+        return new ResponseEntity<JSONObject>(result, HttpStatus.OK);
     }
 }

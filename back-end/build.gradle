@@ -20,7 +20,8 @@ dependencies {
             'com.google.guava:guava:18.0',
             'com.jayway.restassured:rest-assured:2.4.1',
             'org.springframework.boot:spring-boot-starter-security',
-            'net.sf.ehcache:ehcache-core:2.6.9'
+            'net.sf.ehcache:ehcache-core:2.6.9',
+            'org.json:json:20140107'
     )
 
     testCompile(

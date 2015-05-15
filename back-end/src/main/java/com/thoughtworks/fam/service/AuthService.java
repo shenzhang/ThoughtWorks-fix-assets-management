@@ -1,9 +1,9 @@
 package com.thoughtworks.fam.service;
 
-import com.thoughtworks.fam.model.User;
+
+import org.json.JSONObject;
 
 public interface AuthService {
 
-    User isValid(String name, String password);
-
+    JSONObject validate(String user, String password);
 }
