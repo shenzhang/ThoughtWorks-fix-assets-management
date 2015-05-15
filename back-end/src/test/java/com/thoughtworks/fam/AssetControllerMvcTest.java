@@ -17,7 +17,6 @@ import java.util.List;
 import static org.hamcrest.core.Is.is;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -49,12 +48,5 @@ public class AssetControllerMvcTest {
                 .andExpect(jsonPath("$[0].type", is("laptop")))
                 .andExpect(jsonPath("$[0].assignDate", is("2015-05-09")))
                 .andExpect(jsonPath("$[0].number", is("123456")));
-    }
-
-    @Test
-    public void should_get_asset_json_object() throws Exception {
-        this.mockMvc.perform(get("/users/allassets"))
-                .andExpect(status().isOk())
-                .andExpect(content().string("{\"data\":[]}"));
     }
 }

@@ -1,7 +1,6 @@
 package com.thoughtworks.fam.controller;
 
 import com.thoughtworks.fam.model.Asset;
-import com.thoughtworks.fam.model.AssetJson;
 import com.thoughtworks.fam.model.User;
 import com.thoughtworks.fam.service.AssetService;
 import com.thoughtworks.fam.service.UserService;
@@ -14,11 +13,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.text.ParseException;
-import java.util.ArrayList;
 import java.util.List;
 
 import static com.google.common.base.Strings.isNullOrEmpty;
-import static com.thoughtworks.fam.model.AssetJson.map;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
@@ -41,10 +38,10 @@ public class UserController {
     }
 
     @RequestMapping(value = "/allassets", method = GET)
-    public AssetJson getAllAssets() {
+    public ResponseEntity<List<Asset>> getAllAssets() {
 
-        List<Asset> allAssets = new ArrayList<Asset>();
-        return map(allAssets);
+        List<Asset> allAssets = assetService.findAll();
+        return new ResponseEntity<List<Asset>>(allAssets, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/create", method = POST)
