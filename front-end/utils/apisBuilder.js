@@ -24,11 +24,15 @@ const apisBuilder = function(apiConfig, endpoint, mockApi) {
           if (validMethod(api.method)) {
             request[api.method](endpoint + api.url)
               .send(args[0])
-              .end(function(err, data) {
+              .end(function(err, res) {
                 if (err) {
                   return reject(err)
                 }
-                resolve(data)
+                if (res.header && res.header['content-type']) {
+                  resolve(res.body)
+                } else {
+                  resolve(res)
+                }
               })
           } else {
             reject(new Error('invalid method!'))

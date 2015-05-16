@@ -34,7 +34,7 @@ const task = gulp.task(TASK_NAME, function () {
     return gulp.src(conf.entry, {read: false})
       .pipe(mocha(conf.options))
       .once('error', function (err) {
-        gutil.loig(err)
+        gutil.log(err)
         process.exit(1);
       })
       .once('end', function () {
