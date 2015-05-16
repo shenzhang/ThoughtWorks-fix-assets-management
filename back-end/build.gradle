@@ -37,9 +37,9 @@ dependencies {
             "org.springframework.boot:spring-boot-starter-web:1.2.3.RELEASE",
             'com.google.guava:guava:18.0',
             'com.jayway.restassured:rest-assured:2.4.1',
+            'org.springframework.boot:spring-boot-starter-security',
             'net.sf.ehcache:ehcache-core:2.6.9',
-            'org.json:json:20140107',
-            'com.fasterxml.jackson.core:jackson-core:2.5.3'
+            'org.json:json:20140107'
     )
 
     testCompile(

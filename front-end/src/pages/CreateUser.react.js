@@ -44,14 +44,15 @@ var CreateUser = React.createClass({
   _createUser() {
     userApi.create({
       name: this.refs.username.getValue(),
-      email:this.refs.username.getValue() + "@thoughtworks.com"
+      email:this.refs.username.getValue() + "@thoughtworks.com",
+      password:this.refs.password.getValue()
     }).then(this.onCreate, this.onCreateFail)
   },
   onCreate(msg) {
-    alert('success message: '+msg.body.message);
+    console.log('success message: '+msg.message);
   },
   onCreateFail(err) {
-    alert('failure message: '+msg.body.message);
+    console.log('failure message: '+err);
   }
 });
 
