@@ -10,6 +10,9 @@
 -->
 <module name="Checker">
     <property name="severity" value="error"/>
+    <module name="SuppressionFilter">
+        <property name="file" value="./suppression.xml" />
+    </module>
     <module name="TreeWalker">
         <property name="tabWidth" value="2"/>
         <module name="JavadocMethod">
