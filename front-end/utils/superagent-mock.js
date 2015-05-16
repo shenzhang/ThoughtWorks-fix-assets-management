@@ -2,6 +2,9 @@
 
 var qs = require('qs');
 
+var parsers = {};
+var matchList = [];
+
 /**
  * Module exports.
  */
@@ -12,7 +15,6 @@ module.exports = mock;
  */
 function mock (superagent, config) {
   var Request = superagent.Request;
-  var parsers = [];
 
   /**
    * Keep the default methods
@@ -46,29 +48,30 @@ function mock (superagent, config) {
 
     if (parser) {
       var match = new RegExp(parser.pattern, 'g').exec(path);
-      var fixtureData = null;
-      var fixtureError = null;
-
+      var fixturedData = null;
+      var fixturedError = null;
       try {
-        fixtureData = parser.fixtures(this._data);
-      } catch(err) {
-        fixtureError = err;
+        fixturedData = parser.fixtures(this._data);
+      } catch (err) {
+        fixturedError = err;
       }
-      fn(fixtureError, parsers[this.url].callback(match, fixtureData));
+      fn(fixturedError, parsers[this.url].callback(match, fixturedData));
       this.abort();
     } else {
       oldEnd.call(this, fn);
     }
   };
 
-  // generate HTTP verb methods
+  // save matches
+  matchList = matchList.concat(config)
 
+  // generate HTTP verb methods
   require('methods').forEach(function(method){
     var name = 'delete' == method ? 'del' : method;
 
     method = method.toUpperCase();
     superagent[name] = function(url, data, fn){
-      var match = config.filter(function (parser) {
+      var match = matchList.filter(function (parser) {
         return new RegExp(parser.pattern, 'g').test(url);
       })[0] || null;
       var req;
