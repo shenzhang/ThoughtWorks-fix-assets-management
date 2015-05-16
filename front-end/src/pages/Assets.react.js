@@ -27,8 +27,8 @@ var Assets = React.createClass({
     }
   },
   componentDidMount() {
-    //this._getAssets()
-    console.log("These are assets from back-end:")
+    this._getAssets()
+    //console.log("These are assets from back-end:")
     /*
     $.ajax({
       url: this.props.url,
@@ -41,15 +41,15 @@ var Assets = React.createClass({
       }.bind(this)
     });
     */
-    $.get("http://localhost:8080/asset/my/yansiyu", function(result) {
-      var assets = result.body
-      console.log(assets)
-      if (this.isMounted()) {
-        this.setState({
-          assets: assets
-        });
-      }
-    }.bind(this));
+    //$.get("http://localhost:8080/asset/my/yansiyu", function(result) {
+    //  var assets = result.body
+    //  console.log(assets)
+    //  if (this.isMounted()) {
+    //    this.setState({
+    //      assets: assets
+    //    });
+    //  }
+    //}.bind(this));
   },
   render() {
     return (

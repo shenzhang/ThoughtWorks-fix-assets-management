@@ -45,7 +45,7 @@ module.exports = React.createClass({
             <tr className="asset__item" key={index}>
               {self._create_owner_name(asset)}
               <td className="asset__attribute">{asset.asset_name}</td>
-              <td className="asset__attribute"><button className="asset__number" onClick={self.handleClick}>{asset.number}</button></td>
+              <td className="asset__attribute"><a className="asset__number" onClick={self.handleClick} title="about:blank">{asset.number}</a></td>
               <td className="asset__attribute">{asset.date}</td>
               <td className="asset__attribute">{asset.type}</td>
               <AssetButton asset={asset}/>
