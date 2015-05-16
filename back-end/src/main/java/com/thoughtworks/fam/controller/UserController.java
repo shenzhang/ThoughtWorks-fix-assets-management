@@ -47,7 +47,7 @@ public class UserController {
     @RequestMapping(value = "/create", method = POST)
     public ResponseEntity<?> create(@RequestParam String userName) {
         User user = userService.save(userName);
-        if (user !=null) {
+        if (user != null) {
             return new ResponseEntity<User>(user, HttpStatus.OK);
         }
         return new ResponseEntity<String>("create user failed", HttpStatus.UNAUTHORIZED);

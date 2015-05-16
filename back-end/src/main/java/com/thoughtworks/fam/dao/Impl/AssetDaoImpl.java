@@ -12,7 +12,7 @@ import java.util.Map;
 
 @Repository
 public class AssetDaoImpl implements AssetDao {
-    private List<Asset> AllAssetList = Arrays.asList(
+    private List<Asset> allAssetList = Arrays.asList(
             new Asset("Nokia", "17006011", "2014-04-20", "Mobile", "yansiyu"),
             new Asset("MBP", "17005800", "2014-04-28", "lap top", "yansiyu"),
             new Asset("Screen", "17006036", "2014-06-16", "Others", "yansiyu"),
@@ -25,9 +25,9 @@ public class AssetDaoImpl implements AssetDao {
     );
 
     private Map<String, List<Asset>> allAssets= new HashMap<String, List<Asset>>(){{
-        put("ncmao", Arrays.asList(AllAssetList.get(0),AllAssetList.get(1)));
-        put("qliu", Arrays.asList(AllAssetList.get(2),AllAssetList.get(3)));
-        put("siyu", Arrays.asList(AllAssetList.get(4), AllAssetList.get(5)));
+        put("ncmao", Arrays.asList(allAssetList.get(0), allAssetList.get(1)));
+        put("qliu", Arrays.asList(allAssetList.get(2), allAssetList.get(3)));
+        put("siyu", Arrays.asList(allAssetList.get(4), allAssetList.get(5)));
     }};
 
     @Override
@@ -37,7 +37,7 @@ public class AssetDaoImpl implements AssetDao {
 
     @Override
     public List<Asset> findAll() {
-        return AllAssetList;
+        return allAssetList;
     }
 
     @Override

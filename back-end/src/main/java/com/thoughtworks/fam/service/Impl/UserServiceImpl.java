@@ -19,7 +19,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User save(String name) {
-        if (userDao.findUserByName(name) !=null) {
+        if (userDao.findUserByName(name) != null) {
             throw new RuntimeException("user is exist");
         }
         if (!isValidFor(name)) {

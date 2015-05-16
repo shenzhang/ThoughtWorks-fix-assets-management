@@ -13,10 +13,10 @@ import java.util.Map;
 @Component
 public class UserDaoImpl implements UserDao {
 
-    private Map<String,User> allUsers =
+    private Map<String, User> allUsers =
             new HashMap<String, User>(){{
-                put("ncmao", new User("ncmao","ncmao@thoughtworks.com"));
-                put("jtao", new User("jtao","jtao@thoughtworks.com"));
+                put("ncmao", new User("ncmao", "ncmao@thoughtworks.com"));
+                put("jtao", new User("jtao", "jtao@thoughtworks.com"));
             }};
     private List<String> validUserName = Arrays.asList("ncmao", "jtao", "siyu");
 

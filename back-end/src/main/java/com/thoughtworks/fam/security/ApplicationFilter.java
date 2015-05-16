@@ -50,7 +50,7 @@ public class ApplicationFilter extends GenericFilterBean {
             }
 
             addSessionContextToLogging();
-            chain.doFilter(request,response);
+            chain.doFilter(request, response);
         } catch (InternalAuthenticationServiceException internalAuthenticationServiceException) {
             SecurityContextHolder.clearContext();
         } catch (AuthenticationException authenticationException) {
