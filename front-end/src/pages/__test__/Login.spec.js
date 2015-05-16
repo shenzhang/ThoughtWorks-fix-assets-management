@@ -1,18 +1,20 @@
 require('chai').should()
 
 import React from 'react/addons'
+import mockRouter from '../../../utils/mock-react-router'
 import Login from '../Login.react.js'
+
 const TestUtils = React.addons.TestUtils
 
+var mockedLogin = mockRouter(Login)
 let login
 describe('Login Page Component', function() {
     beforeEach(function() {
-        login = TestUtils.renderIntoDocument(<Login />)
+      login = TestUtils.renderIntoDocument(<mockedLogin />)
     });
-    it.skip('should be able to initialized independently', function(done) {
-        //TestUtils.isCompositeComponent(login).should.be.equal(true)
+    it('should be able to initialized independently', function() {
+        TestUtils.isCompositeComponent(login).should.be.equal(true)
         //TestUtils.isCompositeComponentWithType(login, Login)
-        done()
     });
     //it.skip('should be able to toggle itself', function() {
     //    leftNav.toggle.should.be.a.Function
