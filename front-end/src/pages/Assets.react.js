@@ -27,7 +27,7 @@ var Assets = React.createClass({
     }
   },
   componentDidMount() {
-    this._getAssets()
+    this._getAssets();
     //console.log("These are assets from back-end:")
     /*
     $.ajax({

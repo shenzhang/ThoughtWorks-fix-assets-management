@@ -28,7 +28,7 @@ var AssetsHeader = React.createClass({
       </thead>
     )
   }
-})
+});
 
 var AssetsRow = React.createClass({
   _create_owner_name(ownerName){
@@ -42,7 +42,7 @@ var AssetsRow = React.createClass({
     window.location.href = "about:blank"
   },
   render() {
-    var asset = this.props.asset
+    var asset = this.props.asset;
     return (
       <tr className="asset__item">
         {this._create_owner_name(asset.ownerName)}
@@ -59,13 +59,13 @@ var AssetsRow = React.createClass({
       </tr>
     )
   }
-})
+});
 
 var AssetsTable = React.createClass({
   render(){
     var AssetsRows = this.props.assets.map((asset) => {
       return <AssetsRow asset={asset} hasOwner={this.props.hasOwner}/>
-    })
+    });
     return (
       <table className="my_assets_tab__container">
         <AssetsHeader hasOwner={this.props.hasOwner}/>
@@ -75,6 +75,6 @@ var AssetsTable = React.createClass({
       </table>
     )
   }
-})
+});
 
 export default AssetsTable
