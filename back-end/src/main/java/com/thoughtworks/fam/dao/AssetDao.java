@@ -1,6 +1,6 @@
 package com.thoughtworks.fam.dao;
 
-import com.thoughtworks.fam.model.Asset;
+import com.thoughtworks.fam.domain.Asset;
 
 import java.util.List;
 

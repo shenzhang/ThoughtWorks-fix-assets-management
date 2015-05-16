@@ -1,6 +1,6 @@
 package com.thoughtworks.fam.service;
 
-import com.thoughtworks.fam.model.User;
+import com.thoughtworks.fam.domain.User;
 
 public interface UserService {
 

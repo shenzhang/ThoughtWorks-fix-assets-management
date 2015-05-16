@@ -2,7 +2,7 @@ package com.thoughtworks.fam.service;
 
 import com.thoughtworks.fam.dao.UserDao;
 import com.thoughtworks.fam.exception.CreateUserException;
-import com.thoughtworks.fam.model.User;
+import com.thoughtworks.fam.domain.User;
 import com.thoughtworks.fam.service.Impl.UserServiceImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;

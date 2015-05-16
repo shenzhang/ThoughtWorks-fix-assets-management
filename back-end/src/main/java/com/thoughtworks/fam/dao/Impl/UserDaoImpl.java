@@ -1,7 +1,7 @@
 package com.thoughtworks.fam.dao.Impl;
 
 import com.thoughtworks.fam.dao.UserDao;
-import com.thoughtworks.fam.model.User;
+import com.thoughtworks.fam.domain.User;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;

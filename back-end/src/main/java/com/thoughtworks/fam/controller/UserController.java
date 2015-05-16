@@ -1,8 +1,8 @@
 package com.thoughtworks.fam.controller;
 
-import com.thoughtworks.fam.model.Asset;
-import com.thoughtworks.fam.model.CreateUserJson;
-import com.thoughtworks.fam.model.User;
+import com.thoughtworks.fam.domain.Asset;
+import com.thoughtworks.fam.domain.CreateUserJson;
+import com.thoughtworks.fam.domain.User;
 import com.thoughtworks.fam.service.AssetService;
 import com.thoughtworks.fam.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
