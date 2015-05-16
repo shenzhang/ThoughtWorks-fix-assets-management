@@ -5,6 +5,7 @@ apply plugin: 'cobertura'
 
 build {
     dependsOn tasks.check
+    dependsOn tasks.coberturaCheck
 }
 
 ext {
@@ -69,7 +70,7 @@ cobertura {
     coverageCheckTotalLineRate = 80
     coverageIgnoreTrivial = true
     //TODO temp disable test coverage
-    coverageCheckHaltOnFailure = true
+    coverageCheckHaltOnFailure = false
 }
 
 task cleanPublic << {
