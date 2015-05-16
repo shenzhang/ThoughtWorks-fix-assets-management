@@ -19,7 +19,7 @@ module.exports = React.createClass({
   _create_owner_name(asset){
     if (this.props.hasOwner) {
       return (
-        <td className="asset__attribute">{asset.owner_name}</td>
+        <td className="asset__attribute">{asset.ownerName}</td>
       )
     }
   },
@@ -44,9 +44,9 @@ module.exports = React.createClass({
           return (
             <tr className="asset__item" key={index}>
               {self._create_owner_name(asset)}
-              <td className="asset__attribute">{asset.asset_name}</td>
+              <td className="asset__attribute">{asset.assetName}</td>
               <td className="asset__attribute"><a className="asset__number" onClick={self.handleClick} title="about:blank">{asset.number}</a></td>
-              <td className="asset__attribute">{asset.date}</td>
+              <td className="asset__attribute">{asset.assignDate}</td>
               <td className="asset__attribute">{asset.type}</td>
               <td className="asset__action"><AssetButton className="asset__button" asset={asset}/></td>
             </tr>

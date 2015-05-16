@@ -1,32 +1,33 @@
 import request from 'superagent'
 import apisBuilder from '../../utils/apisBuilder'
+import config from './config.json'
 
 let mock
-
-const endpoint = 'http://localhost:8080'
-
-const userApis = {
-  login: {
-    method: 'post',
-    url: '/user/login'
-  },
-  logout: {
-    method: 'post',
-    url: '/user/logout'
-  },
-  assets: {
-    method: 'post',
-    url: '/user/assets'
-  },
-  create: {
-    method: 'post',
-    url: '/user/create'
-  }
-}
+var endpoint = config.production.endpoint
 
 // mock the http request if not production
 if (process.env.NODE_ENV == 'development' || process.env.NODE_ENV == 'test') {
   mock = require('./mock-user')
+  endpoint = config.development.endpoint
+}
+
+const userApis = {
+  login: {
+    method: 'post',
+    url: '/auth/login'
+  },
+  logout: {
+    method: 'post',
+    url: '/auth/logout'
+  },
+  assets: {
+    method: 'get',
+    url: '/users/allassets'
+  },
+  create: {
+    method: 'post',
+    url: '/users/create'
+  }
 }
 
 /**

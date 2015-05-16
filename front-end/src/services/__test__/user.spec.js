@@ -35,13 +35,13 @@ describe('User Services', function() {
   });
   it('should be able to get his assets', function(done) {
     user.assets({
-      asset_name: 'Sam',
+      assetName: 'Sam',
       token: 'xxxx'
     }).then(function(assets) {
       assets.should.be.an.Object;
       assets.data.should.be.an.Array;
       assets.data.length.should.be.above(1);
-      assets.data[0].asset_name.should.be.equal('Nokia');
+      assets.data[0].assetName.should.be.equal('Nokia');
       assets.data[0].type.should.be.equal('Mobile');
       done()
     })
