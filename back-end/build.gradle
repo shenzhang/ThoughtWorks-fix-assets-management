@@ -1,5 +1,10 @@
 apply plugin: 'spring-boot'
 apply plugin: 'java'
+apply plugin: 'checkstyle'
+
+build {
+    dependsOn tasks.check
+}
 
 ext {
     publicDir = 'src/main/resources/public'
@@ -66,3 +71,6 @@ task integTest(type: Test) {
 }
 
 check.dependsOn integTest
+checkstyle {
+    configFile = new File("checkstyle.xml")
+}
