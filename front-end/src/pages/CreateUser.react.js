@@ -31,7 +31,7 @@ var CreateUser = React.createClass({
           </div>
           <div className='content'>
             <p>Password</p>
-            <TextField hintText='User Name' ref='password' defaultValue='P@ss123456' onChange={this.onInputed}/>
+            <TextField hintText='User Name' ref='password' defaultValue='P@ss123456' onChange={this.onInputed} disabled/>
           </div>
           <RaisedButton className='button' label='Create User' primary={true} onClick={this._createUser} disabled={this.state.disabled}></RaisedButton>
         </div>
@@ -43,15 +43,15 @@ var CreateUser = React.createClass({
   },
   _createUser() {
     userApi.create({
-      username: this.refs.username.getValue(),
-      password: this.refs.password.getValue()
-    }).then(this.onLogin, this.onLoginFail)
+      name: this.refs.username.getValue(),
+      email:this.refs.username.getValue() + "@thoughtworks.com"
+    }).then(this.onCreate, this.onCreateFail)
   },
-  onLogin(msg) {
-    alert('success message: '+msg.message);
+  onCreate(msg) {
+    alert('success message: '+msg.body.message);
   },
-  onLoginFail(err) {
-    alert('failure message: '+err.message);
+  onCreateFail(err) {
+    alert('failure message: '+msg.body.message);
   }
 });
 

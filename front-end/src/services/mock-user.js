@@ -77,7 +77,7 @@ export default [
     }
   },
   {
-    pattern: 'http://localhost:8080/user/(create)',
+    pattern: 'http://localhost:8080/users/(create)',
     // callback that returns the data
     fixtures: function (data) {
       if (data.username === 'jtao1') {
