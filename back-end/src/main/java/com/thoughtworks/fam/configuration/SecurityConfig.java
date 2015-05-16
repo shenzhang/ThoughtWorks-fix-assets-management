@@ -11,7 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
 @Configuration
-@EnableAutoConfiguration(exclude = { org.springframework.boot.autoconfigure.security.SecurityAutoConfiguration.class })
+@EnableAutoConfiguration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -20,7 +20,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 sessionManagement().sessionCreationPolicy(STATELESS).
                 and().
                 authorizeRequests().
-                antMatchers(HttpMethod.GET, "/assets/.*").permitAll()
+                antMatchers(HttpMethod.GET, "/*/assets").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .httpBasic();

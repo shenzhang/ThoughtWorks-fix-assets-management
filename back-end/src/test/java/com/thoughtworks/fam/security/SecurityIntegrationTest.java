@@ -13,9 +13,6 @@ import static com.jayway.restassured.RestAssured.when;
 import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.http.HttpStatus.UNAUTHORIZED;
 
-/**
- * Created by Brenda on 5/9/15.
- */
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = {Application.class, SecurityTestConfig.class})
@@ -28,12 +25,11 @@ public class SecurityIntegrationTest {
                 then().statusCode(UNAUTHORIZED.value());
     }
 
-    @Ignore
     @Test
     public void should_access_assets_with_credentials() throws Exception {
         given().
                 auth().preemptive().basic("user", "password").
-                when().get("assets/owner").
+                when().get("/users/user1/assets").
                 then().statusCode(OK.value());
     }
 

@@ -51,7 +51,6 @@ public class UserController {
             return new ResponseEntity<User>(user, HttpStatus.OK);
         }
         return new ResponseEntity<String>("create user failed", HttpStatus.UNAUTHORIZED);
-
     }
 
 }
