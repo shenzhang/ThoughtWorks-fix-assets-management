@@ -38,11 +38,12 @@ describe('User Services', function() {
       assetName: 'Sam',
       token: 'xxxx'
     }).then(function(assets) {
+      console.log(assets)
       assets.should.be.an.Object;
-      assets.data.should.be.an.Array;
-      assets.data.length.should.be.above(1);
-      assets.data[0].assetName.should.be.equal('Nokia');
-      assets.data[0].type.should.be.equal('Mobile');
+      assets.should.be.an.Array;
+      assets.length.should.be.above(1);
+      assets[0].assetName.should.be.equal('Nokia');
+      assets[0].type.should.be.equal('Mobile');
       done()
     })
     .catch(function(err) {

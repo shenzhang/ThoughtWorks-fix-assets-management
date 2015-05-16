@@ -36,35 +36,33 @@ export default [
     pattern: 'http://localhost:8080/users/(allassets)',
     // callback that returns the data
     fixtures: function () {
-      return {
-        data: [
-          {
-            ownerName: "JimmyLv",
-            assetName: 'Nokia',
-            number: '17006011',
-            assignDate: '2015-4-25',
-            type: 'Mobile'
-          }, {
-            ownerName: "JimmyLv",
-            assetName: 'Mac Book Pro',
-            number: '17005800',
-            assignDate: '2015-4-22',
-            type: 'Laptop'
-          }, {
-            ownerName: "JimmyLv",
-            assetName: 'Screen',
-            number: '17006036',
-            assignDate: '2014-2-15',
-            type: 'Others'
-          }, {//should be returned by back-end, should not mock in front-end
-            ownerName: "SiyuYan",
-            assetName: 'Mac Book Air',
-            number: '17004032',
-            assignDate: '2015-8-15',
-            type: 'Laptop'
-          }
-        ]
-      }
+      return [
+        {
+          ownerName: "JimmyLv",
+          assetName: 'Nokia',
+          number: '17006011',
+          assignDate: '2015-4-25',
+          type: 'Mobile'
+        }, {
+          ownerName: "JimmyLv",
+          assetName: 'Mac Book Pro',
+          number: '17005800',
+          assignDate: '2015-4-22',
+          type: 'Laptop'
+        }, {
+          ownerName: "JimmyLv",
+          assetName: 'Screen',
+          number: '17006036',
+          assignDate: '2014-2-15',
+          type: 'Others'
+        }, {//should be returned by back-end, should not mock in front-end
+          ownerName: "SiyuYan",
+          assetName: 'Mac Book Air',
+          number: '17004032',
+          assignDate: '2015-8-15',
+          type: 'Laptop'
+        }
+      ]
     },
     // `match`: result of the resolution of the regular expression
     // `data`: data returns by `fixtures` attribute

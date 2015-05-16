@@ -75,7 +75,7 @@ var Assets = React.createClass({
   },
   onAssetsLoad(assets) {
     this.setState({
-      assets: assets.data
+      assets: assets
     })
   },
   onAssetsLoadFailed(err) {
