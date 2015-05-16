@@ -40,11 +40,10 @@ public class UserControllerMvcTest {
         MockitoAnnotations.initMocks(this);
         mockMvc = MockMvcBuilders.standaloneSetup(userController).build();
 
-        user = new User("siyu", "siyu@thoughtworks.com");
+        user = new User("siyu", "siyu@thoughtworks.com", "p@ss123456");
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         jsonUser = ow.writeValueAsString(user);
     }
-
 
     @Test
     public void should_create_user_success() throws Exception {
@@ -54,7 +53,7 @@ public class UserControllerMvcTest {
         this.mockMvc.perform(post("/users/create").contentType(MediaType.APPLICATION_JSON)
                 .content(jsonUser))
                 .andExpect(status().isCreated())
-                .andExpect(jsonPath("$.message", is("create success")));
+                .andExpect(jsonPath("$.message", is("create user success")));
     }
 
     @Test
@@ -63,6 +62,6 @@ public class UserControllerMvcTest {
                 .willReturn(null);
         this.mockMvc.perform(post("/users/create").contentType(MediaType.APPLICATION_JSON)
                 .content(jsonUser))
-                .andExpect(status().isForbidden());
+                .andExpect(status().isConflict());
     }
 }

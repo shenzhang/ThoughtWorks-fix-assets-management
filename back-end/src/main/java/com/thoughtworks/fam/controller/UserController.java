@@ -5,7 +5,6 @@ import com.thoughtworks.fam.model.CreateUserJson;
 import com.thoughtworks.fam.model.User;
 import com.thoughtworks.fam.service.AssetService;
 import com.thoughtworks.fam.service.UserService;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -48,18 +47,17 @@ public class UserController {
     }
 
     @RequestMapping(value = "/create", method = POST)
-    public ResponseEntity<CreateUserJson> create(@RequestBody String user) {
-        JSONObject jsonObject = new JSONObject(user);
-        String name = (String) jsonObject.get("name");
+    public ResponseEntity<CreateUserJson> create(@RequestBody User user) {
 
+        String name = user.getName();
         User savedUser = userService.save(name);
         CreateUserJson createUserJson = new CreateUserJson();
         if (savedUser != null) {
-            createUserJson.setMessage("create success");
+            createUserJson.setMessage("create user success");
             return new ResponseEntity<CreateUserJson>(createUserJson, HttpStatus.CREATED);
         }
-        createUserJson.setMessage("failed");
-        return new ResponseEntity<CreateUserJson>(createUserJson, HttpStatus.FORBIDDEN);
+        createUserJson.setMessage("create failed");
+        return new ResponseEntity<CreateUserJson>(createUserJson, HttpStatus.CONFLICT);
 
     }
 
