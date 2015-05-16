@@ -8,7 +8,17 @@ public class User {
 
     private String password;
 
+    public User() {
+
+    }
+
     public User(String name, String email) {
+        this.name = name;
+        this.email = email;
+        this.password = "P@ss123456";
+    }
+
+    public User(String name, String email, String password) {
         this.name = name;
         this.email = email;
         this.password = "P@ss123456";
