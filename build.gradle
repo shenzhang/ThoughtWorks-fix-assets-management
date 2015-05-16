@@ -6,6 +6,7 @@ buildscript {
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.3.RELEASE")
         classpath 'be.filipblondeel.gradle:gradle-gulp-plugin:0.1'
+        classpath "net.saliman:gradle-cobertura-plugin:2.2.8"
     }
 }
 

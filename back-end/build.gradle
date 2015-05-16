@@ -1,6 +1,7 @@
 apply plugin: 'spring-boot'
 apply plugin: 'java'
 apply plugin: 'checkstyle'
+apply plugin: 'cobertura'
 
 build {
     dependsOn tasks.check
@@ -16,7 +17,7 @@ repositories {
 
 jar {
     baseName = 'backend'
-    version =  '0.0.1-SNAPSHOT'
+    version = '0.0.1-SNAPSHOT'
 }
 
 sourceSets {
@@ -47,6 +48,28 @@ dependencies {
 
     integTestCompile sourceSets.main.output
     integTestCompile configurations.testCompile
+}
+
+cobertura {
+    coverageFormats = ['html']
+    coverageEncoding = 'UTF-8'
+    coverageExcludes = ['.*ApplicationRunner.*',
+                        '.*UserException.*',
+                        '.*GlobalExceptionHandler.*',
+                        '.*BaseResponseException.*',
+                        '.*AuthException.*',
+                        '.*CORSFilter.*',
+                        'com.thoughtworks.fam.configuration']
+    coverageIgnoreMethodAnnotations = []
+    coverageCheckBranchRate = 80
+    coverageCheckLineRate = 80
+    coverageCheckPackageBranchRate = 80
+    coverageCheckPackageLineRate = 80
+    coverageCheckTotalBranchRate = 80
+    coverageCheckTotalLineRate = 80
+    coverageIgnoreTrivial = true
+    //TODO temp disable test coverage
+    coverageCheckHaltOnFailure = true
 }
 
 task cleanPublic << {
