@@ -3,6 +3,7 @@ package com.thoughtworks.fam;
 import com.thoughtworks.fam.controller.UserController;
 import com.thoughtworks.fam.model.Asset;
 import org.junit.Test;
+import org.springframework.http.ResponseEntity;
 
 import java.text.ParseException;
 import java.util.List;
@@ -13,13 +14,13 @@ public class UserControllerTest {
 
     @Test
     public void should_handle_username_is_null() throws ParseException {
-        List<Asset> assets = new UserController().getAssets(null);
+        ResponseEntity<List<Asset>> assets = new UserController().getAssets(null);
         assertNull(assets);
     }
 
     @Test
     public void should_handle_username_is_empty_string() throws ParseException {
-        List<Asset> assets = new UserController().getAssets("");
+        ResponseEntity<List<Asset>> assets = new UserController().getAssets("");
         assertNull(assets);
     }
 

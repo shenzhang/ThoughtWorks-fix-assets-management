@@ -22,3 +22,4 @@ Front End
 - run test `gulp mocha`
 - just build all the code `gulp build`
 - build and serve a server `gulp dev`
+- start dev with mock `gulp dev --dev`

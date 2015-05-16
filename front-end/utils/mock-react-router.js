@@ -32,7 +32,7 @@ var stubRouterContext = (Component, props, stubs) => {
     },
 
     render () {
-      return <Component {...props} />
+      return <Component refs="source" {...props} />
     }
   });
 };
