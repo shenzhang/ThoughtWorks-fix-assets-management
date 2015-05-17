@@ -1,11 +1,10 @@
 package com.thoughtworks.fam.service.Impl;
 
 import com.thoughtworks.fam.dao.UserDao;
-import com.thoughtworks.fam.exception.CreateUserException;
 import com.thoughtworks.fam.domain.User;
+import com.thoughtworks.fam.exception.CreateUserException;
 import com.thoughtworks.fam.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,10 +21,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public User save(String name) {
         if (userDao.findUserByName(name) != null) {
-            throw new CreateUserException(HttpStatus.CONFLICT, "user has existed");
+            throw new CreateUserException("user has existed");
         }
         if (!isValidFor(name)) {
-            throw new CreateUserException(HttpStatus.NOT_ACCEPTABLE, "user name is invalid");
+            throw new CreateUserException("user name is invalid");
         }
         return userDao.save(new User(name, name + EMAIL_SUFFIX));
     }

@@ -10,6 +10,9 @@ public class CreateUserException extends RuntimeException {
 
     private HttpStatus httpStatus;
 
+    public CreateUserException(String errMessage) {
+        super(errMessage);
+    }
     public CreateUserException(HttpStatus httpStatus, String errMessage) {
         super(errMessage);
         this.httpStatus = httpStatus;
