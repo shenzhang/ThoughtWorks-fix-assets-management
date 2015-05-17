@@ -12,7 +12,6 @@ public class LoginInformation {
     }
 
     public LoginInformation() {
-
     }
 
     public HttpStatus getErrorCode() {
@@ -30,4 +29,5 @@ public class LoginInformation {
     public void setErrorMessage(String errorMessage) {
         this.errorMessage = errorMessage;
     }
+
 }
