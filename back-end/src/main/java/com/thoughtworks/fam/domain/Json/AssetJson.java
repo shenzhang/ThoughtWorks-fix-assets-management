@@ -1,4 +1,6 @@
-package com.thoughtworks.fam.domain;
+package com.thoughtworks.fam.domain.Json;
+
+import com.thoughtworks.fam.domain.Asset;
 
 import java.util.List;
 

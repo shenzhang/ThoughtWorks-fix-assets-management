@@ -1,7 +1,7 @@
 package com.thoughtworks.fam.resource;
 
 import com.thoughtworks.fam.domain.Asset;
-import com.thoughtworks.fam.domain.CreateUserJson;
+import com.thoughtworks.fam.domain.Json.CreateUserJson;
 import com.thoughtworks.fam.domain.User;
 import com.thoughtworks.fam.service.AssetService;
 import com.thoughtworks.fam.service.UserService;
