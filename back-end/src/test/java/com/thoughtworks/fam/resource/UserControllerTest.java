@@ -1,4 +1,4 @@
-package com.thoughtworks.fam.controller;
+package com.thoughtworks.fam.resource;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

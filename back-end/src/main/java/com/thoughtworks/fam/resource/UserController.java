@@ -1,4 +1,4 @@
-package com.thoughtworks.fam.controller;
+package com.thoughtworks.fam.resource;
 
 import com.thoughtworks.fam.domain.Asset;
 import com.thoughtworks.fam.domain.CreateUserJson;
