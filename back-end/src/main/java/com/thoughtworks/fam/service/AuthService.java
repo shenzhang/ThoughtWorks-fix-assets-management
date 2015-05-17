@@ -1,9 +1,9 @@
 package com.thoughtworks.fam.service;
 
 
-import org.json.JSONObject;
+import com.thoughtworks.fam.exception.AuthException;
 
 public interface AuthService {
 
-    JSONObject validate(String user, String password);
+    public boolean validate(String user, String password) throws AuthException;
 }

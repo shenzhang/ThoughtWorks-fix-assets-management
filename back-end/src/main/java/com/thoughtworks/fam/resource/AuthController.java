@@ -1,29 +1,41 @@
 package com.thoughtworks.fam.resource;
 
 
+import com.thoughtworks.fam.exception.AuthException;
+import com.thoughtworks.fam.model.LoginInformation;
 import com.thoughtworks.fam.service.AuthService;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @RestController
-@RequestMapping(value = "/auth")
+@RequestMapping(value = "/login")
 public class AuthController {
 
     @Autowired
     private AuthService authService;
 
 
-    @RequestMapping(value = "/login", method = POST)
-    public ResponseEntity<JSONObject> login(@RequestParam String user, @RequestParam String password) {
+    @RequestMapping(value = "/assets", method = POST)
+    public LoginInformation login(@RequestBody JSONObject jsonObject) {
+        String user = jsonObject.getString("userName");
+        String password = jsonObject.getString("password");
+        LoginInformation loginInformation = new LoginInformation();
 
-        JSONObject result = authService.validate(user, password);
-        return new ResponseEntity<JSONObject>(result, HttpStatus.OK);
+        try {
+            authService.validate(user, password);
+            loginInformation.setErrorCode(HttpStatus.OK);
+            loginInformation.setErrorMessage("Success!");
+        } catch (AuthException e) {
+            loginInformation.setErrorCode(HttpStatus.UNAUTHORIZED);
+            loginInformation.setErrorMessage(e.getMessage());
+        }
+
+        return loginInformation;
     }
 }

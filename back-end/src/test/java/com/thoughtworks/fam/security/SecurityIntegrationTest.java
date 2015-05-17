@@ -20,7 +20,7 @@ public class SecurityIntegrationTest {
 
     @Test
     public void should_reject_request_when_access_assets_without_credentials() throws Exception {
-        when().get("/assets/owner").
+        when().get("/assets/user").
                 then().statusCode(UNAUTHORIZED.value());
     }
 
@@ -35,8 +35,8 @@ public class SecurityIntegrationTest {
     @Test
     public void should_not_access_without_correct_password() throws Exception {
         given().
-                auth().preemptive().basic("user","pass").
-                when().get("assets/owner").
+                auth().preemptive().basic("user", "pass").
+                when().get("/owner/assets").
                 then().statusCode(UNAUTHORIZED.value());
 
     }
@@ -44,8 +44,8 @@ public class SecurityIntegrationTest {
     @Test
     public void should_not_access_without_correct_user_name() throws Exception {
         given().
-                auth().preemptive().basic("usera","password").
-                when().get("assets/owner").
+                auth().preemptive().basic("usera", "password").
+                when().get("/owner/assets").
                 then().statusCode(UNAUTHORIZED.value());
 
     }
