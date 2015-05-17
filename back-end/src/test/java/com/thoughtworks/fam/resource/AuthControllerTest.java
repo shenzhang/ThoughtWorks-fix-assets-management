@@ -1,7 +1,7 @@
 package com.thoughtworks.fam.resource;
 
 import com.thoughtworks.fam.exception.AuthException;
-import com.thoughtworks.fam.model.LoginInformation;
+import com.thoughtworks.fam.domain.LoginInformation;
 import com.thoughtworks.fam.service.AuthService;
 import org.json.JSONObject;
 import org.junit.Before;

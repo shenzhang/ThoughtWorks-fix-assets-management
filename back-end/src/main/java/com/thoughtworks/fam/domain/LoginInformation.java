@@ -1,4 +1,4 @@
-package com.thoughtworks.fam.model;
+package com.thoughtworks.fam.domain;
 
 import org.springframework.http.HttpStatus;
 
