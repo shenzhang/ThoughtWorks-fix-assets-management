@@ -52,7 +52,7 @@ var CreateUser = React.createClass({
     console.log('success message: '+msg.message);
   },
   onCreateFail(err) {
-    console.log('failure message: '+err);
+    console.log('failure message: '+err.message);
   }
 });
 
