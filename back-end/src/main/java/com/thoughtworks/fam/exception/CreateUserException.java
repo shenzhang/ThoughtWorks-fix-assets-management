@@ -7,12 +7,9 @@ public class CreateUserException extends RuntimeException {
 
     private HttpStatus httpStatus;
 
-    private String errMessage;
-
-
     public CreateUserException(HttpStatus httpStatus, String errMessage) {
+        super(errMessage);
         this.httpStatus = httpStatus;
-        this.errMessage = errMessage;
     }
 
     public HttpStatus getHttpStatus() {
@@ -21,13 +18,5 @@ public class CreateUserException extends RuntimeException {
 
     public void setHttpStatus(HttpStatus httpStatus) {
         this.httpStatus = httpStatus;
-    }
-
-    public String getErrMessage() {
-        return errMessage;
-    }
-
-    public void setErrMessage(String errMessage) {
-        this.errMessage = errMessage;
     }
 }
