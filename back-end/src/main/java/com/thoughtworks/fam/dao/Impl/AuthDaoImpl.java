@@ -23,10 +23,7 @@ public class AuthDaoImpl implements AuthDao {
         User user = new User(username);
         user.setPassword(password);
         User tempUser = contains(user);
-        if (tempUser == null) {
-            return false;
-        }
-        return (tempUser.getPassword().equals(user.getPassword()));
+        return tempUser != null && (tempUser.getPassword().equals(user.getPassword()));
     }
 
     private User contains(User otherUser) {

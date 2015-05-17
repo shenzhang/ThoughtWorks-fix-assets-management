@@ -1,12 +1,14 @@
 package com.thoughtworks.fam.resource;
 
 
-import com.thoughtworks.fam.exception.AuthException;
 import com.thoughtworks.fam.domain.LoginInformation;
+import com.thoughtworks.fam.domain.User;
+import com.thoughtworks.fam.exception.AuthException;
 import com.thoughtworks.fam.service.AuthService;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -37,5 +39,15 @@ public class AuthController {
         }
 
         return loginInformation;
+    }
+
+    @RequestMapping(method = POST)
+    public ResponseEntity login(@RequestBody User user) {
+
+        boolean validate = authService.validate(user.getName(), user.getPassword());
+        if (validate) {
+            return new ResponseEntity(HttpStatus.OK);
+        }
+        return new ResponseEntity(HttpStatus.UNAUTHORIZED);
     }
 }

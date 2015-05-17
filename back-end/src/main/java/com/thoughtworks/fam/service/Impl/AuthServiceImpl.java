@@ -15,16 +15,15 @@ public class AuthServiceImpl implements AuthService {
     private AuthDao authDao = new AuthDaoImpl();
 
     @Override
-    public boolean validate(String user, String password) throws AuthException {
+    public boolean validate(String user, String password) {
         if (authDao.containsUser(user)) {
             if (authDao.verifyPassword(user, password)) {
                 return true;
-            } else {
-                throw new AuthException("The password is not correct, please input again.");
             }
-        } else {
-            throw new AuthException("The user is not exist.");
+            throw new AuthException("The password is not correct, please input again.");
+
         }
+        throw new AuthException("The user is not exist.");
     }
 
 }
