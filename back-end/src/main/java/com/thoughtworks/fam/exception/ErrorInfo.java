@@ -1,16 +1,21 @@
 package com.thoughtworks.fam.exception;
 
-public class ErrorInfo {
-    public final String url;
-    public final String ex;
+import org.springframework.http.HttpStatus;
 
-    public ErrorInfo(String url, Exception ex) {
-        this.url = url;
-        this.ex = ex.getLocalizedMessage();
+public class ErrorInfo {
+    public final HttpStatus httpStatus;
+    public final String errMessage;
+
+    public ErrorInfo(HttpStatus httpStatus, String errMessage) {
+        this.httpStatus = httpStatus;
+        this.errMessage = errMessage;
     }
 
-    public ErrorInfo(StringBuffer requestURL, Exception ex) {
-        this.url = requestURL.toString();
-        this.ex = ex.getLocalizedMessage();
+    public HttpStatus getHttpStatus() {
+        return httpStatus;
+    }
+
+    public String getErrMessage() {
+        return errMessage;
     }
 }
