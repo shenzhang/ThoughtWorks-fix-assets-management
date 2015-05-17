@@ -3,12 +3,13 @@ import apisBuilder from '../../utils/apisBuilder'
 import config from './config.json'
 
 let mock
-var endpoint = config.production.endpoint
+var endpoint = config.development.endpoint
 
 // mock the http request if not production
 if (process.env.NODE_ENV == 'development' || process.env.NODE_ENV == 'test') {
   mock = require('./mock-user')
-  endpoint = config.development.endpoint
+} else if (process.env.NODE_ENV == 'production'){
+  endpoint = config.production.endpoint
 }
 
 const userApis = {
