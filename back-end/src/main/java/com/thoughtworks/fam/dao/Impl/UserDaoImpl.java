@@ -22,7 +22,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User save(User user) {
-//        allUsers.put(user.getName(), user);
+        allUsers.put(user.getName(), user);
         return user;
     }
 

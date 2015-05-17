@@ -15,6 +15,7 @@ var CreateUser = React.createClass({
 
   getInitialState() {
     return {
+      errMsg: "",
       disabled: true,
       user: ''
     };
@@ -26,7 +27,7 @@ var CreateUser = React.createClass({
         <div className='page-login'>
           <FlatButton className='title'></FlatButton>
           <div className='content'>
-            <p>User name</p>
+            <p>User name</p><h2>{this.state.errMsg}</h2>
             <TextField hintText='User Name' ref='username' onChange={this.onInputed}/>
           </div>
           <div className='content'>
@@ -42,6 +43,7 @@ var CreateUser = React.createClass({
     this.setState({disabled: !(this.refs.username.getValue())});
   },
   _createUser() {
+    this.setState({errMsg:""})
     userApi.create({
       name: this.refs.username.getValue(),
       email:this.refs.username.getValue() + "@thoughtworks.com",
@@ -49,10 +51,10 @@ var CreateUser = React.createClass({
     }).then(this.onCreate, this.onCreateFail)
   },
   onCreate(msg) {
-    console.log('success message: '+msg.message);
+    this.setState({errMsg:msg.message})
   },
   onCreateFail(err) {
-    console.log('failure message: '+err.message);
+      this.setState({errMsg:err.response.body.message})
   }
 });
 

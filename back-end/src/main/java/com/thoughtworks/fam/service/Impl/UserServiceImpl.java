@@ -21,7 +21,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User save(String name) {
         if (userDao.findUserByName(name) != null) {
-            throw new CreateUserException("user has existed");
+            throw new CreateUserException("user already exist");
         }
         if (!isValidFor(name)) {
             throw new CreateUserException("user name is invalid");

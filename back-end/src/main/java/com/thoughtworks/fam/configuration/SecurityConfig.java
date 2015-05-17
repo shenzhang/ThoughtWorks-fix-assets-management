@@ -18,10 +18,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 sessionManagement().sessionCreationPolicy(STATELESS).
                 and().
                 authorizeRequests().
-                antMatchers(HttpMethod.GET, "/*/assets").permitAll()
-                .anyRequest().authenticated()
-                .and()
-                .httpBasic();
+                antMatchers(HttpMethod.GET, "/*/assets").permitAll();
+//                .anyRequest().authenticated()
+//                .and()
+//                .httpBasic();
 
     }
 

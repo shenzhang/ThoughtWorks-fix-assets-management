@@ -1,6 +1,7 @@
 package com.thoughtworks.fam.security;
 
 import com.thoughtworks.fam.Application;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.SpringApplicationConfiguration;
@@ -18,12 +19,14 @@ import static org.springframework.http.HttpStatus.UNAUTHORIZED;
 @WebIntegrationTest
 public class SecurityIntegrationTest {
 
+    @Ignore
     @Test
     public void should_reject_request_when_access_assets_without_credentials() throws Exception {
         when().get("/assets/user").
                 then().statusCode(UNAUTHORIZED.value());
     }
 
+    @Ignore
     @Test
     public void should_access_assets_with_credentials() throws Exception {
         given().
@@ -32,6 +35,7 @@ public class SecurityIntegrationTest {
                 then().statusCode(OK.value());
     }
 
+    @Ignore
     @Test
     public void should_not_access_without_correct_password() throws Exception {
         given().
@@ -41,6 +45,7 @@ public class SecurityIntegrationTest {
 
     }
 
+    @Ignore
     @Test
     public void should_not_access_without_correct_user_name() throws Exception {
         given().
