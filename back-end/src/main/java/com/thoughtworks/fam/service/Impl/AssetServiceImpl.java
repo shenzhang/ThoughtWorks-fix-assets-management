@@ -1,7 +1,7 @@
 package com.thoughtworks.fam.service.Impl;
 
 import com.thoughtworks.fam.dao.AssetDao;
-import com.thoughtworks.fam.model.Asset;
+import com.thoughtworks.fam.domain.Asset;
 import com.thoughtworks.fam.service.AssetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

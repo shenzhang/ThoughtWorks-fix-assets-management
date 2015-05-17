@@ -2,7 +2,7 @@ package com.thoughtworks.fam.service.Impl;
 
 import com.thoughtworks.fam.dao.UserDao;
 import com.thoughtworks.fam.exception.CreateUserException;
-import com.thoughtworks.fam.model.User;
+import com.thoughtworks.fam.domain.User;
 import com.thoughtworks.fam.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

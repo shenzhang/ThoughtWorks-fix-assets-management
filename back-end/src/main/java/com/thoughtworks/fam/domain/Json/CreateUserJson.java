@@ -1,4 +1,4 @@
-package com.thoughtworks.fam.model;
+package com.thoughtworks.fam.domain.Json;
 
 public class CreateUserJson {
     private String message;

@@ -1,7 +1,7 @@
 package com.thoughtworks.fam;
 
-import com.thoughtworks.fam.controller.UserController;
-import com.thoughtworks.fam.model.Asset;
+import com.thoughtworks.fam.resource.UserController;
+import com.thoughtworks.fam.domain.Asset;
 import com.thoughtworks.fam.service.AssetService;
 import org.junit.Before;
 import org.junit.Test;

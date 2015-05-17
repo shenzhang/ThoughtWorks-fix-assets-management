@@ -1,4 +1,4 @@
-package com.thoughtworks.fam.controller;
+package com.thoughtworks.fam.resource;
 
 import com.thoughtworks.fam.service.AuthService;
 import org.junit.Test;
