@@ -54,13 +54,7 @@ dependencies {
 cobertura {
     coverageFormats = ['html']
     coverageEncoding = 'UTF-8'
-    coverageExcludes = ['.*ApplicationRunner.*',
-                        '.*UserException.*',
-                        '.*GlobalExceptionHandler.*',
-                        '.*BaseResponseException.*',
-                        '.*AuthException.*',
-                        '.*CORSFilter.*',
-                        'com.thoughtworks.fam.configuration']
+    coverageExcludes = ['.*com.thoughtworks.fam.configuration.*']
     coverageIgnoreMethodAnnotations = []
     coverageCheckBranchRate = 80
     coverageCheckLineRate = 80
