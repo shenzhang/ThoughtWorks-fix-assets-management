@@ -52,7 +52,7 @@ var Login = React.createClass({
             passwordError: ''
         });
         userApi.login({
-            userName: this.refs.username.getValue(),
+            name: this.refs.username.getValue(),
             password: this.refs.password.getValue()
         }).then(this.onLogin, this.onLoginFail)
     },
@@ -60,7 +60,7 @@ var Login = React.createClass({
         this.context.router.transitionTo('home');
     },
     onLoginFail(err) {
-        
+        console.log(err);
         var messageJson = {};
         var fieldName = err.response.body.message ==='The user is not exist.'?
             'userError' : 'passwordError'

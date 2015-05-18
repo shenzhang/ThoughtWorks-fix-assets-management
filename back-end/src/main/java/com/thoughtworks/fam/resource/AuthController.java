@@ -8,7 +8,6 @@ import com.thoughtworks.fam.service.AuthService;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -42,12 +41,19 @@ public class AuthController {
     }
 
     @RequestMapping(method = POST)
-    public ResponseEntity login(@RequestBody User user) {
+    public LoginInformation login(@RequestBody User user) {
 
-        boolean validate = authService.validate(user.getName(), user.getPassword());
-        if (validate) {
-            return new ResponseEntity(HttpStatus.OK);
+        LoginInformation loginInformation = new LoginInformation();
+
+        try {
+            authService.validate(user.getName(), user.getPassword());
+            loginInformation.setErrorCode(HttpStatus.OK);
+            loginInformation.setErrorMessage("Success!");
+        } catch (AuthException e) {
+            loginInformation.setErrorCode(HttpStatus.UNAUTHORIZED);
+            loginInformation.setErrorMessage(e.getMessage());
         }
-        return new ResponseEntity(HttpStatus.UNAUTHORIZED);
+
+        return loginInformation;
     }
 }
