@@ -17,7 +17,7 @@ if (process.env.NODE_ENV == 'production') {
 const userApis = {
   login: {
     method: 'post',
-    url: '/login'
+    url: '/auth/login'
   },
   logout: {
     method: 'post',
