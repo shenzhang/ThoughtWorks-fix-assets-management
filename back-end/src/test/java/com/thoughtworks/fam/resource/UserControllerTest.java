@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.thoughtworks.fam.domain.Asset;
 import com.thoughtworks.fam.domain.User;
+import com.thoughtworks.fam.service.AssetService;
 import com.thoughtworks.fam.service.UserService;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,17 +18,22 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.text.ParseException;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertThat;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 public class UserControllerTest {
 
+    public static final List<Asset> ASSETS = Arrays.asList(new Asset());
 
     private User user;
 
@@ -36,6 +42,9 @@ public class UserControllerTest {
     private UserService userService;
 
     private MockMvc mockMvc;
+
+    @Mock
+    private AssetService assetService;
 
     @InjectMocks
     private UserController userController;
@@ -81,5 +90,18 @@ public class UserControllerTest {
         ResponseEntity<List<Asset>> assets = new UserController().getAssets("");
         assertNull(assets);
     }
-
+    @Test
+    public void should_return_allAssets() throws Exception {
+        when(assetService.findAll()).thenReturn(ASSETS);
+        ResponseEntity<List<Asset>> assets = userController.getAllAssets();
+        verify(assetService).findAll();
+        assertThat(assets.getBody(), is(ASSETS));
+    }
+    @Test
+    public void should_return_assetsByUsername() throws Exception {
+        when(assetService.findAssetsByUserName("jtao")).thenReturn(ASSETS);
+        ResponseEntity<List<Asset>> assets = userController.getAssets("jtao");
+        verify(assetService).findAssetsByUserName("jtao");
+        assertThat(assets.getBody(), is(ASSETS));
+    }
 }
