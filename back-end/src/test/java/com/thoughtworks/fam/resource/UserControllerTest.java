@@ -33,7 +33,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 public class UserControllerTest {
 
-    public static final List<Asset> ASSETS = Arrays.asList(new Asset());
+    private static final List<Asset> ASSETS = Arrays.asList(new Asset());
 
     private User user;
 
