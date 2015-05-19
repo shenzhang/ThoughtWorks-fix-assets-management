@@ -1,7 +1,7 @@
 package com.thoughtworks.fam.resource;
 
 
-import com.thoughtworks.fam.domain.LoginInformation;
+import com.thoughtworks.fam.domain.JSONObject;
 import com.thoughtworks.fam.domain.User;
 import com.thoughtworks.fam.exception.AuthException;
 import com.thoughtworks.fam.service.AuthService;
@@ -22,19 +22,19 @@ public class AuthController {
 
 
     @RequestMapping(value = "/login", method = POST)
-    public LoginInformation login(@RequestBody User user) {
+    public JSONObject login(@RequestBody User user) {
+        String validateResult = authService.validate(user.getName(), user.getPassword());
 
-        LoginInformation loginInformation = new LoginInformation();
-
-        try {
-            authService.validate(user.getName(), user.getPassword());
-            loginInformation.setErrorCode(HttpStatus.OK);
-            loginInformation.setErrorMessage("Success!");
-        } catch (AuthException e) {
-            loginInformation.setErrorCode(HttpStatus.UNAUTHORIZED);
-            loginInformation.setErrorMessage(e.getMessage());
+        if (validateResult.equals(user.getName())) {
+            throw new AuthException("The user is not exist.");
+        }
+        if (validateResult.equals(user.getPassword())) {
+            throw new AuthException("The password is not correct, please input again.");
         }
 
-        return loginInformation;
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.setStatusCode(HttpStatus.OK);
+        jsonObject.setMessage("Success!");
+        return jsonObject;
     }
 }

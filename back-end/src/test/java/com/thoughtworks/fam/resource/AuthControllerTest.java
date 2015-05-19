@@ -1,6 +1,6 @@
 package com.thoughtworks.fam.resource;
 
-import com.thoughtworks.fam.domain.LoginInformation;
+import com.thoughtworks.fam.domain.JSONObject;
 import com.thoughtworks.fam.domain.User;
 import com.thoughtworks.fam.exception.AuthException;
 import com.thoughtworks.fam.service.AuthService;
@@ -8,7 +8,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.http.HttpStatus;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -27,46 +26,42 @@ public class AuthControllerTest {
     }
 
     @Test
-    public void should_raise_error_if_username_is_not_exist() throws Exception {
-        String errorMsg = "User doesn't exist";
-
-        String notExistsUser = "notExistsUser";
+    public void should_throw_auth_exception_if_username_is_not_exist() {
+        String name = "notExistsUser";
         String password = "password";
+        given(authService.validate(name, password))
+                .willReturn(name);
 
-        expectErrorMessageForUserAndPassword(errorMsg, notExistsUser, password);
+        try {
+            authController.login(new User(name, password));
+        } catch (AuthException err) {
+            assertThat(err.getMessage(), is("The user is not exist."));
+        }
     }
 
     @Test
     public void should_be_able_login_when_given_right_user_and_password() throws AuthException {
-        User user = new User("name", "password");
-
-        LoginInformation responseEntity = authController.login(user);
-        given(authService.validate(user.getName(), user.getPassword()))
-                .willReturn(true);
-        assertThat(responseEntity.getErrorCode(), is(HttpStatus.OK));
-        assertThat(responseEntity.getErrorMessage(), is("Success!"));
+        String name = "ncmao";
+        String password = "P@ss123456";
+        given(authService.validate(name, password))
+                .willReturn("success");
+        JSONObject jsonObject = authController.login(new User(name, password));
+        assertThat(jsonObject.getMessage(), is("Success!"));
     }
 
     @Test
-    public void should_raise_error_if_password_is_not_right() throws Exception {
-        String errorMsg = "password is not correct";
+    public void should_throw_auth_exception_if_password_is_not_right() {
+        String name = "ncmao";
+        String password = "password";
+        given(authService.validate(name, password))
+                .willReturn(password);
 
-        String user = "user";
-        String wrongPassword = "pass";
-
-        expectErrorMessageForUserAndPassword(errorMsg, user, wrongPassword);
+        try {
+            authController.login(new User(name, password));
+        } catch (AuthException err) {
+            assertThat(err.getMessage(), is("The password is not correct, please input again."));
+        }
 
     }
 
-
-    private void expectErrorMessageForUserAndPassword(String errorMsg, String name, String password) throws AuthException {
-        User user = new User(name, password);
-
-        given(authService.validate(user.getName(),user.getPassword()))
-                .willThrow(new AuthException(errorMsg));
-
-        LoginInformation responseEntity = authController.login(user);
-        assertThat(responseEntity.getErrorCode(), is(HttpStatus.UNAUTHORIZED));
-        assertThat(responseEntity.getErrorMessage(), is(errorMsg));
-    }
 }
