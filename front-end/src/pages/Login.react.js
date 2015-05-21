@@ -60,7 +60,6 @@ var Login = React.createClass({
         this.context.router.transitionTo('home');
     },
     onLoginFail(err) {
-        console.log(err);
         var messageJson = {};
         var fieldName = err.response.body.message ==='The user is not exist.'?
             'userError' : 'passwordError'

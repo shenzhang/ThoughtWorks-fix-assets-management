@@ -3,24 +3,35 @@ export default [
     pattern: 'http://localhost:8080/auth/(login|logout)',
     // callback that returns the data
     fixtures: function (data) {
-      if (data && data.username === 'admin') {
-        if (data.password === 'admin') {
+      if (data && data.name === 'ncmao') {
+        if (data.password === 'P@ss123456') {
           // login success
           return {
-            username: 'admin'
+            message: 'Success!'
           }
         } else {
           // password incorrect
-          throw new function PasswordIncorrectError() {
-            this.errorMessage = 'The password is not correct, please input again.'
+          throw new function AuthException() {
+            return {
+              response: {
+                body: {
+                  message: 'The password is not correct, please input again.'
+                }
+              }
+            }
           };
         }
       } else {
-        throw new function UserNotFoundError() {
-          this.errorMessage = 'The user is not exist.'
+        throw new function AuthException() {
+          return {
+            response: {
+              body: {
+                message: 'The user is not exist.'
+              }
+            }
+          }
         }
       }
-      return 'success'
     },
     // `match`: result of the resolution of the regular expression
     // `data`: data returns by `fixtures` attribute
