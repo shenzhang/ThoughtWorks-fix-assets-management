@@ -16,7 +16,6 @@ var Reset = React.createClass({
 
     getInitialState() {
         return {
-            disabled: true,
             newPasswordError: '',
             confirmPasswordError: ''
         };
@@ -27,29 +26,29 @@ var Reset = React.createClass({
             <Paper zDepth={1}>
                 <div className='page-login'>
                     <p className='title'>Reset your password</p>
-                    <div className='content'>
-                        <TextField ref='newPassword' type='password'
-                                   floatingLabelText="New Password" onInput={this.onInputed} />
-                        <span>{this.state.newPasswordError}</span>
-                    </div>
-                    <div className='content'>
-                        <TextField ref='confirmPassword' type='password'
-                                   floatingLabelText="Confirm Password" onInput={this.onInputed} />
-                        <span>{this.state.confirmPasswordError}</span>
-                    </div>
-                    <RaisedButton className='button' label='Submit' primary={true} onClick={this._reset} disabled={this.state.disabled}></RaisedButton>
+                    <form>
+                        <div className='content'>
+                            <TextField ref='newPassword' type='password'
+                                       floatingLabelText="New Password" required pattern='.{8,}' />
+                        </div>
+                        <div className='content'>
+                            <TextField ref='confirmPassword' type='password'
+                                       floatingLabelText="Confirm Password" required pattern='.{8,}' />
+                            <span>{this.state.confirmPasswordError}</span>
+                        </div>
+                        <RaisedButton className='button' label='Submit' primary={true} onClick={this._reset} ></RaisedButton>
+                    </form>
                 </div>
             </Paper>
         );
     },
-    onInputed() {
-        this.setState({disabled: !(this.refs.newPassword.getValue() && this.refs.confirmPassword.getValue())});
-    },
     _reset() {
-        this.setState({
-            newPasswordError: '',
-            confirmPasswordError: ''
-        });
+        if (this.refs.newPassword.getValue()!=this.refs.confirmPassword.getValue()) {
+            this.setState({
+                confirmPasswordError: 'The confirm password should be equal to new password.'
+            });
+            return ;
+        }
         userApi.reset({
             newPassword: this.refs.newPassword.getValue(),
             confirmPassword: this.refs.confirmPassword.getValue()
