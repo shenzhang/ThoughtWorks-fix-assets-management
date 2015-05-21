@@ -33,7 +33,7 @@ var Login = React.createClass({
                         <span>{this.state.userError}</span>
                     </div>
                     <div className='content'>
-                        <TextField ref='password' className='content' type='password'
+                        <TextField ref='password' type='password'
                                    floatingLabelText="Password" onInput={this.onInputed} />
                         <span>{this.state.passwordError}</span>
                     </div>
@@ -57,7 +57,11 @@ var Login = React.createClass({
         }).then(this.onLogin, this.onLoginFail)
     },
     onLogin(msg) {
-        this.context.router.transitionTo('home');
+        if (msg.isNewUser) {
+            this.context.router.transitionTo('reset');
+        } else {
+            this.context.router.transitionTo('home');
+        }
     },
     onLoginFail(err) {
         var messageJson = {};

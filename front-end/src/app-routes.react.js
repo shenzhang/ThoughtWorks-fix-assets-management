@@ -11,6 +11,7 @@ import {
   User,
   Assets,
   Login,
+  Reset,
   NotFound,
   CreateUser
 } from './pages'
@@ -23,6 +24,7 @@ const appRoutes = (
     <Route name='user' handler={User}/>
     <Route name='assets' handler={Assets}/>
     <Route name='login' handler={Login}/>
+    <Route name='reset' handler={Reset}/>
     <Route name='user/create' handler={CreateUser}/>
     <NotFoundRoute handler={NotFound}/>
   </Route>

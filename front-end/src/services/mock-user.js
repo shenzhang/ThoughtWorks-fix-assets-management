@@ -7,6 +7,7 @@ export default [
         if (data.password === 'P@ss123456') {
           // login success
           return {
+            isNewUser: true,
             message: 'Success!'
           }
         } else {
