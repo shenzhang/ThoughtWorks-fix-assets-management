@@ -31,6 +31,9 @@ const userApis = {
   create: {
     method: 'post',
     url: '/users/create'
+  },createAsset: {
+    method: 'post',
+    url: '/asset/create'
   }
 }
 
