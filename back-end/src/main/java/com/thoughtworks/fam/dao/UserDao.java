@@ -15,4 +15,6 @@ public interface UserDao {
 
     List<String> validUserNames();
 
+    User modifyPassword(User user);
+
 }

@@ -5,4 +5,6 @@ import com.thoughtworks.fam.domain.User;
 public interface UserService {
 
     User save(String name);
+
+    User modifyPassword(User user);
 }

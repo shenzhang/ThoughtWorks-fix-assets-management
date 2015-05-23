@@ -3,15 +3,21 @@ package com.thoughtworks.fam.resource;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.thoughtworks.fam.dao.UserDao;
 import com.thoughtworks.fam.domain.Asset;
+import com.thoughtworks.fam.domain.Json.CreateUserJson;
 import com.thoughtworks.fam.domain.User;
+import com.thoughtworks.fam.exception.AuthException;
 import com.thoughtworks.fam.service.AssetService;
+import com.thoughtworks.fam.service.Impl.AssetServiceImpl;
+import com.thoughtworks.fam.service.Impl.UserServiceImpl;
 import com.thoughtworks.fam.service.UserService;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.web.servlet.MockMvc;
@@ -22,8 +28,10 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.not;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.*;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -34,6 +42,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class UserControllerTest {
 
     private static final List<Asset> ASSETS = Arrays.asList(new Asset());
+    public static final String PASSWORD_MODIFY_ERROR_MESSAGE = "Passwords should be 8 or more characters in length.";
+    public static final String PASSWORD_MODIFY_SUCCESS_MESSAGE = "Password is modified!";
 
     private User user;
 
@@ -90,18 +100,42 @@ public class UserControllerTest {
         ResponseEntity<List<Asset>> assets = new UserController().getAssets("");
         assertNull(assets);
     }
+
+
     @Test
     public void should_return_allAssets() throws Exception {
-        when(assetService.findAll()).thenReturn(ASSETS);
+        given(assetService.findAll()).willReturn(ASSETS);
         ResponseEntity<List<Asset>> assets = userController.getAllAssets();
         verify(assetService).findAll();
         assertThat(assets.getBody(), is(ASSETS));
     }
     @Test
     public void should_return_assetsByUsername() throws Exception {
-        when(assetService.findAssetsByUserName("jtao")).thenReturn(ASSETS);
+        given(assetService.findAssetsByUserName("jtao")).willReturn(ASSETS);
         ResponseEntity<List<Asset>> assets = userController.getAssets("jtao");
         verify(assetService).findAssetsByUserName("jtao");
         assertThat(assets.getBody(), is(ASSETS));
+    }
+
+    @Test
+    public void should_return_ok_when_password_is_modified() throws Exception {
+        user.setPassword("123456789");
+        given(userService.modifyPassword(user)).willReturn(user);
+
+        ResponseEntity<CreateUserJson> responseEntity = userController.modifyPassword(user);
+
+        assertThat(responseEntity.getStatusCode(), is(HttpStatus.OK));
+        assertThat(responseEntity.getBody().getMessage(), is(PASSWORD_MODIFY_SUCCESS_MESSAGE));
+    }
+
+    @Test
+    public void should_return_not_modified_when_password_is_less_than_eight() throws Exception {
+        user.setPassword("123");
+        given(userService.modifyPassword(user)).willThrow(new AuthException(PASSWORD_MODIFY_ERROR_MESSAGE));
+
+        ResponseEntity<CreateUserJson> responseEntity = userController.modifyPassword(user);
+
+        assertThat(responseEntity.getBody().getMessage(), is(PASSWORD_MODIFY_ERROR_MESSAGE));
+        assertThat(responseEntity.getStatusCode(), is(HttpStatus.BAD_REQUEST));
     }
 }

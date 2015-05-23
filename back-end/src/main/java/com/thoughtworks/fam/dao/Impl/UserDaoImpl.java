@@ -41,4 +41,12 @@ public class UserDaoImpl implements UserDao {
         return validUserName;
     }
 
+    @Override
+    public User modifyPassword(User user) {
+        User modifyUser = findUserByName(user.getName());
+        modifyUser.setPassword(user.getPassword());
+        return modifyUser;
+    }
+
+
 }
