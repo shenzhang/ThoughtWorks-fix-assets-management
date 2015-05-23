@@ -3,15 +3,14 @@ import apisBuilder from '../../utils/apisBuilder'
 import config from './config.json'
 
 let mock
-var endpoint = "http://localhost:8080"
+var endpoint = config.development.endpoint
 
 // mock the http request if not production
 if (process.env.NODE_ENV == 'development' || process.env.NODE_ENV == 'test') {
   mock = require('./mock-user')
-}
-
-if (process.env.NODE_ENV == 'production') {
-  endpoint = "http://52.68.95.171:10000"
+  endpoint = config.development.endpoint
+} else if (process.env.NODE_ENV == 'production'){
+  endpoint = config.production.endpoint
 }
 
 const userApis = {
