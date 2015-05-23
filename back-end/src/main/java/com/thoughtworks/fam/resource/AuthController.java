@@ -37,4 +37,6 @@ public class AuthController {
         jsonObject.setMessage("Success!");
         return jsonObject;
     }
+
+
 }

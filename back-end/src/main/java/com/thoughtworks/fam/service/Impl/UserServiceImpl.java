@@ -2,6 +2,7 @@ package com.thoughtworks.fam.service.Impl;
 
 import com.thoughtworks.fam.dao.UserDao;
 import com.thoughtworks.fam.domain.User;
+import com.thoughtworks.fam.exception.AuthException;
 import com.thoughtworks.fam.exception.CreateUserException;
 import com.thoughtworks.fam.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,17 @@ public class UserServiceImpl implements UserService {
             throw new CreateUserException("user name is invalid");
         }
         return userDao.save(new User(name, name + EMAIL_SUFFIX));
+    }
+
+    @Override
+    public User modifyPassword(User user) {
+        if (userDao.findUserByName(user.getName()) == null) {
+            throw new AuthException("User is invalid!");
+        }
+        if (user.getPassword().length() < 8) {
+            throw new AuthException("Passwords should be 8 or more characters in length.");
+        }
+        return userDao.modifyPassword(user);
     }
 
     private boolean isValidFor(final String userName) {

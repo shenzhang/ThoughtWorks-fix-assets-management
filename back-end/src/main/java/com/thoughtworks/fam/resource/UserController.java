@@ -3,10 +3,10 @@ package com.thoughtworks.fam.resource;
 import com.thoughtworks.fam.domain.Asset;
 import com.thoughtworks.fam.domain.Json.CreateUserJson;
 import com.thoughtworks.fam.domain.User;
+import com.thoughtworks.fam.exception.AuthException;
 import com.thoughtworks.fam.service.AssetService;
 import com.thoughtworks.fam.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,6 +17,10 @@ import java.text.ParseException;
 import java.util.List;
 
 import static com.google.common.base.Strings.isNullOrEmpty;
+import static org.springframework.http.HttpStatus.OK;
+import static org.springframework.http.HttpStatus.CREATED;
+import static org.springframework.http.HttpStatus.BAD_REQUEST;
+import static org.springframework.http.HttpStatus.CONFLICT;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
@@ -32,33 +36,45 @@ public class UserController {
 
     @RequestMapping(value = "/{userName}/assets", method = GET)
     public ResponseEntity<List<Asset>> getAssets(@PathVariable String userName) throws ParseException {
-        if (isNullOrEmpty(userName)){
+        if (isNullOrEmpty(userName)) {
             return null;
         }
         List<Asset> assets = assetService.findAssetsByUserName(userName);
-        return new ResponseEntity<List<Asset>>(assets, HttpStatus.OK);
+        return new ResponseEntity<List<Asset>>(assets, OK);
     }
 
     @RequestMapping(value = "/allassets", method = GET)
     public ResponseEntity<List<Asset>> getAllAssets() {
 
         List<Asset> allAssets = assetService.findAll();
-        return new ResponseEntity<List<Asset>>(allAssets, HttpStatus.OK);
+        return new ResponseEntity<List<Asset>>(allAssets, OK);
     }
 
     @RequestMapping(value = "/create", method = POST)
     public ResponseEntity<CreateUserJson> create(@RequestBody User user) {
-
         String name = user.getName();
         User savedUser = userService.save(name);
         CreateUserJson createUserJson = new CreateUserJson();
         if (savedUser != null) {
             createUserJson.setMessage("create user success");
-            return new ResponseEntity<CreateUserJson>(createUserJson, HttpStatus.CREATED);
+            return new ResponseEntity<CreateUserJson>(createUserJson, CREATED);
         }
         createUserJson.setMessage("create failed");
-        return new ResponseEntity<CreateUserJson>(createUserJson, HttpStatus.CONFLICT);
+        return new ResponseEntity<CreateUserJson>(createUserJson, CONFLICT);
 
     }
 
+    @RequestMapping(value = "/reset", method = POST)
+    public ResponseEntity<CreateUserJson> modifyPassword(@RequestBody User user) {
+        CreateUserJson createUserJson = new CreateUserJson();
+
+        try {
+            userService.modifyPassword(user);
+            createUserJson.setMessage("Password is modified!");
+            return new ResponseEntity<CreateUserJson>(createUserJson, OK);
+        } catch (AuthException e) {
+            createUserJson.setMessage(e.getMessage());
+            return new ResponseEntity<CreateUserJson>(createUserJson, BAD_REQUEST);
+        }
+    }
 }
