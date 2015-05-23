@@ -23,6 +23,9 @@ const menuItems =  [{
 },{
   text: 'Add User',
   route: 'user/create'
+},{
+  text: 'Add Asset',
+  route: 'asset/create'
 }
 ]
 
