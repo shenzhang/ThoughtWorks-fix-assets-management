@@ -15,6 +15,7 @@ var Reset = React.createClass({
 
     getInitialState() {
         return {
+            disabled: true,
             newPasswordError: '',
             confirmPasswordError: ''
         };
@@ -36,27 +37,29 @@ var Reset = React.createClass({
                                        floatingLabelText="Confirm Password" onInput={this.onInputed} pattern='.{8,}' />
                             <span>{this.state.confirmPasswordError}</span>
                         </div>
-                        <RaisedButton className='button' label='Submit' primary={true} onClick={this._reset} ></RaisedButton>
+                        <RaisedButton className='button' label='Submit' primary={true} onClick={this._reset} disabled={this.state.disabled} ></RaisedButton>
                     </form>
                 </div>
             </Paper>
         );
     },
     onInputed() {
-        //todo: code regex pattern
-        this.setState({disabled: !(this.refs.username.getValue() && this.refs.password.getValue())});
+        var regx = new RegExp(".{8,}");
+        var name = this.refs.newPassword.getValue();
+        var password = this.refs.confirmPassword.getValue();
+        this.setState({disabled: !(regx.test(name)&&regx.test(password))});
     },
     _reset() {
         if (this.refs.newPassword.getValue()!=this.refs.confirmPassword.getValue()) {
             this.setState({
                 confirmPasswordError: 'The confirm password should be equal to new password.'
             });
-            return ;
+        } else {
+            userApi.reset({
+                newPassword: this.refs.newPassword.getValue(),
+                accessToken: 'accessToken'//需要考虑修改
+            }).then(this.onSuccess, this.onFailure);
         }
-        userApi.reset({
-            newPassword: this.refs.newPassword.getValue(),
-            accessToken: 'accessToken'//需要考虑修改
-        }).then(this.onSuccess, this.onFailure)
     },
     onSuccess(msg) {
         console.log(msg);
