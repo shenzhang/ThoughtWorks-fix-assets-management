@@ -19,6 +19,10 @@ const userApis = {
     method: 'post',
     url: '/auth/login'
   },
+  reset: {
+    method: 'post',
+    url: '/reset'
+  },
   logout: {
     method: 'post',
     url: '/auth/logout'

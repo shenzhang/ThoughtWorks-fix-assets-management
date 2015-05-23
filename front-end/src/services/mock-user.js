@@ -109,5 +109,35 @@ export default [
         return new Error('Do not match any urls!')
       }
     }
+  },
+  {
+    pattern: 'http://localhost:8080/(reset)',
+    // callback that returns the data
+    fixtures: function (data) {
+      if (data && data.accessToken=='accessToken') {
+        return {
+          message: 'Reset your password success!'
+        };
+      } else {
+        throw new function AuthException() {
+          return {
+            response: {
+              body: {
+                message: 'Reset your password failure.'
+              }
+            }
+          }
+        }
+      }
+    },
+    // `match`: result of the resolution of the regular expression
+    // `data`: data returns by `fixtures` attribute
+    callback: function (match, data) {
+      if (match[1]) {
+        return data
+      } else {
+        return new Error('Do not match any urls!')
+      }
+    }
   }
 ];

@@ -5,30 +5,30 @@ import user from '../user'
 describe('User Services', function() {
   it('should be able to login', function(done) {
     user.login({
-      username: 'admin',
-      password: 'admin'
+      name: 'ncmao',
+      password: 'P@ss123456'
     })
     .then(function(data) {
-      data.username.should.be.equal('admin');
+      data.message.should.be.equal('Success!');
       done()
     })
   });
   it('should not be able to login when username is not exist', function(done) {
     user.login({
-      username: 'tuber',
+      name: 'tuber',
       password: 'tuber'
     }).then(null, function(err) {
-      err.errorMessage.should.be.equal('The user is not exist.');
+      err.response.body.message.should.be.equal('The user is not exist.');
       done()
     })
     .catch(done)
   });
   it('should not be able to login when password is incorrect', function(done) {
     user.login({
-      username: 'admin',
+      name: 'ncmao',
       password: 'pw'
     }).then(null, function(err) {
-      err.errorMessage.should.be.equal('The password is not correct, please input again.');
+      err.response.body.message.should.be.equal('The password is not correct, please input again.');
       done()
     })
     .catch(done)

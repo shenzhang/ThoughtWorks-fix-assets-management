@@ -5,7 +5,6 @@ import {
     TextField
     } from 'material-ui';
 import {
-    Link,
     Navigation,
     State
     } from 'react-router';
@@ -29,11 +28,12 @@ var Reset = React.createClass({
                     <form>
                         <div className='content'>
                             <TextField ref='newPassword' type='password'
-                                       floatingLabelText="New Password" required pattern='.{8,}' />
+                                       floatingLabelText="New Password" onInput={this.onInputed} pattern='.{8,}' />
+                            <span>{this.state.newPasswordError}</span>
                         </div>
                         <div className='content'>
                             <TextField ref='confirmPassword' type='password'
-                                       floatingLabelText="Confirm Password" required pattern='.{8,}' />
+                                       floatingLabelText="Confirm Password" onInput={this.onInputed} pattern='.{8,}' />
                             <span>{this.state.confirmPasswordError}</span>
                         </div>
                         <RaisedButton className='button' label='Submit' primary={true} onClick={this._reset} ></RaisedButton>
@@ -41,6 +41,10 @@ var Reset = React.createClass({
                 </div>
             </Paper>
         );
+    },
+    onInputed() {
+        //todo: code regex pattern
+        this.setState({disabled: !(this.refs.username.getValue() && this.refs.password.getValue())});
     },
     _reset() {
         if (this.refs.newPassword.getValue()!=this.refs.confirmPassword.getValue()) {
@@ -51,23 +55,15 @@ var Reset = React.createClass({
         }
         userApi.reset({
             newPassword: this.refs.newPassword.getValue(),
-            confirmPassword: this.refs.confirmPassword.getValue()
+            accessToken: 'accessToken'//需要考虑修改
         }).then(this.onSuccess, this.onFailure)
     },
     onSuccess(msg) {
         console.log(msg);
-        if (msg.isNewUser) {
-            this.context.router.transitionTo('user');
-        } else {
-            this.context.router.transitionTo('home');
-        }
+        this.context.router.transitionTo('home');
     },
     onFailure(err) {
-        var messageJson = {};
-        var fieldName = err.response.body.message ==='The user is not exist.'?
-            'userError' : 'confirmPasswordError'
-        messageJson[fieldName] = err.response.body.message;
-        this.setState(messageJson);
+        console.log(err);
     }
 });
 
