@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.thoughtworks.fam.domain.Asset;
+import com.thoughtworks.fam.domain.JSONObject;
 import com.thoughtworks.fam.domain.Json.CreateUserJson;
 import com.thoughtworks.fam.domain.User;
 import com.thoughtworks.fam.exception.AuthException;
@@ -116,10 +117,10 @@ public class UserControllerTest {
         user.setPassword("123456789");
         given(userService.modifyPassword(user)).willReturn(user);
 
-        ResponseEntity<CreateUserJson> responseEntity = userController.modifyPassword(user);
+        JSONObject responseEntity = userController.modifyPassword(user);
 
         assertThat(responseEntity.getStatusCode(), is(HttpStatus.OK));
-        assertThat(responseEntity.getBody().getMessage(), is(PASSWORD_MODIFY_SUCCESS_MESSAGE));
+        assertThat(responseEntity.getMessage(), is(PASSWORD_MODIFY_SUCCESS_MESSAGE));
     }
 
     @Test
@@ -127,9 +128,9 @@ public class UserControllerTest {
         user.setPassword("123");
         given(userService.modifyPassword(user)).willThrow(new AuthException(PASSWORD_MODIFY_ERROR_MESSAGE));
 
-        ResponseEntity<CreateUserJson> responseEntity = userController.modifyPassword(user);
+        JSONObject responseEntity = userController.modifyPassword(user);
 
-        assertThat(responseEntity.getBody().getMessage(), is(PASSWORD_MODIFY_ERROR_MESSAGE));
+        assertThat(responseEntity.getMessage(), is(PASSWORD_MODIFY_ERROR_MESSAGE));
         assertThat(responseEntity.getStatusCode(), is(HttpStatus.BAD_REQUEST));
     }
 }
