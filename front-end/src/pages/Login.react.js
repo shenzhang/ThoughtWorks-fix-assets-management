@@ -54,9 +54,9 @@ var Login = React.createClass({
         userApi.login({
             name: this.refs.username.getValue(),
             password: this.refs.password.getValue()
-        }).then(this.onLogin, this.onLoginFail)
+        }).then(this.onLoginSuccess, this.onLoginFail)
     },
-    onLogin(msg) {
+    onLoginSuccess(msg) {
         if (msg.isNewUser) {
             this.context.router.transitionTo('reset');
         } else {
