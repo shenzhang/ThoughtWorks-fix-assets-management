@@ -16,7 +16,6 @@ var Reset = React.createClass({
     getInitialState() {
         return {
             disabled: true,
-            newPasswordError: '',
             confirmPasswordError: ''
         };
     },
@@ -30,7 +29,6 @@ var Reset = React.createClass({
                         <div className='content'>
                             <TextField ref='newPassword' type='password'
                                        floatingLabelText="New Password" onInput={this.onInputed} pattern='.{8,}' />
-                            <span>{this.state.newPasswordError}</span>
                         </div>
                         <div className='content'>
                             <TextField ref='confirmPassword' type='password'

@@ -1,14 +1,13 @@
 require('chai').should()
 
 import React from 'react/addons'
-import mockRouter from '../../../utils/mock-react-router'
 import Login from '../Login.react.js'
 
 const TestUtils = React.addons.TestUtils
 
 let login
 describe('Login Page Component', function() {
-    beforeEach(function() {
+    before(function() {
       login = TestUtils.renderIntoDocument(<Login />)
     });
     it('should be able to initialized independently', function() {
