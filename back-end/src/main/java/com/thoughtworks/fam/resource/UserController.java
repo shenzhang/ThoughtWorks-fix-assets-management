@@ -1,6 +1,7 @@
 package com.thoughtworks.fam.resource;
 
 import com.thoughtworks.fam.domain.Asset;
+import com.thoughtworks.fam.domain.JSONObject;
 import com.thoughtworks.fam.domain.Json.CreateUserJson;
 import com.thoughtworks.fam.domain.User;
 import com.thoughtworks.fam.exception.AuthException;
@@ -65,16 +66,12 @@ public class UserController {
     }
 
     @RequestMapping(value = "/reset", method = POST)
-    public ResponseEntity<CreateUserJson> modifyPassword(@RequestBody User user) {
-        CreateUserJson createUserJson = new CreateUserJson();
-
+    public JSONObject modifyPassword(@RequestBody User user) {
         try {
             userService.modifyPassword(user);
-            createUserJson.setMessage("Password is modified!");
-            return new ResponseEntity<CreateUserJson>(createUserJson, OK);
+            return new JSONObject(OK, "Password is modified!");
         } catch (AuthException e) {
-            createUserJson.setMessage(e.getMessage());
-            return new ResponseEntity<CreateUserJson>(createUserJson, BAD_REQUEST);
+            return new JSONObject(BAD_REQUEST, e.getMessage());
         }
     }
 }
