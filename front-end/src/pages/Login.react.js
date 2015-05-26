@@ -37,7 +37,7 @@ var Login = React.createClass({
                                    floatingLabelText="Password" onInput={this.onInputed} />
                         <span>{this.state.passwordError}</span>
                     </div>
-                    <Link to='/notFound'>Forget your password?</Link>
+                    <a href='/notFound'>Forget your password?</a>
                     <RaisedButton className='button' label='Log In' primary={true} onClick={this._login} disabled={this.state.disabled}></RaisedButton>
                 </div>
             </Paper>

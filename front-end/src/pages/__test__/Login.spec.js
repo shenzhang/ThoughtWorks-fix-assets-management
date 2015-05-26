@@ -6,29 +6,32 @@ import Login from '../Login.react.js'
 
 const TestUtils = React.addons.TestUtils
 
-var mockedLogin = mockRouter(Login)
 let login
 describe('Login Page Component', function() {
     beforeEach(function() {
-      login = TestUtils.renderIntoDocument(<mockedLogin />)
+      login = TestUtils.renderIntoDocument(<Login />)
     });
     it('should be able to initialized independently', function() {
         TestUtils.isCompositeComponent(login).should.be.equal(true)
-        //TestUtils.isCompositeComponentWithType(login, Login)
+        TestUtils.isCompositeComponentWithType(login, Login)
     });
-    //it.skip('should be able to toggle itself', function() {
-    //    leftNav.toggle.should.be.a.Function
-    //    leftNav.refs.leftNav.state.open.should.be.equal(false)
-    //    leftNav.toggle()
-    //    leftNav.refs.leftNav.state.open.should.be.equal(true)
-    //    leftNav.toggle()
-    //    leftNav.refs.leftNav.state.open.should.be.equal(false)
-    //})
-    //it.skip('should be able to close itself by click its title', function() {
-    //    var menuTitle = React.findDOMNode(TestUtils.findRenderedDOMComponentWithClass(leftNav, 'menu__title'))
-    //    leftNav.toggle()
-    //    leftNav.refs.leftNav.state.open.should.be.equal(true)
-    //    TestUtils.Simulate.click(menuTitle)
-    //    leftNav.refs.leftNav.state.open.should.be.equal(false)
-    //})
+    it('should be disable to click login when username or password is empty', function() {
+        login.refs.username.setValue('');
+        login.refs.password.setValue('');
+        login.onInputed();
+        login.state.disabled.should.be.true;
+        login.refs.username.setValue('name');
+        login.onInputed();
+        login.state.disabled.should.be.true;
+        login.refs.password.setValue('password');
+        login.refs.username.setValue('');
+        login.onInputed();
+        login.state.disabled.should.be.true;
+    });
+    it('should be able to click login when username and password are inputed', function() {
+        login.refs.username.setValue('user');
+        login.refs.password.setValue('password');
+        login.onInputed();
+        login.state.disabled.should.be.false;
+    });
 })
