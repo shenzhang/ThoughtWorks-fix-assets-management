@@ -75,6 +75,22 @@ export default [
     }
   },
   {
+    pattern: 'http://localhost:8080/asset/(newAsset)',
+    fixtures: function () {
+      return {
+        assetType: 'MAC Mini',
+        assetSerialName: 87654321
+      }
+    },
+    callback: function (match, data) {
+      if (match[1] == "newAsset") {
+        return data
+      } else {
+        return new Error('Do not match any urls!')
+      }
+    }
+  },
+  {
     pattern: 'http://localhost:8080/users/(allassets)',
     // callback that returns the data
     fixtures: function () {

@@ -34,6 +34,9 @@ const userApis = {
   },createAsset: {
     method: 'post',
     url: '/asset/create'
+  },getNewAsset: {
+    method: 'get',
+    url: '/asset/newAsset'
   }
 }
 
