@@ -3,6 +3,7 @@ package com.thoughtworks.fam.service.Impl;
 import com.thoughtworks.fam.dao.AssetDao;
 import com.thoughtworks.fam.domain.Asset;
 import com.thoughtworks.fam.domain.NewAsset;
+import com.thoughtworks.fam.exception.CreateAssetException;
 import com.thoughtworks.fam.service.AssetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,8 +32,10 @@ public class AssetServiceImpl implements AssetService {
 
     @Override
     public NewAsset save(NewAsset newAsset) {
-        return null;
+        if (assetDao.findAssetsBySerialName(newAsset.getSerialName()) != null) {
+            throw new CreateAssetException("The name already exist, please use another one.");
+        }
+        return assetDao.save(newAsset);
     }
-
 
 }

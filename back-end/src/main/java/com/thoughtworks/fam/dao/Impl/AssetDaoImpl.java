@@ -2,6 +2,7 @@ package com.thoughtworks.fam.dao.Impl;
 
 import com.thoughtworks.fam.dao.AssetDao;
 import com.thoughtworks.fam.domain.Asset;
+import com.thoughtworks.fam.domain.NewAsset;
 import org.springframework.stereotype.Repository;
 
 import java.util.Arrays;
@@ -30,6 +31,12 @@ public class AssetDaoImpl implements AssetDao {
         put("siyu", Arrays.asList(allAssetList.get(4), allAssetList.get(5)));
     }};
 
+    private Map<String, NewAsset> asset =
+            new HashMap<String, NewAsset>(){{
+                put("17006011", new NewAsset("Nokia", "17006011"));
+                put("17005800", new NewAsset("MBP", "17005800"));
+            }};
+
     @Override
     public Asset save(Asset asset) {
         return asset;
@@ -43,6 +50,17 @@ public class AssetDaoImpl implements AssetDao {
     @Override
     public List<Asset> findAssetsByUserName(String userName) {
         return allAssets.get(userName);
+    }
+
+    @Override
+    public NewAsset save(NewAsset newAsset) {
+        asset.put(newAsset.getSerialName(), newAsset);
+        return newAsset;
+    }
+
+    @Override
+    public NewAsset findAssetsBySerialName(String serialName) {
+        return asset.get(serialName);
     }
 
 }
