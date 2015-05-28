@@ -2,6 +2,7 @@ package com.thoughtworks.fam.service.Impl;
 
 import com.thoughtworks.fam.dao.AssetDao;
 import com.thoughtworks.fam.domain.Asset;
+import com.thoughtworks.fam.domain.NewAsset;
 import com.thoughtworks.fam.service.AssetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,6 +29,10 @@ public class AssetServiceImpl implements AssetService {
         return assetDao.findAssetsByUserName(userName);
     }
 
+    @Override
+    public NewAsset save(NewAsset newAsset) {
+        return null;
+    }
 
 
 }
