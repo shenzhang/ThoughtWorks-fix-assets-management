@@ -42,7 +42,7 @@ var CreateAsset = React.createClass({
     }
   },
   _createAsset(){
-    console.log(this.state.selectedType)
+    //console.log(this.state.selectedType)
 
     this.setState({
       serialNumberError: '',
@@ -56,18 +56,26 @@ var CreateAsset = React.createClass({
   },
   _onCreate(msg) {
     if (msg.isNewSerialNumber) {
-      this.context.router.transitionTo('home');
+      this.context.router.transitionTo('newAsset');
     } else {
-      this.context.router.transitionTo('home');
+      this.setState({
+        serialNumberError: msg
+      })
     }
   },
   _onCreateFailure(err) {
     this.setState({
-      serialNumberError: 'Name should be made up of 8 numbers.'
+      serialNumberError: err
     });
   },
   _cancelCreateAsset(){
-    return {}
+    this.refs.assetType.state.selectedIndex = 0;
+    this.setState({
+      disabled: true,
+      serialNumberError: '',
+      selectedIndex: 0,
+      selectedType: 'Apple Laptop'
+    })
   },
   handleChange(event, selectedIndex, menuItem){
     this.setState({
@@ -80,25 +88,34 @@ var CreateAsset = React.createClass({
       <div>
         <h2> Add asset</h2>
 
-        <div>
+        <form>
           <span className="create__asset__props">Type</span>
-          <span><DropDownMenu menuItems={menuItems} onChange={this.handleChange}/>*</span>
+          <span>
+            <DropDownMenu menuItems={menuItems}
+                          ref='assetType'
+                          onChange={this.handleChange}/>*
+          </span>
           <span className="create__asset__props">SerialName</span>
           <span>
             <TextField
               ref='serialName'
-              onInput={this.onInputed}/>*</span>
-          <span>{this.state.serialNumberError}</span>
+              onInput={this.onInputed}/>* {this.state.serialNumberError}</span>
 
-
-        </div>
+          <br/>
 
         <span className="create__asset__button">
-        <RaisedButton label='Add' secondary={true} onClick={this._createAsset} disabled={this.state.disabled}>
+        <RaisedButton label='Add'
+                      secondary={true}
+                      onClick={this._createAsset}
+                      disabled={this.state.disabled}>
         </RaisedButton>
-        <RaisedButton label='Cancel' primary={true} onClick={this._cancelCreateAsset}>
+        <RaisedButton label='Cancel'
+                      type='reset'
+                      primary={true}
+                      onClick={this._cancelCreateAsset}>
         </RaisedButton>
         </span>
+        </form>
       </div>
     )
   },
