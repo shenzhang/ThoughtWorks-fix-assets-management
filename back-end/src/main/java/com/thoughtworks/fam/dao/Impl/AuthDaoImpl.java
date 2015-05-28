@@ -2,10 +2,12 @@ package com.thoughtworks.fam.dao.Impl;
 
 import com.thoughtworks.fam.dao.AuthDao;
 import com.thoughtworks.fam.domain.User;
+import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 import java.util.List;
 
+@Component
 public class AuthDaoImpl implements AuthDao {
 
     private List<User> userList = Arrays.asList(

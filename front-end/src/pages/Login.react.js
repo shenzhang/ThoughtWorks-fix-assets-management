@@ -37,7 +37,7 @@ var Login = React.createClass({
                                    floatingLabelText="Password" onInput={this.onInputed} />
                         <span>{this.state.passwordError}</span>
                     </div>
-                    <Link to='/notFound'>Forget your password?</Link>
+                    <a href='/notFound'>Forget your password?</a>
                     <RaisedButton className='button' label='Log In' primary={true} onClick={this._login} disabled={this.state.disabled}></RaisedButton>
                 </div>
             </Paper>
@@ -54,9 +54,9 @@ var Login = React.createClass({
         userApi.login({
             name: this.refs.username.getValue(),
             password: this.refs.password.getValue()
-        }).then(this.onLogin, this.onLoginFail)
+        }).then(this.onLoginSuccess, this.onLoginFail)
     },
-    onLogin(msg) {
+    onLoginSuccess(msg) {
         if (msg.isNewUser) {
             this.context.router.transitionTo('reset');
         } else {

@@ -45,6 +45,52 @@ export default [
     }
   },
   {
+    pattern: 'http://localhost:8080/asset/(create)',
+    fixtures: function (data) {
+      if (data.serialName.length === 8 && !isNaN(data.serialName)) {
+        if (data.serialName === '12345678') {
+          return {
+            message: 'The name already exist, please use another one.',
+            isNewSerialNumber: false
+          }
+        } else {
+          return {
+            message: 'success',
+            isNewSerialNumber: true
+          }
+        }
+      } else {
+        //return new Error('Name should be made up of 8 numbers.')
+        throw new function () {
+          this.err = 'Name should be made up of 8 numbers.';
+        };
+      }
+    },
+    callback: function (match, data) {
+      if (match[1] == "create") {
+        return data
+      } else {
+        return new Error('Do not match any urls!')
+      }
+    }
+  },
+  {
+    pattern: 'http://localhost:8080/asset/(newAsset)',
+    fixtures: function () {
+      return {
+        assetType: 'MAC Mini',
+        assetSerialName: 87654321
+      }
+    },
+    callback: function (match, data) {
+      if (match[1] == "newAsset") {
+        return data
+      } else {
+        return new Error('Do not match any urls!')
+      }
+    }
+  },
+  {
     pattern: 'http://localhost:8080/users/(allassets)',
     // callback that returns the data
     fixtures: function () {
@@ -114,7 +160,7 @@ export default [
     pattern: 'http://localhost:8080/(reset)',
     // callback that returns the data
     fixtures: function (data) {
-      if (data && data.accessToken=='accessToken') {
+      if (data && data.accessToken == 'accessToken') {
         return {
           message: 'Reset your password success!'
         };
