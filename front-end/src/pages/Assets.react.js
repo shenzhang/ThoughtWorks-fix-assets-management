@@ -12,8 +12,8 @@ import {
   State
   } from 'react-router'
 
+import $ from 'jquery'
 import userApi from '../services/user'
-
 import AssetsTable from './AssetsTable.react.js'
 
 var Assets = React.createClass({
@@ -27,29 +27,29 @@ var Assets = React.createClass({
     }
   },
   componentDidMount() {
-    this._getAssets();
-    //console.log("These are assets from back-end:")
-    /*
+    //this._getAssets();
+    console.log("These are assets from back-end:")
     $.ajax({
-      url: this.props.url,
+      type: 'GET',
+      url: "http://52.68.95.171:10000/users/allassets",
       dataType: 'json',
       success: function(data) {
-        this.setState({data: data});
+        this.setState({assets: data});
       }.bind(this),
       error: function(xhr, status, err) {
-        console.error(this.props.url, status, err.toString());
+        console.error(this.url, status, err.toString());
       }.bind(this)
     });
-    */
-    //$.get("http://localhost:8080/asset/my/yansiyu", function(result) {
-    //  var assets = result.body
-    //  console.log(assets)
-    //  if (this.isMounted()) {
-    //    this.setState({
-    //      assets: assets
-    //    });
-    //  }
-    //}.bind(this));
+    /*
+    $.get("http://52.68.95.171:10000/users/allassets", function(result) {
+      var assets = result
+      console.log(assets)
+      if (this.isMounted()) {
+        this.setState({
+          assets: assets
+        });
+      }
+    }.bind(this));*/
   },
   render() {
     return (
