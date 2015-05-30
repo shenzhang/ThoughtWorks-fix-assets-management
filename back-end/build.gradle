@@ -142,8 +142,8 @@ def createSqlInstance() {
     def dataSource = new BasicDataSource()
     dataSource.with {
         driverClassName = 'com.mysql.jdbc.Driver'
-        password = 'root'
-        username = 'root'
+        username = 'tw-local'
+        password = 'local123'
         url = 'jdbc:mysql://localhost:3306'
     }
     new Sql(dataSource)
