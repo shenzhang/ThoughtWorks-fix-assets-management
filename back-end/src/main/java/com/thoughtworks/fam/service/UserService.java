@@ -6,5 +6,6 @@ public interface UserService {
 
     User save(String name);
 
-    User modifyPassword(User user);
+    User updatePassword(User user);
+
 }

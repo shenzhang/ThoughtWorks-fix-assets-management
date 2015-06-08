@@ -4,8 +4,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.thoughtworks.fam.domain.Asset;
-import com.thoughtworks.fam.domain.JSONObject;
-import com.thoughtworks.fam.domain.Json.CreateUserJson;
 import com.thoughtworks.fam.domain.User;
 import com.thoughtworks.fam.exception.AuthException;
 import com.thoughtworks.fam.service.AssetService;
@@ -115,22 +113,19 @@ public class UserControllerTest {
     @Test
     public void should_return_ok_when_password_is_modified() throws Exception {
         user.setPassword("123456789");
-        given(userService.modifyPassword(user)).willReturn(user);
+        given(userService.updatePassword(user)).willReturn(user);
 
-        JSONObject responseEntity = userController.modifyPassword(user);
+        ResponseEntity responseEntity = userController.modifyPassword(user);
 
-        assertThat(responseEntity.getStatusCode(), is(HttpStatus.OK));
-        assertThat(responseEntity.getMessage(), is(PASSWORD_MODIFY_SUCCESS_MESSAGE));
+        assertThat(responseEntity.getStatusCode(), is(HttpStatus.CREATED));
     }
 
-    @Test
+    @Test(expected = AuthException.class)
     public void should_return_not_modified_when_password_is_less_than_eight() throws Exception {
         user.setPassword("123");
-        given(userService.modifyPassword(user)).willThrow(new AuthException(PASSWORD_MODIFY_ERROR_MESSAGE));
+        given(userService.updatePassword(user)).willThrow(new AuthException(PASSWORD_MODIFY_ERROR_MESSAGE));
 
-        JSONObject responseEntity = userController.modifyPassword(user);
+        ResponseEntity responseEntity = userController.modifyPassword(user);
 
-        assertThat(responseEntity.getMessage(), is(PASSWORD_MODIFY_ERROR_MESSAGE));
-        assertThat(responseEntity.getStatusCode(), is(HttpStatus.BAD_REQUEST));
     }
 }

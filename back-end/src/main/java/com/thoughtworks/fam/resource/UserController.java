@@ -1,13 +1,12 @@
 package com.thoughtworks.fam.resource;
 
 import com.thoughtworks.fam.domain.Asset;
-import com.thoughtworks.fam.domain.JSONObject;
 import com.thoughtworks.fam.domain.Json.CreateUserJson;
 import com.thoughtworks.fam.domain.User;
-import com.thoughtworks.fam.exception.AuthException;
 import com.thoughtworks.fam.service.AssetService;
 import com.thoughtworks.fam.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,10 +17,9 @@ import java.text.ParseException;
 import java.util.List;
 
 import static com.google.common.base.Strings.isNullOrEmpty;
-import static org.springframework.http.HttpStatus.OK;
-import static org.springframework.http.HttpStatus.CREATED;
-import static org.springframework.http.HttpStatus.BAD_REQUEST;
 import static org.springframework.http.HttpStatus.CONFLICT;
+import static org.springframework.http.HttpStatus.CREATED;
+import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
@@ -66,12 +64,9 @@ public class UserController {
     }
 
     @RequestMapping(value = "/reset", method = POST)
-    public JSONObject modifyPassword(@RequestBody User user) {
-        try {
-            userService.modifyPassword(user);
-            return new JSONObject(OK, "Password is modified!");
-        } catch (AuthException e) {
-            return new JSONObject(BAD_REQUEST, e.getMessage());
-        }
+    public ResponseEntity modifyPassword(@RequestBody User user) {
+
+        userService.updatePassword(user);
+        return new ResponseEntity(HttpStatus.CREATED);
     }
 }

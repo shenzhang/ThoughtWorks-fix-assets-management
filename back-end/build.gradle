@@ -55,7 +55,8 @@ dependencies {
             'com.jayway.restassured:rest-assured:2.4.1',
             'org.springframework.boot:spring-boot-starter-security',
             'net.sf.ehcache:ehcache-core:2.6.9',
-            'org.json:json:20140107'
+            'org.json:json:20140107',
+            'org.springframework.boot:spring-boot-starter-data-jpa:1.2.4.RELEASE'
     )
 
     testCompile(
@@ -112,7 +113,7 @@ checkstyle {
 task createDB {
     doLast {
         def sqlInstance = createSqlInstance()
-        createDatabase(sqlInstance, 'dev1')
+            createDatabase(sqlInstance, 'dev1')
         accessAllSqlFilesUnder('back-end/sqlFiles/', sqlInstance)
     }
 }
@@ -142,8 +143,8 @@ def createSqlInstance() {
     def dataSource = new BasicDataSource()
     dataSource.with {
         driverClassName = 'com.mysql.jdbc.Driver'
-        username = 'tw-local'
-        password = 'local123'
+        username = 'root'
+        password = ''
         url = 'jdbc:mysql://localhost:3306'
     }
     new Sql(dataSource)
