@@ -1,5 +1,8 @@
 package com.thoughtworks.fam.domain;
 
+import javax.persistence.Entity;
+
+@Entity
 public class User {
 
     private String name;
