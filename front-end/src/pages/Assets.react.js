@@ -12,7 +12,6 @@ import {
   State
   } from 'react-router'
 
-import $ from 'jquery'
 import userApi from '../services/user'
 import AssetsTable from './AssetsTable.react.js'
 
@@ -26,30 +25,16 @@ var Assets = React.createClass({
       assets: []
     }
   },
+  handleSuccess(data) {
+    this.setState({assets: data});
+  },
+  handleFailure(err) {
+    console.log(err);
+  },
   componentDidMount() {
-    //this._getAssets();
-    console.log("These are assets from back-end:")
-    $.ajax({
-      type: 'GET',
-      url: "http://52.68.95.171:10000/users/allassets",
-      dataType: 'json',
-      success: function(data) {
-        this.setState({assets: data});
-      }.bind(this),
-      error: function(xhr, status, err) {
-        console.error(this.url, status, err.toString());
-      }.bind(this)
-    });
-    /*
-    $.get("http://52.68.95.171:10000/users/allassets", function(result) {
-      var assets = result
-      console.log(assets)
-      if (this.isMounted()) {
-        this.setState({
-          assets: assets
-        });
-      }
-    }.bind(this));*/
+    console.log("These are assets from back-end:");
+    userApi.assets()
+      .then(this.handleSuccess, this.handleFailure);
   },
   render() {
     return (
