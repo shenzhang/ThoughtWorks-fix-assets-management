@@ -58,7 +58,7 @@ public class UserServiceImpl implements UserService {
 
 
     private List<String> allValidUserNames() {
-        List<User> users = userRepository.findAll();
+        List<User> users = (List<User>) userRepository.findAll();
         return FluentIterable.from(users).transform(new Function<User, String>() {
             @Override
             public String apply(User user) {

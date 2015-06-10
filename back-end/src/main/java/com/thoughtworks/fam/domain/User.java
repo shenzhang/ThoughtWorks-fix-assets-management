@@ -1,9 +1,16 @@
 package com.thoughtworks.fam.domain;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
 public class User {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
 
     private String name;
 
@@ -11,7 +18,7 @@ public class User {
 
     private String password;
 
-    public User() {
+    protected User() {
 
     }
 
@@ -64,4 +71,10 @@ public class User {
         return this.name.equals(user.getName());
     }
 
+    @Override
+    public String toString() {
+        return String.format(
+                "User[id=%d, name='%s', email='%s']",
+                id, name, email);
+    }
 }
