@@ -38,7 +38,7 @@ public class UserServiceTest {
 
     @Test
     public void should_create_user_success_when_input_valid_user_name(){
-        given(userRepository.findUserByName("lq")).willReturn(null);
+        given(userRepository.findByName("lq")).willReturn(null);
         given(userRepository.findAll()).willReturn(mockUsers);
         given(userRepository.save(any(User.class))).willReturn(new User("lq", "lq@thoughtworks.com"));
 
@@ -49,13 +49,13 @@ public class UserServiceTest {
 
     @Test(expected = CreateUserException.class)
     public void should_create_user_failed_when_user_has_existed(){
-        given(userRepository.findUserByName("ncmao")).willReturn(new User("ncmao","ncmao@thoughtworks.com"));
+        given(userRepository.findByName("ncmao")).willReturn(new User("ncmao","ncmao@thoughtworks.com"));
         userService.save("ncmao");
     }
 
     @Test(expected = CreateUserException.class)
     public void should_create_user_failed_when_userName_inValid(){
-        given(userRepository.findUserByName("jtao1")).willReturn(null);
+        given(userRepository.findByName("jtao1")).willReturn(null);
         given(userRepository.findAll()).willReturn(mockUsers);
         userService.save("jtao1");
     }
@@ -67,7 +67,7 @@ public class UserServiceTest {
         String wrongPassword = "123";
         newUser.setPassword(wrongPassword);
 
-        given(userRepository.findUserByName(newUser.getName())).willReturn(newUser);
+        given(userRepository.findByName(newUser.getName())).willReturn(newUser);
 
         try {
             userService.updatePassword(newUser);

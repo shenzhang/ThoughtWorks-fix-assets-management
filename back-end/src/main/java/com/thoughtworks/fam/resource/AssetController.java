@@ -1,9 +1,10 @@
 package com.thoughtworks.fam.resource;
 
+import com.thoughtworks.fam.domain.Asset;
 import com.thoughtworks.fam.domain.Json.CreateAssetJson;
-import com.thoughtworks.fam.domain.NewAsset;
 import com.thoughtworks.fam.service.AssetService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,8 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.regex.Pattern;
 
-import static org.springframework.http.HttpStatus.CONFLICT;
-import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @RestController
@@ -22,21 +21,12 @@ public class AssetController {
     private AssetService assetService;
 
     @RequestMapping(value = "/create", method = POST)
-    public ResponseEntity<CreateAssetJson> create(@RequestBody NewAsset newAsset){
+    public ResponseEntity<CreateAssetJson> create(@RequestBody Asset asset) {
+
         CreateAssetJson createAssetJson = new CreateAssetJson();
-
-        String serialName = newAsset.getSerialName();
-        if (isNumeric(serialName)) {
-            if (serialName.length() == 8) {
-                assetService.save(newAsset);
-
-                createAssetJson.setMessage("success");
-                return new ResponseEntity<CreateAssetJson>(createAssetJson, CREATED);
-            }
-        }
-
-        createAssetJson.setMessage("Name should be made up of 8 numbers.");
-        return new ResponseEntity<CreateAssetJson>(createAssetJson, CONFLICT);
+        assetService.save(asset);
+        createAssetJson.setMessage("success");
+        return new ResponseEntity<CreateAssetJson>(createAssetJson, HttpStatus.CREATED);
 
     }
 

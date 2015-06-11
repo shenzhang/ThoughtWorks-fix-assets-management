@@ -1,8 +1,8 @@
 package com.thoughtworks.fam.service.Impl;
 
-import com.thoughtworks.fam.dao.AssetDao;
-import com.thoughtworks.fam.domain.NewAsset;
+import com.thoughtworks.fam.domain.Asset;
 import com.thoughtworks.fam.exception.CreateAssetException;
+import com.thoughtworks.fam.repository.AssetRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -18,26 +18,29 @@ import static org.mockito.Matchers.any;
 public class AssetServiceImplTest {
 
     @Mock
-    private AssetDao assetDao;
+    private AssetRepository assetRepository;
 
     @InjectMocks
     private AssetServiceImpl assetService;
 
     @Test
     public void should_create_asset_success_when_serialName_has_not_existed() throws Exception {
-        given(assetDao.findAssetsBySerialName("17006011")).willReturn(null);
-        given(assetDao.save(any(NewAsset.class))).willReturn(new NewAsset("Nokia", "17006011"));
 
-        NewAsset newAsset= assetService.save(new NewAsset("Nokia", "17006011"));
+        Asset asset = new Asset().withAssetName("Nokia").withNumber("17006011");
+        given(assetRepository.findByNumber("17006011")).willReturn(null);
+        given(assetRepository.save(any(Asset.class))).willReturn(asset);
 
-        assertThat(newAsset.getSerialName(), is("17006011"));
+        assetService.save(asset);
+        assertThat(asset.getNumber(), is("17006011"));
 
     }
 
     @Test(expected = CreateAssetException.class)
-    public void should_create_asset_failed_when_serialName_has_existed() {
-        given(assetDao.findAssetsBySerialName("17006011")).willReturn(new NewAsset("Nokia", "17006011"));
-        NewAsset newAsset = new NewAsset("Nokia", "17006011");
-        assetService.save(newAsset);
+    public void should_create_asset_failed_when_number_has_existed() {
+        Asset asset = new Asset().withAssetName("Nokia").withNumber("17006011");
+
+        given(assetRepository.findByNumber("17006011")).willReturn(asset);
+
+        assetService.save(asset);
     }
 }

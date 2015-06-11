@@ -38,7 +38,7 @@ public class UserController {
         if (isNullOrEmpty(userName)) {
             return null;
         }
-        List<Asset> assets = assetService.findAssetsByUserName(userName);
+        List<Asset> assets = assetService.findByUserName(userName);
         return new ResponseEntity<List<Asset>>(assets, OK);
     }
 

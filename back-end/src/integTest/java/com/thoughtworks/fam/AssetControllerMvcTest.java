@@ -41,7 +41,7 @@ public class AssetControllerMvcTest {
     public void should_get_asset_success() throws Exception {
         List<Asset> assets = Arrays.asList(new Asset().withAssetName("macbook").withAssignedDate("2015-05-09")
                 .withNumber("123456").withType("laptop"));
-        given(assetService.findAssetsByUserName("user1")).willReturn(assets);
+        given(assetService.findByUserName("user1")).willReturn(assets);
         this.mockMvc.perform(get("/users/user1/assets"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].assetName", is("macbook")))

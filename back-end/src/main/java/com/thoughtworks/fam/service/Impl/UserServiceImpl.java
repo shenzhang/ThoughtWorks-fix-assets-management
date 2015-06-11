@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User save(String name) {
-        if (userRepository.findUserByName(name) != null) {
+        if (userRepository.findByName(name) != null) {
             throw new CreateUserException("user already exist");
         }
         if (!isValidFor(name)) {
@@ -37,7 +37,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User updatePassword(User user) {
 
-        if (userRepository.findUserByName(user.getName()) == null) {
+        if (userRepository.findByName(user.getName()) == null) {
             throw new AuthException("User is invalid!");
         }
         if (user.getPassword().length() < 8) {

@@ -104,9 +104,9 @@ public class UserControllerTest {
     }
     @Test
     public void should_return_assetsByUsername() throws Exception {
-        given(assetService.findAssetsByUserName("jtao")).willReturn(ASSETS);
+        given(assetService.findByUserName("jtao")).willReturn(ASSETS);
         ResponseEntity<List<Asset>> assets = userController.getAssets("jtao");
-        verify(assetService).findAssetsByUserName("jtao");
+        verify(assetService).findByUserName("jtao");
         assertThat(assets.getBody(), is(ASSETS));
     }
 
